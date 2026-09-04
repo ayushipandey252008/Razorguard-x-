@@ -1,0 +1,9 @@
+{
+  "booster_model_version": "ulb-xgb-v1",
+  "calibrated_model_version": "ulb-xgb-v1-calibrated",
+  "selected_method": "isotonic",
+  "t_review": 0.02,
+  "t_block": 0.29,
+  "test_labels_used": false,
+  "synthetic_model_untouched": true
+}

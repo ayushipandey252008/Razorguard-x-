@@ -1,0 +1,136 @@
+{
+  "best": {
+    "threshold_review": 0.05,
+    "threshold_block": 0.814,
+    "precision_at_review": 0.8777777777777778,
+    "recall_at_review": 0.8729281767955801,
+    "false_positives_block": 4,
+    "false_negatives_approve": 23,
+    "expected_cost": 2392.0
+  },
+  "best_with_review_at_least_0.25": {
+    "threshold_review": 0.25,
+    "threshold_block": 0.832,
+    "precision_at_review": 0.9631901840490797,
+    "recall_at_review": 0.8674033149171271,
+    "false_positives_block": 4,
+    "false_negatives_approve": 24,
+    "expected_cost": 2458.0
+  },
+  "top": [
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.814,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 4,
+      "false_negatives_approve": 23,
+      "expected_cost": 2392.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.2,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.268,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.336,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.405,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.473,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.541,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.609,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.677,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.745,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 6,
+      "false_negatives_approve": 23,
+      "expected_cost": 2394.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.882,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 2,
+      "false_negatives_approve": 23,
+      "expected_cost": 2404.0
+    },
+    {
+      "threshold_review": 0.05,
+      "threshold_block": 0.95,
+      "precision_at_review": 0.8777777777777778,
+      "recall_at_review": 0.8729281767955801,
+      "false_positives_block": 2,
+      "false_negatives_approve": 23,
+      "expected_cost": 2404.0
+    }
+  ],
+  "cost_units": {
+    "fp": 10.0,
+    "fn": 100.0,
+    "review": 2.0
+  },
+  "note": "Unconstrained minimum cost often pushes review toward 0 because FN cost dominates. Product THRESHOLD_* stay separately configurable."
+}

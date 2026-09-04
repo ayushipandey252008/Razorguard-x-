@@ -1,0 +1,1490 @@
+{
+  "label": "OFFLINE PUBLIC DATASET EVALUATION",
+  "track": "IEEE_CIS_OFFLINE",
+  "source": "IEEE_CIS_CSV",
+  "dataset_available": true,
+  "disclaimer": "The IEEE-CIS experiment is an offline public-dataset evaluation. It does not represent production payment-fraud performance.",
+  "random_seed": 42,
+  "python_version": "3.12.9 (v3.12.9:fdb81425a9a, Feb  4 2025, 12:21:36) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "package_versions": {
+    "pandas": "2.2.3",
+    "numpy": "2.2.1",
+    "scikit-learn": "1.6.1",
+    "xgboost": "2.1.3"
+  },
+  "split": {
+    "strategy": "chronological",
+    "official_evaluation_split": "chronological",
+    "random_stratified_used_as_official": false,
+    "train": {
+      "name": "train",
+      "n": 413378,
+      "fraud": 14538,
+      "legitimate": 398840,
+      "prevalence": 0.03516878014795175,
+      "time_min": 86400,
+      "time_max": 10437996
+    },
+    "validation": {
+      "name": "validation",
+      "n": 88581,
+      "fraud": 3042,
+      "legitimate": 85539,
+      "prevalence": 0.03434145019812375,
+      "time_min": 10438003,
+      "time_max": 13151840
+    },
+    "test": {
+      "name": "test",
+      "n": 88581,
+      "fraud": 3083,
+      "legitimate": 85498,
+      "prevalence": 0.03480430340592226,
+      "time_min": 13151880,
+      "time_max": 15811131
+    },
+    "constraints": {
+      "max_train_lt_min_validation": true,
+      "max_validation_lt_min_test": true
+    },
+    "preprocessing_fit_on": "train_only"
+  },
+  "split_configuration": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15,
+    "strategy": "chronological"
+  },
+  "max_rows": null,
+  "n_estimators": null,
+  "feature_configuration": {
+    "A_transaction_only": [
+      "transaction"
+    ],
+    "B_transaction_card": [
+      "transaction",
+      "card"
+    ],
+    "C_transaction_identity": [
+      "transaction",
+      "identity"
+    ],
+    "D_transaction_behavioral": [
+      "transaction",
+      "behavioral"
+    ],
+    "E_transaction_graph": [
+      "transaction",
+      "graph"
+    ],
+    "F_combined": [
+      "transaction",
+      "card",
+      "address",
+      "identity",
+      "email",
+      "behavioral",
+      "graph"
+    ],
+    "ablation_no_graph": [
+      "transaction",
+      "card",
+      "address",
+      "identity",
+      "email",
+      "behavioral"
+    ]
+  },
+  "leakage_all_passed": true,
+  "experiments_test": [
+    {
+      "Experiment": "A_transaction_only",
+      "Features": "transaction",
+      "n_features": 9,
+      "PR-AUC": 0.3333169051250197,
+      "ROC-AUC": 0.8155603175494288,
+      "Precision": 0.11310208778563209,
+      "Recall": 0.669477781381771,
+      "F1": 0.19351209450590662,
+      "FPR": 0.1893026737467543
+    },
+    {
+      "Experiment": "B_transaction_card",
+      "Features": "transaction+card",
+      "n_features": 15,
+      "PR-AUC": 0.34992949575387666,
+      "ROC-AUC": 0.8322174742568519,
+      "Precision": 0.12313088425327672,
+      "Recall": 0.6490431397988972,
+      "F1": 0.2069928623150926,
+      "FPR": 0.16667056539334255
+    },
+    {
+      "Experiment": "C_transaction_identity",
+      "Features": "transaction+identity",
+      "n_features": 19,
+      "PR-AUC": 0.3655249294630912,
+      "ROC-AUC": 0.8160713283211668,
+      "Precision": 0.12504724707068163,
+      "Recall": 0.6438533895556277,
+      "F1": 0.20942132193912538,
+      "FPR": 0.16244824440337785
+    },
+    {
+      "Experiment": "D_transaction_behavioral",
+      "Features": "transaction+behavioral",
+      "n_features": 18,
+      "PR-AUC": 0.31271449125269707,
+      "ROC-AUC": 0.8214024058257008,
+      "Precision": 0.11098055970946379,
+      "Recall": 0.6740188128446318,
+      "F1": 0.19058100609895906,
+      "FPR": 0.19469461273947927
+    },
+    {
+      "Experiment": "E_transaction_graph",
+      "Features": "transaction+graph",
+      "n_features": 18,
+      "PR-AUC": 0.3748364293730476,
+      "ROC-AUC": 0.8651765394401753,
+      "Precision": 0.12557179515787126,
+      "Recall": 0.7301329873499838,
+      "F1": 0.21428911418915703,
+      "FPR": 0.18333762193267678
+    },
+    {
+      "Experiment": "F_combined",
+      "Features": "transaction+card+address+identity+email+behavioral+graph",
+      "n_features": 49,
+      "PR-AUC": 0.3455053854135874,
+      "ROC-AUC": 0.869226073365801,
+      "Precision": 0.11329628046173579,
+      "Recall": 0.7735971456373663,
+      "F1": 0.19764647385431341,
+      "FPR": 0.2183208963952373
+    },
+    {
+      "Experiment": "ablation_no_graph",
+      "Features": "transaction+card+address+identity+email+behavioral",
+      "n_features": 40,
+      "PR-AUC": 0.33380969019759066,
+      "ROC-AUC": 0.8335708812448335,
+      "Precision": 0.11338289962825279,
+      "Recall": 0.6727213752838145,
+      "F1": 0.19405847953216374,
+      "FPR": 0.18968864768766522
+    }
+  ],
+  "experiments_validation": [
+    {
+      "Experiment": "A_transaction_only",
+      "Features": "transaction",
+      "n_features": 9,
+      "PR-AUC": 0.33089780751684844,
+      "ROC-AUC": 0.814514420484302,
+      "Precision": 0.12406557377049181,
+      "Recall": 0.6219592373438527,
+      "F1": 0.206866389678548,
+      "FPR": 0.15616268602625702
+    },
+    {
+      "Experiment": "B_transaction_card",
+      "Features": "transaction+card",
+      "n_features": 15,
+      "PR-AUC": 0.36164434432923676,
+      "ROC-AUC": 0.8371308387124384,
+      "Precision": 0.14040515653775323,
+      "Recall": 0.6265614727153189,
+      "F1": 0.22940362279593188,
+      "FPR": 0.13641730672558716
+    },
+    {
+      "Experiment": "C_transaction_identity",
+      "Features": "transaction+identity",
+      "n_features": 19,
+      "PR-AUC": 0.3505842298310752,
+      "ROC-AUC": 0.8145259073762671,
+      "Precision": 0.13754422946623504,
+      "Recall": 0.6005917159763313,
+      "F1": 0.22382848392036753,
+      "FPR": 0.13392721448695916
+    },
+    {
+      "Experiment": "D_transaction_behavioral",
+      "Features": "transaction+behavioral",
+      "n_features": 18,
+      "PR-AUC": 0.3589970106731337,
+      "ROC-AUC": 0.8300970273822064,
+      "Precision": 0.12514064258032254,
+      "Recall": 0.6581196581196581,
+      "F1": 0.21029411764705883,
+      "FPR": 0.16362127216825073
+    },
+    {
+      "Experiment": "E_transaction_graph",
+      "Features": "transaction+graph",
+      "n_features": 18,
+      "PR-AUC": 0.4202018682475606,
+      "ROC-AUC": 0.8750404491166466,
+      "Precision": 0.13815991641570893,
+      "Recall": 0.7389875082182774,
+      "F1": 0.23279656190131,
+      "FPR": 0.16393691766328808
+    },
+    {
+      "Experiment": "F_combined",
+      "Features": "transaction+card+address+identity+email+behavioral+graph",
+      "n_features": 49,
+      "PR-AUC": 0.42999390635178036,
+      "ROC-AUC": 0.878309847616021,
+      "Precision": 0.12961321068380804,
+      "Recall": 0.7689020381328073,
+      "F1": 0.22183232169954475,
+      "FPR": 0.1836238440945066
+    },
+    {
+      "Experiment": "ablation_no_graph",
+      "Features": "transaction+card+address+identity+email+behavioral",
+      "n_features": 40,
+      "PR-AUC": 0.382846975766712,
+      "ROC-AUC": 0.8421591286330447,
+      "Precision": 0.13646930124435935,
+      "Recall": 0.6561472715318869,
+      "F1": 0.2259452116821372,
+      "FPR": 0.14765194823413882
+    }
+  ],
+  "graph_ablation": {
+    "without_graph": {
+      "threshold": 0.5,
+      "precision": 0.11338289962825279,
+      "recall": 0.6727213752838145,
+      "f1": 0.19405847953216374,
+      "roc_auc": 0.8335708812448335,
+      "pr_auc": 0.33380969019759066,
+      "false_positive_rate": 0.18968864768766522,
+      "false_negative_rate": 0.3272786247161855,
+      "fraud_catch_rate": 0.6727213752838145,
+      "brier": 0.15243912996289352,
+      "log_loss": 0.4831069294060196,
+      "confusion_matrix": {
+        "tn": 69280,
+        "fp": 16218,
+        "fn": 1009,
+        "tp": 2074
+      },
+      "n_samples": 88581,
+      "n_fraud": 3083,
+      "n_legitimate": 85498,
+      "fraud_prevalence": 0.03480430340592226
+    },
+    "with_graph": {
+      "threshold": 0.5,
+      "precision": 0.11329628046173579,
+      "recall": 0.7735971456373663,
+      "f1": 0.19764647385431341,
+      "roc_auc": 0.869226073365801,
+      "pr_auc": 0.3455053854135874,
+      "false_positive_rate": 0.2183208963952373,
+      "false_negative_rate": 0.2264028543626338,
+      "fraud_catch_rate": 0.7735971456373663,
+      "brier": 0.15976599520806753,
+      "log_loss": 0.49470838268534917,
+      "confusion_matrix": {
+        "tn": 66832,
+        "fp": 18666,
+        "fn": 698,
+        "tp": 2385
+      },
+      "n_samples": 88581,
+      "n_fraud": 3083,
+      "n_legitimate": 85498,
+      "fraud_prevalence": 0.03480430340592226
+    },
+    "improved": {
+      "pr_auc": true,
+      "recall": true,
+      "precision": false,
+      "f1": true,
+      "false_positive_rate": false
+    },
+    "honest_note": "If graph features do not improve a metric, that is reported as false. This does not replace live NetworkX/Neo4j.",
+    "construction": [
+      "Offline IEEE graph features are built by scanning transactions in TransactionDT order.",
+      "A row at time T only sees entity statistics from transactions with time < T.",
+      "Current-row isFraud is never written into that row's graph features.",
+      "Prior-label neighbor counts use historical isFraud from earlier rows only.",
+      "IEEE-CIS identity has no raw IP; graph_ip_entity_unavailable=1 and IP counts are not fabricated.",
+      "addr1 is a coarse billing/geo entity, not an IP address.",
+      "These features do not replace the live GraphBackend (NetworkX / optional Neo4j)."
+    ]
+  },
+  "calibration": {
+    "selection": {
+      "selected_method": "isotonic",
+      "ranking": [
+        {
+          "method": "isotonic",
+          "brier": 0.024584788939874282,
+          "log_loss": 0.1004100422389774,
+          "ece_uniform_10": 3.8458021044278726e-18,
+          "n_unique_predictions": 68
+        },
+        {
+          "method": "sigmoid",
+          "brier": 0.025448200608730806,
+          "log_loss": 0.10350416204120329,
+          "ece_uniform_10": 0.005312449558834163,
+          "n_unique_predictions": 85435
+        },
+        {
+          "method": "raw",
+          "brier": 0.1379999336135729,
+          "log_loss": 0.43247660873443156,
+          "ece_uniform_10": 0.2892377467847688,
+          "n_unique_predictions": 85435
+        }
+      ],
+      "justification": "Selected isotonic using validation diagnostics with an isotonic uniqueness guard (Brier=0.02458479).",
+      "notes": [
+        "Selection uses validation Brier, then ECE, then log loss. Test labels are unused.",
+        "Isotonic is fit on the same validation scores it is scored on, so a lower val Brier is not proof of robustness.",
+        "ULB calibration showed isotonic can compress ranking (PR-AUC) while improving in-sample Brier."
+      ],
+      "model_probability_is_not_final_risk_score": true,
+      "not_production_fraud_probability": true
+    },
+    "validation": {
+      "raw": {
+        "label": "raw",
+        "brier": 0.1379999336135729,
+        "log_loss": 0.43247660873443156,
+        "ece_uniform_10": 0.2892377467847688,
+        "ece_quantile_10": 0.2892377467847688,
+        "mean_predicted": 0.32357919698289256,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 85435,
+        "n_samples": 88581,
+        "n_positive": 3042,
+        "reliability_uniform": {
+          "strategy": "uniform",
+          "n_bins": 10,
+          "ece": 0.2892377467847688,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 15898,
+              "n_positive": 5,
+              "mean_predicted": 0.05014342243377443,
+              "empirical_positive_rate": 0.000314504969178513,
+              "gap": 0.04982891746459592
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 12702,
+              "n_positive": 57,
+              "mean_predicted": 0.1515988402902714,
+              "empirical_positive_rate": 0.004487482286254133,
+              "gap": 0.14711135800401726
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 15955,
+              "n_positive": 158,
+              "mean_predicted": 0.25082738661104814,
+              "empirical_positive_rate": 0.009902851770604825,
+              "gap": 0.24092453484044332
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 14955,
+              "n_positive": 243,
+              "mean_predicted": 0.34828784475753793,
+              "empirical_positive_rate": 0.01624874623871615,
+              "gap": 0.3320390985188218
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 11025,
+              "n_positive": 240,
+              "mean_predicted": 0.4470151049398781,
+              "empirical_positive_rate": 0.021768707482993196,
+              "gap": 0.4252463974568849
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 7924,
+              "n_positive": 337,
+              "mean_predicted": 0.5468448140911837,
+              "empirical_positive_rate": 0.04252902574457345,
+              "gap": 0.5043157883466103
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 4748,
+              "n_positive": 354,
+              "mean_predicted": 0.6450503714313603,
+              "empirical_positive_rate": 0.07455770850884583,
+              "gap": 0.5704926629225145
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 2677,
+              "n_positive": 382,
+              "mean_predicted": 0.7455263980119853,
+              "empirical_positive_rate": 0.1426970489353754,
+              "gap": 0.6028293490766099
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 1481,
+              "n_positive": 428,
+              "mean_predicted": 0.8457136918852894,
+              "empirical_positive_rate": 0.2889939230249831,
+              "gap": 0.5567197688603063
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 1216,
+              "n_positive": 838,
+              "mean_predicted": 0.9515373597509766,
+              "empirical_positive_rate": 0.6891447368421053,
+              "gap": 0.26239262290887133
+            }
+          ]
+        },
+        "within_unit_interval": true
+      },
+      "sigmoid": {
+        "label": "sigmoid",
+        "brier": 0.025448200608730806,
+        "log_loss": 0.10350416204120329,
+        "ece_uniform_10": 0.005312449558834163,
+        "ece_quantile_10": 0.003848555960199588,
+        "mean_predicted": 0.03438168946443294,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 85435,
+        "n_samples": 88581,
+        "n_positive": 3042,
+        "reliability_uniform": {
+          "strategy": "uniform",
+          "n_bins": 10,
+          "ece": 0.005312449558834163,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 81222,
+              "n_positive": 1220,
+              "mean_predicted": 0.014854636779995678,
+              "empirical_positive_rate": 0.015020560931767256,
+              "gap": 0.00016592415177157753
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 3758,
+              "n_positive": 379,
+              "mean_predicted": 0.14067183684842233,
+              "empirical_positive_rate": 0.1008515167642363,
+              "gap": 0.039820320084186026
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 1431,
+              "n_positive": 297,
+              "mean_predicted": 0.2437436768282217,
+              "empirical_positive_rate": 0.20754716981132076,
+              "gap": 0.03619650701690094
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 849,
+              "n_positive": 258,
+              "mean_predicted": 0.3458554770229155,
+              "empirical_positive_rate": 0.303886925795053,
+              "gap": 0.04196855122786253
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 573,
+              "n_positive": 282,
+              "mean_predicted": 0.4503994367248457,
+              "empirical_positive_rate": 0.49214659685863876,
+              "gap": 0.04174716013379304
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 748,
+              "n_positive": 606,
+              "mean_predicted": 0.5479799254689534,
+              "empirical_positive_rate": 0.8101604278074866,
+              "gap": 0.2621805023385333
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            }
+          ]
+        },
+        "within_unit_interval": true
+      },
+      "isotonic": {
+        "label": "isotonic",
+        "brier": 0.024584788939874282,
+        "log_loss": 0.1004100422389774,
+        "ece_uniform_10": 3.8458021044278726e-18,
+        "ece_quantile_10": 2.094569762099947e-18,
+        "mean_predicted": 0.03434145019812375,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 68,
+        "n_samples": 88581,
+        "n_positive": 3042,
+        "reliability_uniform": {
+          "strategy": "uniform",
+          "n_bins": 10,
+          "ece": 3.8458021044278726e-18,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 83454,
+              "n_positive": 1414,
+              "mean_predicted": 0.01694346586143265,
+              "empirical_positive_rate": 0.016943465861432645,
+              "gap": 3.469446951953614e-18
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 1818,
+              "n_positive": 231,
+              "mean_predicted": 0.12706270627062707,
+              "empirical_positive_rate": 0.12706270627062707,
+              "gap": 0.0
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 1693,
+              "n_positive": 406,
+              "mean_predicted": 0.23981098641464854,
+              "empirical_positive_rate": 0.23981098641464854,
+              "gap": 0.0
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 300,
+              "n_positive": 103,
+              "mean_predicted": 0.3433333333333333,
+              "empirical_positive_rate": 0.3433333333333333,
+              "gap": 0.0
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 381,
+              "n_positive": 168,
+              "mean_predicted": 0.4409448818897637,
+              "empirical_positive_rate": 0.4409448818897638,
+              "gap": 5.551115123125783e-17
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 78,
+              "n_positive": 41,
+              "mean_predicted": 0.5256410256410255,
+              "empirical_positive_rate": 0.5256410256410257,
+              "gap": 1.1102230246251565e-16
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 192,
+              "n_positive": 125,
+              "mean_predicted": 0.6510416666666667,
+              "empirical_positive_rate": 0.6510416666666666,
+              "gap": 1.1102230246251565e-16
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 242,
+              "n_positive": 178,
+              "mean_predicted": 0.7355371900826446,
+              "empirical_positive_rate": 0.7355371900826446,
+              "gap": 0.0
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 303,
+              "n_positive": 262,
+              "mean_predicted": 0.8646864686468647,
+              "empirical_positive_rate": 0.8646864686468647,
+              "gap": 0.0
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 120,
+              "n_positive": 114,
+              "mean_predicted": 0.95,
+              "empirical_positive_rate": 0.95,
+              "gap": 0.0
+            }
+          ]
+        },
+        "within_unit_interval": true
+      }
+    },
+    "test_once": {
+      "raw": {
+        "label": "raw",
+        "brier": 0.15976599520806753,
+        "log_loss": 0.49470838268534917,
+        "ece_uniform_10": 0.3128684913394594,
+        "ece_quantile_10": 0.3128684913394594,
+        "mean_predicted": 0.34767279474538165,
+        "empirical_prevalence": 0.03480430340592226,
+        "n_unique_predictions": 84133,
+        "n_samples": 88581,
+        "n_positive": 3083,
+        "reliability_uniform": {
+          "strategy": "uniform",
+          "n_bins": 10,
+          "ece": 0.3128684913394594,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 14476,
+              "n_positive": 2,
+              "mean_predicted": 0.05034972013761919,
+              "empirical_positive_rate": 0.00013815971262779773,
+              "gap": 0.05021156042499139
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 11978,
+              "n_positive": 40,
+              "mean_predicted": 0.15196287319920043,
+              "empirical_positive_rate": 0.0033394556687259976,
+              "gap": 0.14862341753047442
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 15113,
+              "n_positive": 117,
+              "mean_predicted": 0.2512045856078408,
+              "empirical_positive_rate": 0.007741679348904917,
+              "gap": 0.2434629062589359
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 14556,
+              "n_positive": 249,
+              "mean_predicted": 0.34826688408876194,
+              "empirical_positive_rate": 0.017106347897774113,
+              "gap": 0.33116053619098784
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 11407,
+              "n_positive": 290,
+              "mean_predicted": 0.44792994168927736,
+              "empirical_positive_rate": 0.02542298588585956,
+              "gap": 0.4225069558034178
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 8317,
+              "n_positive": 310,
+              "mean_predicted": 0.5470600855369128,
+              "empirical_positive_rate": 0.03727305518816881,
+              "gap": 0.509787030348744
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 5145,
+              "n_positive": 317,
+              "mean_predicted": 0.6458671261664151,
+              "empirical_positive_rate": 0.06161321671525753,
+              "gap": 0.5842539094511575
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 2967,
+              "n_positive": 287,
+              "mean_predicted": 0.7450848281443782,
+              "empirical_positive_rate": 0.09673070441523424,
+              "gap": 0.6483541237291439
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 1848,
+              "n_positive": 485,
+              "mean_predicted": 0.8469980587110375,
+              "empirical_positive_rate": 0.2624458874458874,
+              "gap": 0.58455217126515
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 2774,
+              "n_positive": 986,
+              "mean_predicted": 0.9459125026577053,
+              "empirical_positive_rate": 0.3554434030281182,
+              "gap": 0.5904690996295872
+            }
+          ]
+        },
+        "within_unit_interval": true
+      },
+      "calibrated": {
+        "label": "isotonic",
+        "brier": 0.030208660511022563,
+        "log_loss": 0.11735219750369302,
+        "ece_uniform_10": 0.01259225252148301,
+        "ece_quantile_10": 0.013518600433527976,
+        "mean_predicted": 0.047396555927405264,
+        "empirical_prevalence": 0.03480430340592226,
+        "n_unique_predictions": 159,
+        "n_samples": 88581,
+        "n_positive": 3083,
+        "reliability_uniform": {
+          "strategy": "uniform",
+          "n_bins": 10,
+          "ece": 0.01259225252148301,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 81297,
+              "n_positive": 1343,
+              "mean_predicted": 0.01795403118405971,
+              "empirical_positive_rate": 0.01651967477274684,
+              "gap": 0.0014343564113128704
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 1991,
+              "n_positive": 185,
+              "mean_predicted": 0.12742788654612833,
+              "empirical_positive_rate": 0.09291813159216473,
+              "gap": 0.03450975495396359
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 1966,
+              "n_positive": 413,
+              "mean_predicted": 0.23958669112520944,
+              "empirical_positive_rate": 0.2100712105798576,
+              "gap": 0.029515480545351858
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 359,
+              "n_positive": 115,
+              "mean_predicted": 0.3435337217620995,
+              "empirical_positive_rate": 0.3203342618384401,
+              "gap": 0.023199459923659405
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 848,
+              "n_positive": 193,
+              "mean_predicted": 0.44469662002798954,
+              "empirical_positive_rate": 0.2275943396226415,
+              "gap": 0.21710228040534804
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 347,
+              "n_positive": 48,
+              "mean_predicted": 0.5258090804523052,
+              "empirical_positive_rate": 0.138328530259366,
+              "gap": 0.38748055019293925
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 722,
+              "n_positive": 121,
+              "mean_predicted": 0.6510355393617929,
+              "empirical_positive_rate": 0.16759002770083103,
+              "gap": 0.4834455116609619
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 482,
+              "n_positive": 199,
+              "mean_predicted": 0.7319145943106266,
+              "empirical_positive_rate": 0.41286307053941906,
+              "gap": 0.3190515237712075
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 387,
+              "n_positive": 316,
+              "mean_predicted": 0.8654357074189688,
+              "empirical_positive_rate": 0.8165374677002584,
+              "gap": 0.048898239718710435
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 182,
+              "n_positive": 150,
+              "mean_predicted": 0.9530103687259596,
+              "empirical_positive_rate": 0.8241758241758241,
+              "gap": 0.12883454455013543
+            }
+          ]
+        },
+        "within_unit_interval": true
+      }
+    }
+  },
+  "thresholds": {
+    "approve_below": 0.020004,
+    "block_above": 0.511628,
+    "review_from": 0.020004,
+    "review_to": 0.511628,
+    "val_cost": 102922.0,
+    "val_n_review": 21501,
+    "cost_assumptions": {
+      "false_negative": 100.0,
+      "false_positive": 5.0,
+      "review": 2.0,
+      "units": "relative prototype units, not a bank loss model"
+    },
+    "source": "validation_only",
+    "notes": [
+      "Thresholds are chosen on TRAIN/VALIDATION scores only and applied once to the frozen test set.",
+      "model_probability is not the live product final_risk_score.",
+      "Not an industry-standard operating point."
+    ]
+  },
+  "frozen_test_metrics": {
+    "threshold": 0.5,
+    "precision": 0.39339622641509436,
+    "recall": 0.2705157314304249,
+    "f1": 0.3205842783009802,
+    "roc_auc": 0.8688416207249846,
+    "pr_auc": 0.3371524181307357,
+    "false_positive_rate": 0.015041287515497439,
+    "false_negative_rate": 0.729484268569575,
+    "fraud_catch_rate": 0.2705157314304249,
+    "brier": 0.030208660511022563,
+    "log_loss": 0.11735219750369302,
+    "confusion_matrix": {
+      "tn": 84212,
+      "fp": 1286,
+      "fn": 2249,
+      "tp": 834
+    },
+    "n_samples": 88581,
+    "n_fraud": 3083,
+    "n_legitimate": 85498,
+    "fraud_prevalence": 0.03480430340592226
+  },
+  "policy_on_test": {
+    "decisions": {
+      "APPROVE": 62927,
+      "REVIEW": 23809,
+      "BLOCK": 1845
+    },
+    "fraud_catch_rate_review_or_block": 0.8076548816088226,
+    "thresholds": {
+      "approve_below": 0.020004,
+      "block_above": 0.511628,
+      "review_from": 0.020004,
+      "review_to": 0.511628,
+      "val_cost": 102922.0,
+      "val_n_review": 21501,
+      "cost_assumptions": {
+        "false_negative": 100.0,
+        "false_positive": 5.0,
+        "review": 2.0,
+        "units": "relative prototype units, not a bank loss model"
+      },
+      "source": "validation_only",
+      "notes": [
+        "Thresholds are chosen on TRAIN/VALIDATION scores only and applied once to the frozen test set.",
+        "model_probability is not the live product final_risk_score.",
+        "Not an industry-standard operating point."
+      ]
+    }
+  },
+  "shap": {
+    "available": true,
+    "n_rows_explained": 24,
+    "global_feature_importance": [
+      {
+        "feature": "graph_card_prior_fraud_count",
+        "mean_abs_shap": 1.468917965888977
+      },
+      {
+        "feature": "graph_addr_account_count",
+        "mean_abs_shap": 0.3101222813129425
+      },
+      {
+        "feature": "graph_suspicious_cluster",
+        "mean_abs_shap": 0.3070181608200073
+      },
+      {
+        "feature": "graph_card_cluster_size",
+        "mean_abs_shap": 0.2579176127910614
+      },
+      {
+        "feature": "TransactionAmt",
+        "mean_abs_shap": 0.24688494205474854
+      },
+      {
+        "feature": "card_prior_count",
+        "mean_abs_shap": 0.21886958181858063
+      },
+      {
+        "feature": "C1",
+        "mean_abs_shap": 0.2074766308069229
+      },
+      {
+        "feature": "D1",
+        "mean_abs_shap": 0.18646188080310822
+      },
+      {
+        "feature": "C2",
+        "mean_abs_shap": 0.1564779281616211
+      },
+      {
+        "feature": "card6_freq",
+        "mean_abs_shap": 0.15196627378463745
+      },
+      {
+        "feature": "card1_freq",
+        "mean_abs_shap": 0.12711118161678314
+      },
+      {
+        "feature": "P_emaildomain_freq",
+        "mean_abs_shap": 0.08433332294225693
+      },
+      {
+        "feature": "graph_device_prior_fraud_count",
+        "mean_abs_shap": 0.07287360727787018
+      },
+      {
+        "feature": "DeviceType_freq",
+        "mean_abs_shap": 0.061714932322502136
+      },
+      {
+        "feature": "ProductCD_freq",
+        "mean_abs_shap": 0.051054831594228745
+      },
+      {
+        "feature": "graph_device_account_count",
+        "mean_abs_shap": 0.04963993653655052
+      },
+      {
+        "feature": "email_prior_count",
+        "mean_abs_shap": 0.04515773057937622
+      },
+      {
+        "feature": "hour_of_day_proxy",
+        "mean_abs_shap": 0.036745186895132065
+      },
+      {
+        "feature": "id_01",
+        "mean_abs_shap": 0.03591175749897957
+      },
+      {
+        "feature": "R_emaildomain_freq",
+        "mean_abs_shap": 0.03184537962079048
+      }
+    ],
+    "importance_by_family": {
+      "transaction": 0.9108179118484259,
+      "address": 0.049646125138679054,
+      "identity": 0.1670003508334048,
+      "behavioral": 0.3303269110620022,
+      "graph": 2.4995306143537164,
+      "card": 0.3051700564683415,
+      "email": 0.11617870256304741
+    },
+    "example_transaction": [
+      {
+        "feature": "graph_card_prior_fraud_count",
+        "shap": -1.7999708652496338,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "graph_addr_account_count",
+        "shap": 0.415418803691864,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "graph_suspicious_cluster",
+        "shap": -0.28492772579193115,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "graph_card_cluster_size",
+        "shap": 0.2591089606285095,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "card_prior_count",
+        "shap": 0.25864505767822266,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "card6_freq",
+        "shap": 0.2558261752128601,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "card1_freq",
+        "shap": 0.1828363835811615,
+        "note": "Model explanation of this score, not a causal claim."
+      },
+      {
+        "feature": "C1",
+        "shap": -0.17077632248401642,
+        "note": "Model explanation of this score, not a causal claim."
+      }
+    ],
+    "distinction": {
+      "model_explanation": "SHAP attributes the model's score to input features.",
+      "causal_explanation": "Not provided. Anonymized IEEE names are not business meanings unless the contest docs define them."
+    }
+  },
+  "candidates": [
+    {
+      "id": "ieee-xgb-baseline-v1",
+      "status": "CANDIDATE",
+      "deployed_to_live_pipeline": false,
+      "track": "IEEE_CIS_OFFLINE",
+      "dataset": "IEEE-CIS Fraud Detection",
+      "dataset_source": "IEEE_CIS_CSV",
+      "dataset_version": "./ml/data/ieee/train_transaction.csv",
+      "data_dir": "./ml/data/ieee",
+      "feature_families": [
+        "transaction"
+      ],
+      "feature_count": 9,
+      "train_rows": 413378,
+      "train_fraud_rows": 14538,
+      "validation_rows": 88581,
+      "test_rows": 88581,
+      "metrics": {
+        "threshold": 0.5,
+        "precision": 0.11310208778563209,
+        "recall": 0.669477781381771,
+        "f1": 0.19351209450590662,
+        "roc_auc": 0.8155603175494288,
+        "pr_auc": 0.3333169051250197,
+        "false_positive_rate": 0.1893026737467543,
+        "false_negative_rate": 0.330522218618229,
+        "fraud_catch_rate": 0.669477781381771,
+        "brier": 0.1505501916197524,
+        "log_loss": 0.47786259621987054,
+        "confusion_matrix": {
+          "tn": 69313,
+          "fp": 16185,
+          "fn": 1019,
+          "tp": 2064
+        },
+        "n_samples": 88581,
+        "n_fraud": 3083,
+        "n_legitimate": 85498,
+        "fraud_prevalence": 0.03480430340592226
+      },
+      "val_metrics": {
+        "threshold": 0.5,
+        "precision": 0.12406557377049181,
+        "recall": 0.6219592373438527,
+        "f1": 0.206866389678548,
+        "roc_auc": 0.814514420484302,
+        "pr_auc": 0.33089780751684844,
+        "false_positive_rate": 0.15616268602625702,
+        "false_negative_rate": 0.3780407626561473,
+        "fraud_catch_rate": 0.6219592373438527,
+        "brier": 0.13391842603193768,
+        "log_loss": 0.4368485783111174,
+        "confusion_matrix": {
+          "tn": 72181,
+          "fp": 13358,
+          "fn": 1150,
+          "tp": 1892
+        },
+        "n_samples": 88581,
+        "n_fraud": 3042,
+        "n_legitimate": 85539,
+        "fraud_prevalence": 0.03434145019812375
+      },
+      "artifact_path": "./ml/models/ieee/ieee-xgb-baseline-v1.joblib",
+      "training_timestamp": "2026-09-03T18:19:35.381590+00:00",
+      "live_model_unchanged": "xgb-iforest-v1-calibrated",
+      "note": "OFFLINE CANDIDATE. Not routed to live scoring. Not production fraud accuracy."
+    },
+    {
+      "id": "ieee-xgb-combined-v1",
+      "status": "CANDIDATE",
+      "deployed_to_live_pipeline": false,
+      "track": "IEEE_CIS_OFFLINE",
+      "dataset": "IEEE-CIS Fraud Detection",
+      "dataset_source": "IEEE_CIS_CSV",
+      "dataset_version": "./ml/data/ieee/train_transaction.csv",
+      "data_dir": "./ml/data/ieee",
+      "feature_families": [
+        "transaction",
+        "card",
+        "address",
+        "identity",
+        "email",
+        "behavioral",
+        "graph"
+      ],
+      "feature_count": 49,
+      "train_rows": 413378,
+      "train_fraud_rows": 14538,
+      "validation_rows": 88581,
+      "test_rows": 88581,
+      "metrics": {
+        "threshold": 0.5,
+        "precision": 0.11329628046173579,
+        "recall": 0.7735971456373663,
+        "f1": 0.19764647385431341,
+        "roc_auc": 0.869226073365801,
+        "pr_auc": 0.3455053854135874,
+        "false_positive_rate": 0.2183208963952373,
+        "false_negative_rate": 0.2264028543626338,
+        "fraud_catch_rate": 0.7735971456373663,
+        "brier": 0.15976599520806753,
+        "log_loss": 0.49470838268534917,
+        "confusion_matrix": {
+          "tn": 66832,
+          "fp": 18666,
+          "fn": 698,
+          "tp": 2385
+        },
+        "n_samples": 88581,
+        "n_fraud": 3083,
+        "n_legitimate": 85498,
+        "fraud_prevalence": 0.03480430340592226
+      },
+      "val_metrics": {
+        "threshold": 0.5,
+        "precision": 0.12961321068380804,
+        "recall": 0.7689020381328073,
+        "f1": 0.22183232169954475,
+        "roc_auc": 0.878309847616021,
+        "pr_auc": 0.42999390635178036,
+        "false_positive_rate": 0.1836238440945066,
+        "false_negative_rate": 0.23109796186719264,
+        "fraud_catch_rate": 0.7689020381328073,
+        "brier": 0.1379999336135729,
+        "log_loss": 0.43247660873443156,
+        "confusion_matrix": {
+          "tn": 69832,
+          "fp": 15707,
+          "fn": 703,
+          "tp": 2339
+        },
+        "n_samples": 88581,
+        "n_fraud": 3042,
+        "n_legitimate": 85539,
+        "fraud_prevalence": 0.03434145019812375
+      },
+      "artifact_path": "./ml/models/ieee/ieee-xgb-combined-v1.joblib",
+      "training_timestamp": "2026-09-03T18:19:35.402127+00:00",
+      "live_model_unchanged": "xgb-iforest-v1-calibrated",
+      "note": "OFFLINE CANDIDATE. Not routed to live scoring. Not production fraud accuracy."
+    },
+    {
+      "id": "ieee-xgb-graph-v1",
+      "status": "CANDIDATE",
+      "deployed_to_live_pipeline": false,
+      "track": "IEEE_CIS_OFFLINE",
+      "dataset": "IEEE-CIS Fraud Detection",
+      "dataset_source": "IEEE_CIS_CSV",
+      "dataset_version": "./ml/data/ieee/train_transaction.csv",
+      "data_dir": "./ml/data/ieee",
+      "feature_families": [
+        "transaction",
+        "graph"
+      ],
+      "feature_count": 18,
+      "train_rows": 413378,
+      "train_fraud_rows": 14538,
+      "validation_rows": 88581,
+      "test_rows": 88581,
+      "metrics": {
+        "threshold": 0.5,
+        "precision": 0.12557179515787126,
+        "recall": 0.7301329873499838,
+        "f1": 0.21428911418915703,
+        "roc_auc": 0.8651765394401753,
+        "pr_auc": 0.3748364293730476,
+        "false_positive_rate": 0.18333762193267678,
+        "false_negative_rate": 0.2698670126500162,
+        "fraud_catch_rate": 0.7301329873499838,
+        "brier": 0.14415401810576503,
+        "log_loss": 0.4516723088584896,
+        "confusion_matrix": {
+          "tn": 69823,
+          "fp": 15675,
+          "fn": 832,
+          "tp": 2251
+        },
+        "n_samples": 88581,
+        "n_fraud": 3083,
+        "n_legitimate": 85498,
+        "fraud_prevalence": 0.03480430340592226
+      },
+      "val_metrics": {
+        "threshold": 0.5,
+        "precision": 0.13815991641570893,
+        "recall": 0.7389875082182774,
+        "f1": 0.23279656190131,
+        "roc_auc": 0.8750404491166466,
+        "pr_auc": 0.4202018682475606,
+        "false_positive_rate": 0.16393691766328808,
+        "false_negative_rate": 0.26101249178172253,
+        "fraud_catch_rate": 0.7389875082182774,
+        "brier": 0.13017735996596308,
+        "log_loss": 0.4138568808873503,
+        "confusion_matrix": {
+          "tn": 71516,
+          "fp": 14023,
+          "fn": 794,
+          "tp": 2248
+        },
+        "n_samples": 88581,
+        "n_fraud": 3042,
+        "n_legitimate": 85539,
+        "fraud_prevalence": 0.03434145019812375
+      },
+      "artifact_path": "./ml/models/ieee/ieee-xgb-graph-v1.joblib",
+      "training_timestamp": "2026-09-03T18:19:35.403450+00:00",
+      "live_model_unchanged": "xgb-iforest-v1-calibrated",
+      "note": "OFFLINE CANDIDATE. Not routed to live scoring. Not production fraud accuracy."
+    }
+  ],
+  "active_live_model": "xgb-iforest-v1-calibrated",
+  "ieee_status": "OFFLINE CANDIDATE",
+  "cross_dataset": {
+    "label": "OFFLINE PUBLIC DATASET EVALUATION",
+    "not_equivalent": true,
+    "caveats": [
+      "ULB and IEEE-CIS are different datasets, time periods, feature spaces, and prevalence regimes.",
+      "Metrics are not interchangeable and are not production payment-fraud accuracy.",
+      "IEEE-CIS identity/device fields do not exist on ULB PCA columns.",
+      "Do not mix IEEE rows into ULB evaluation or synthetic scenario labels into IEEE evaluation."
+    ],
+    "table": [
+      {
+        "Dataset": "ULB Credit Card Fraud Detection",
+        "Rows": 283726,
+        "Fraud": 473,
+        "Features": 33,
+        "PR-AUC": 0.757883672773321,
+        "ROC-AUC": 0.9829638919200638,
+        "source": "committed ulb_metrics.json"
+      },
+      {
+        "Dataset": "IEEE-CIS Fraud Detection",
+        "Rows": 590540,
+        "Fraud": 20663,
+        "Features": 49,
+        "PR-AUC": 0.3371524181307357,
+        "ROC-AUC": 0.8688416207249846,
+        "source": "measured IEEE-CIS chronological test"
+      }
+    ]
+  },
+  "runtime_seconds": 132.31985795900255,
+  "trained_at": "2026-09-03T18:19:35.448551+00:00",
+  "join": {
+    "join_key": "TransactionID",
+    "how": "left join identity onto transaction",
+    "target_source": "transaction table only",
+    "join_not_on_target": true,
+    "n_transaction_before": 590540,
+    "n_identity_before": 144233,
+    "n_after_join": 590540,
+    "row_count_unchanged": true,
+    "matched_transaction_ids": 144233,
+    "unmatched_identity_rows": 0,
+    "duplicate_transaction_keys": 0,
+    "duplicate_identity_keys": 0,
+    "identity_keys_with_one_to_many": 0,
+    "identity_coverage": 0.2442391709283029,
+    "identity_columns_added": [
+      "id_01",
+      "id_02",
+      "id_03",
+      "id_04",
+      "id_05",
+      "id_06",
+      "id_07",
+      "id_08",
+      "id_09",
+      "id_10",
+      "id_11",
+      "id_12",
+      "id_13",
+      "id_14",
+      "id_15",
+      "id_16",
+      "id_17",
+      "id_18",
+      "id_19",
+      "id_20",
+      "id_21",
+      "id_22",
+      "id_23",
+      "id_24",
+      "id_25",
+      "id_26",
+      "id_27",
+      "id_28",
+      "id_29",
+      "id_30",
+      "id_31",
+      "id_32",
+      "id_33",
+      "id_34",
+      "id_35",
+      "id_36",
+      "id_37",
+      "id_38",
+      "DeviceType",
+      "DeviceInfo"
+    ],
+    "notes": [
+      "Official IEEE-CIS key is TransactionID.",
+      "Identity is optional; unmatched transactions keep identity_present=0.",
+      "Duplicate identity keys keep the first row after being counted."
+    ]
+  },
+  "audit_paths": {
+    "eval_dir": "./ml/evaluation"
+  },
+  "model_probability_separate_from_final_risk_score": true,
+  "auto_activated": false
+}

@@ -1,0 +1,1688 @@
+{
+  "label": "IEEE-CIS CALIBRATION ROBUSTNESS AUDIT",
+  "track": "IEEE_CIS_OFFLINE",
+  "booster_model_version": "ieee-xgb-combined-v1",
+  "current_phase9_selection": "isotonic",
+  "live_model_unchanged": "xgb-iforest-v1-calibrated",
+  "ieee_status": "OFFLINE CANDIDATE",
+  "methodology": {
+    "xgboost_refit": false,
+    "test_scored": false,
+    "test_used_for_fit": false,
+    "test_used_for_method_selection": false,
+    "test_used_for_recommendation": false,
+    "ieee_max_rows_used": false,
+    "fixture_used": false,
+    "train_n": 413378,
+    "train_positives": 14538,
+    "validation_n": 88581,
+    "validation_positives": 3042
+  },
+  "official_split": {
+    "strategy": "chronological",
+    "official_evaluation_split": "chronological",
+    "random_stratified_used_as_official": false,
+    "train": {
+      "name": "train",
+      "n": 413378,
+      "fraud": 14538,
+      "legitimate": 398840,
+      "prevalence": 0.03516878014795175,
+      "time_min": 86400,
+      "time_max": 10437996
+    },
+    "validation": {
+      "name": "validation",
+      "n": 88581,
+      "fraud": 3042,
+      "legitimate": 85539,
+      "prevalence": 0.03434145019812375,
+      "time_min": 10438003,
+      "time_max": 13151840
+    },
+    "test": {
+      "name": "test",
+      "n": 88581,
+      "fraud": 3083,
+      "legitimate": 85498,
+      "prevalence": 0.03480430340592226,
+      "time_min": 13151880,
+      "time_max": 15811131
+    },
+    "constraints": {
+      "max_train_lt_min_validation": true,
+      "max_validation_lt_min_test": true
+    },
+    "preprocessing_fit_on": "train_only"
+  },
+  "in_sample_validation": {
+    "raw": {
+      "label": "raw",
+      "brier": 0.1379999336135729,
+      "log_loss": 0.43247660873443156,
+      "ece_uniform_10": 0.2892377467847688,
+      "ece_quantile_10": 0.2892377467847688,
+      "mean_predicted": 0.32357919698289256,
+      "empirical_prevalence": 0.03434145019812375,
+      "n_unique_predictions": 85435,
+      "n_positive": 3042,
+      "n_samples": 88581,
+      "pr_auc": 0.42999390635178036,
+      "roc_auc": 0.878309847616021,
+      "reliability_uniform": {
+        "strategy": "uniform",
+        "n_bins": 10,
+        "ece": 0.2892377467847688,
+        "bins": [
+          {
+            "bin": 0,
+            "lo": 0.0,
+            "hi": 0.1,
+            "count": 15898,
+            "n_positive": 5,
+            "mean_predicted": 0.05014342243377443,
+            "empirical_positive_rate": 0.000314504969178513,
+            "gap": 0.04982891746459592
+          },
+          {
+            "bin": 1,
+            "lo": 0.1,
+            "hi": 0.2,
+            "count": 12702,
+            "n_positive": 57,
+            "mean_predicted": 0.1515988402902714,
+            "empirical_positive_rate": 0.004487482286254133,
+            "gap": 0.14711135800401726
+          },
+          {
+            "bin": 2,
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "count": 15955,
+            "n_positive": 158,
+            "mean_predicted": 0.25082738661104814,
+            "empirical_positive_rate": 0.009902851770604825,
+            "gap": 0.24092453484044332
+          },
+          {
+            "bin": 3,
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "count": 14955,
+            "n_positive": 243,
+            "mean_predicted": 0.34828784475753793,
+            "empirical_positive_rate": 0.01624874623871615,
+            "gap": 0.3320390985188218
+          },
+          {
+            "bin": 4,
+            "lo": 0.4,
+            "hi": 0.5,
+            "count": 11025,
+            "n_positive": 240,
+            "mean_predicted": 0.4470151049398781,
+            "empirical_positive_rate": 0.021768707482993196,
+            "gap": 0.4252463974568849
+          },
+          {
+            "bin": 5,
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "count": 7924,
+            "n_positive": 337,
+            "mean_predicted": 0.5468448140911837,
+            "empirical_positive_rate": 0.04252902574457345,
+            "gap": 0.5043157883466103
+          },
+          {
+            "bin": 6,
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "count": 4748,
+            "n_positive": 354,
+            "mean_predicted": 0.6450503714313603,
+            "empirical_positive_rate": 0.07455770850884583,
+            "gap": 0.5704926629225145
+          },
+          {
+            "bin": 7,
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "count": 2677,
+            "n_positive": 382,
+            "mean_predicted": 0.7455263980119853,
+            "empirical_positive_rate": 0.1426970489353754,
+            "gap": 0.6028293490766099
+          },
+          {
+            "bin": 8,
+            "lo": 0.8,
+            "hi": 0.9,
+            "count": 1481,
+            "n_positive": 428,
+            "mean_predicted": 0.8457136918852894,
+            "empirical_positive_rate": 0.2889939230249831,
+            "gap": 0.5567197688603063
+          },
+          {
+            "bin": 9,
+            "lo": 0.9,
+            "hi": 1.0,
+            "count": 1216,
+            "n_positive": 838,
+            "mean_predicted": 0.9515373597509766,
+            "empirical_positive_rate": 0.6891447368421053,
+            "gap": 0.26239262290887133
+          }
+        ]
+      }
+    },
+    "sigmoid": {
+      "label": "sigmoid",
+      "brier": 0.025448200608730806,
+      "log_loss": 0.10350416204120329,
+      "ece_uniform_10": 0.005312449558834163,
+      "ece_quantile_10": 0.003848555960199588,
+      "mean_predicted": 0.03438168946443294,
+      "empirical_prevalence": 0.03434145019812375,
+      "n_unique_predictions": 85435,
+      "n_positive": 3042,
+      "n_samples": 88581,
+      "pr_auc": 0.42999390635178036,
+      "roc_auc": 0.878309847616021,
+      "reliability_uniform": {
+        "strategy": "uniform",
+        "n_bins": 10,
+        "ece": 0.005312449558834163,
+        "bins": [
+          {
+            "bin": 0,
+            "lo": 0.0,
+            "hi": 0.1,
+            "count": 81222,
+            "n_positive": 1220,
+            "mean_predicted": 0.014854636779995678,
+            "empirical_positive_rate": 0.015020560931767256,
+            "gap": 0.00016592415177157753
+          },
+          {
+            "bin": 1,
+            "lo": 0.1,
+            "hi": 0.2,
+            "count": 3758,
+            "n_positive": 379,
+            "mean_predicted": 0.14067183684842233,
+            "empirical_positive_rate": 0.1008515167642363,
+            "gap": 0.039820320084186026
+          },
+          {
+            "bin": 2,
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "count": 1431,
+            "n_positive": 297,
+            "mean_predicted": 0.2437436768282217,
+            "empirical_positive_rate": 0.20754716981132076,
+            "gap": 0.03619650701690094
+          },
+          {
+            "bin": 3,
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "count": 849,
+            "n_positive": 258,
+            "mean_predicted": 0.3458554770229155,
+            "empirical_positive_rate": 0.303886925795053,
+            "gap": 0.04196855122786253
+          },
+          {
+            "bin": 4,
+            "lo": 0.4,
+            "hi": 0.5,
+            "count": 573,
+            "n_positive": 282,
+            "mean_predicted": 0.4503994367248457,
+            "empirical_positive_rate": 0.49214659685863876,
+            "gap": 0.04174716013379304
+          },
+          {
+            "bin": 5,
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "count": 748,
+            "n_positive": 606,
+            "mean_predicted": 0.5479799254689534,
+            "empirical_positive_rate": 0.8101604278074866,
+            "gap": 0.2621805023385333
+          },
+          {
+            "bin": 6,
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 7,
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 8,
+            "lo": 0.8,
+            "hi": 0.9,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 9,
+            "lo": 0.9,
+            "hi": 1.0,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          }
+        ]
+      }
+    },
+    "isotonic": {
+      "label": "isotonic",
+      "brier": 0.024584788939874282,
+      "log_loss": 0.1004100422389774,
+      "ece_uniform_10": 3.8458021044278726e-18,
+      "ece_quantile_10": 2.094569762099947e-18,
+      "mean_predicted": 0.03434145019812375,
+      "empirical_prevalence": 0.03434145019812375,
+      "n_unique_predictions": 68,
+      "n_positive": 3042,
+      "n_samples": 88581,
+      "pr_auc": 0.42237891049209325,
+      "roc_auc": 0.8795252849166179,
+      "reliability_uniform": {
+        "strategy": "uniform",
+        "n_bins": 10,
+        "ece": 3.8458021044278726e-18,
+        "bins": [
+          {
+            "bin": 0,
+            "lo": 0.0,
+            "hi": 0.1,
+            "count": 83454,
+            "n_positive": 1414,
+            "mean_predicted": 0.01694346586143265,
+            "empirical_positive_rate": 0.016943465861432645,
+            "gap": 3.469446951953614e-18
+          },
+          {
+            "bin": 1,
+            "lo": 0.1,
+            "hi": 0.2,
+            "count": 1818,
+            "n_positive": 231,
+            "mean_predicted": 0.12706270627062707,
+            "empirical_positive_rate": 0.12706270627062707,
+            "gap": 0.0
+          },
+          {
+            "bin": 2,
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "count": 1693,
+            "n_positive": 406,
+            "mean_predicted": 0.23981098641464854,
+            "empirical_positive_rate": 0.23981098641464854,
+            "gap": 0.0
+          },
+          {
+            "bin": 3,
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "count": 300,
+            "n_positive": 103,
+            "mean_predicted": 0.3433333333333333,
+            "empirical_positive_rate": 0.3433333333333333,
+            "gap": 0.0
+          },
+          {
+            "bin": 4,
+            "lo": 0.4,
+            "hi": 0.5,
+            "count": 381,
+            "n_positive": 168,
+            "mean_predicted": 0.4409448818897637,
+            "empirical_positive_rate": 0.4409448818897638,
+            "gap": 5.551115123125783e-17
+          },
+          {
+            "bin": 5,
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "count": 78,
+            "n_positive": 41,
+            "mean_predicted": 0.5256410256410255,
+            "empirical_positive_rate": 0.5256410256410257,
+            "gap": 1.1102230246251565e-16
+          },
+          {
+            "bin": 6,
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "count": 192,
+            "n_positive": 125,
+            "mean_predicted": 0.6510416666666667,
+            "empirical_positive_rate": 0.6510416666666666,
+            "gap": 1.1102230246251565e-16
+          },
+          {
+            "bin": 7,
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "count": 242,
+            "n_positive": 178,
+            "mean_predicted": 0.7355371900826446,
+            "empirical_positive_rate": 0.7355371900826446,
+            "gap": 0.0
+          },
+          {
+            "bin": 8,
+            "lo": 0.8,
+            "hi": 0.9,
+            "count": 303,
+            "n_positive": 262,
+            "mean_predicted": 0.8646864686468647,
+            "empirical_positive_rate": 0.8646864686468647,
+            "gap": 0.0
+          },
+          {
+            "bin": 9,
+            "lo": 0.9,
+            "hi": 1.0,
+            "count": 120,
+            "n_positive": 114,
+            "mean_predicted": 0.95,
+            "empirical_positive_rate": 0.95,
+            "gap": 0.0
+          }
+        ]
+      }
+    }
+  },
+  "staircase_in_sample_validation": {
+    "monotone_nondecreasing_in_raw": true,
+    "n_unique_raw": 85435,
+    "n_unique_calibrated": 68,
+    "unique_ratio": 0.0007959267279218119,
+    "pr_auc_raw": 0.42999390635178036,
+    "pr_auc_calibrated": 0.42237891049209325,
+    "pr_auc_calibrated_tiebroken_by_raw": 0.42999609841903674,
+    "pr_auc_drop": 0.007614995859687113,
+    "pr_auc_drop_after_tiebreak": -2.1920672563791044e-06,
+    "drop_explained_by_ties": true,
+    "plateaus": {
+      "max_plateau_n": 9843,
+      "median_plateau_n": 300.0,
+      "n_plateaus": 68
+    },
+    "note": "Isotonic is monotone in the raw score, so it cannot reverse pairs. A PR-AUC drop that disappears after breaking ties with the raw order is staircase compression, not a rank reversal."
+  },
+  "bootstrap_frozen_maps": {
+    "n_boot": 200,
+    "seed": 42,
+    "stratified": true,
+    "methods": {
+      "raw": {
+        "brier": {
+          "n": 200,
+          "mean": 0.13799088477053606,
+          "std": 0.0005115179842447655,
+          "p025": 0.13706721092245197,
+          "p50": 0.13798542100202488,
+          "p975": 0.13901961908178012
+        },
+        "log_loss": {
+          "n": 200,
+          "mean": 0.4324481576266497,
+          "std": 0.0012861809035510357,
+          "p025": 0.4302590559513121,
+          "p50": 0.4324597379803704,
+          "p975": 0.43496428212386434
+        },
+        "ece_uniform_10": {
+          "n": 200,
+          "mean": 0.28925318502915864,
+          "std": 0.0006657531866905685,
+          "p025": 0.28791861268010555,
+          "p50": 0.2892060185074675,
+          "p975": 0.2904410482465778
+        },
+        "pr_auc": {
+          "n": 200,
+          "mean": 0.43044742336497194,
+          "std": 0.00924191920221174,
+          "p025": 0.4127394347265223,
+          "p50": 0.4297042297872017,
+          "p975": 0.44691378284554395
+        }
+      },
+      "sigmoid": {
+        "brier": {
+          "n": 200,
+          "mean": 0.025438741840776144,
+          "std": 0.0001928220852401966,
+          "p025": 0.025124703431871356,
+          "p50": 0.0254375579147857,
+          "p975": 0.02579552874993062
+        },
+        "log_loss": {
+          "n": 200,
+          "mean": 0.10344397771361301,
+          "std": 0.0009003470173310862,
+          "p025": 0.10179796636223239,
+          "p50": 0.1034207911395158,
+          "p975": 0.10511195077957175
+        },
+        "ece_uniform_10": {
+          "n": 200,
+          "mean": 0.00543474130702384,
+          "std": 0.00038399430390977996,
+          "p025": 0.00468596347491622,
+          "p50": 0.005450783497598751,
+          "p975": 0.006151888697626255
+        },
+        "pr_auc": {
+          "n": 200,
+          "mean": 0.43044742336497194,
+          "std": 0.00924191920221174,
+          "p025": 0.4127394347265223,
+          "p50": 0.4297042297872017,
+          "p975": 0.44691378284554395
+        }
+      },
+      "isotonic": {
+        "brier": {
+          "n": 200,
+          "mean": 0.02457299262035344,
+          "std": 0.00023796215041547352,
+          "p025": 0.024155059043873526,
+          "p50": 0.024579659641452485,
+          "p975": 0.025022767520092415
+        },
+        "log_loss": {
+          "n": 200,
+          "mean": 0.10035482247433274,
+          "std": 0.0009268325807923781,
+          "p025": 0.09867320092222263,
+          "p50": 0.10039291005939037,
+          "p975": 0.1021398324531082
+        },
+        "ece_uniform_10": {
+          "n": 200,
+          "mean": 0.0008971349437290224,
+          "std": 0.00025186612901485837,
+          "p025": 0.0004999236884222229,
+          "p50": 0.0008640693048084856,
+          "p975": 0.0014191713261849895
+        },
+        "pr_auc": {
+          "n": 200,
+          "mean": 0.42280120284031253,
+          "std": 0.008973961255247818,
+          "p025": 0.40594922834323277,
+          "p50": 0.4223571626800372,
+          "p975": 0.4387536407633312
+        }
+      }
+    },
+    "paired_differences": {
+      "brier_isotonic_minus_sigmoid": {
+        "n": 200,
+        "mean": -0.0008657492204226989,
+        "std": 6.782917586700552e-05,
+        "p025": -0.000983405535402214,
+        "p50": -0.0008648264349445916,
+        "p975": -0.000731108277811626
+      },
+      "brier_isotonic_minus_raw": {
+        "n": 200,
+        "mean": -0.11341789215018261,
+        "std": 0.00048289191012732436,
+        "p025": -0.11434160665835466,
+        "p50": -0.11339270718486594,
+        "p975": -0.1124804790416167
+      },
+      "pr_auc_isotonic_minus_raw": {
+        "n": 200,
+        "mean": -0.00764622052465936,
+        "std": 0.0008123557430984392,
+        "p025": -0.009277109670947001,
+        "p50": -0.0076642317277975935,
+        "p975": -0.006141391133909942
+      },
+      "note": "Paired differences on resampled (y, p) of frozen maps. Negative Brier difference means isotonic looks better. This is still in-sample for the calibrator fit."
+    }
+  },
+  "nested_holdout_validation": {
+    "protocol": "stratified_shuffle_split_on_validation",
+    "n_splits_requested": 40,
+    "n_splits_used": 40,
+    "n_splits_skipped": 0,
+    "test_size": 0.3,
+    "seed": 42,
+    "methods": {
+      "raw": {
+        "brier": {
+          "n": 40,
+          "mean": 0.13796598608087987,
+          "std": 0.0006717256415211588,
+          "p025": 0.13664481149262858,
+          "p50": 0.13799777014762882,
+          "p975": 0.13900404292137256
+        },
+        "log_loss": {
+          "n": 40,
+          "mean": 0.43241738136131913,
+          "std": 0.0016059386478827157,
+          "p025": 0.42945007854818534,
+          "p50": 0.43262103554362363,
+          "p975": 0.4345826011240443
+        },
+        "ece_uniform_10": {
+          "n": 40,
+          "mean": 0.28921881801452265,
+          "std": 0.0008953031841193489,
+          "p025": 0.2876116544228084,
+          "p50": 0.2891513741631079,
+          "p975": 0.2907368697955318
+        },
+        "pr_auc": {
+          "n": 40,
+          "mean": 0.43003457139348955,
+          "std": 0.012828708999087435,
+          "p025": 0.40696448197345875,
+          "p50": 0.42900173499701055,
+          "p975": 0.44985101321954496
+        },
+        "n_unique": {
+          "n": 40,
+          "mean": 26265.325,
+          "std": 15.152874822442618,
+          "p025": 26239.775,
+          "p50": 26263.5,
+          "p975": 26291.25
+        }
+      },
+      "sigmoid": {
+        "brier": {
+          "n": 40,
+          "mean": 0.025476760210600018,
+          "std": 0.0002471564116814125,
+          "p025": 0.025121323341859157,
+          "p50": 0.025447672554788817,
+          "p975": 0.02589877322740677
+        },
+        "log_loss": {
+          "n": 40,
+          "mean": 0.10361775065055345,
+          "std": 0.001458431176206533,
+          "p025": 0.10144872955128272,
+          "p50": 0.10346297757462461,
+          "p975": 0.10602320879165936
+        },
+        "ece_uniform_10": {
+          "n": 40,
+          "mean": 0.005462312966139122,
+          "std": 0.0004760192432082523,
+          "p025": 0.004733819403182595,
+          "p50": 0.005470005710638909,
+          "p975": 0.006271381931862326
+        },
+        "pr_auc": {
+          "n": 40,
+          "mean": 0.43003457139348955,
+          "std": 0.012828708999087435,
+          "p025": 0.40696448197345875,
+          "p50": 0.42900173499701055,
+          "p975": 0.44985101321954496
+        },
+        "n_unique": {
+          "n": 40,
+          "mean": 26265.325,
+          "std": 15.152874822442618,
+          "p025": 26239.775,
+          "p50": 26263.5,
+          "p975": 26291.25
+        }
+      },
+      "isotonic": {
+        "brier": {
+          "n": 40,
+          "mean": 0.024773247329344356,
+          "std": 0.00032781258164250426,
+          "p025": 0.024228554572181434,
+          "p50": 0.024841053596489648,
+          "p975": 0.025414806188877873
+        },
+        "log_loss": {
+          "n": 40,
+          "mean": 0.10230617486168896,
+          "std": 0.0017883195082635526,
+          "p025": 0.09966780237779227,
+          "p50": 0.1022034329536816,
+          "p975": 0.1050787141334405
+        },
+        "ece_uniform_10": {
+          "n": 40,
+          "mean": 0.001829118922631367,
+          "std": 0.000577705897323285,
+          "p025": 0.0010136756429347815,
+          "p50": 0.0017327674767401862,
+          "p975": 0.003008586307560383
+        },
+        "pr_auc": {
+          "n": 40,
+          "mean": 0.41513813472485117,
+          "std": 0.012769790460420679,
+          "p025": 0.3925187545789124,
+          "p50": 0.4131019272596471,
+          "p975": 0.43368323399486597
+        },
+        "n_unique": {
+          "n": 40,
+          "mean": 83.3,
+          "std": 7.28961326398469,
+          "p025": 69.975,
+          "p50": 84.0,
+          "p975": 99.05
+        }
+      }
+    },
+    "win_rates": {
+      "isotonic_brier_lt_sigmoid": 1.0,
+      "isotonic_brier_lt_raw": 1.0,
+      "sigmoid_brier_lt_raw": 1.0,
+      "isotonic_pr_auc_ge_raw": 0.0,
+      "sigmoid_pr_auc_ge_raw": 1.0
+    },
+    "paired_differences": {
+      "brier_isotonic_minus_sigmoid": {
+        "n": 40,
+        "mean": -0.0007035128812556632,
+        "std": 0.00011461826053099369,
+        "p025": -0.0008940278362369878,
+        "p50": -0.0007037097008561494,
+        "p975": -0.0004867072182024984
+      },
+      "pr_auc_isotonic_minus_raw": {
+        "n": 40,
+        "mean": -0.014896436668638402,
+        "std": 0.002342262428732635,
+        "p025": -0.019098938786829004,
+        "p50": -0.014699380657873379,
+        "p975": -0.011682473233445873
+      },
+      "pr_auc_sigmoid_minus_raw": {
+        "n": 40,
+        "mean": 0.0,
+        "std": 0.0,
+        "p025": 0.0,
+        "p50": 0.0,
+        "p975": 0.0
+      }
+    },
+    "note": "Calibrators are refit on each validation subset and scored on the held-out subset. Frozen chronological TEST is unused."
+  },
+  "kfold_oof_validation": {
+    "protocol": "stratified_kfold_oof_on_validation",
+    "n_splits": 5,
+    "seed": 42,
+    "fold_summaries": {
+      "raw": {
+        "brier": {
+          "n": 5,
+          "mean": 0.13799991870593384,
+          "std": 0.001049271778825038,
+          "p025": 0.13695034853891502,
+          "p50": 0.13790017581485464,
+          "p975": 0.13926734937507654
+        },
+        "log_loss": {
+          "n": 5,
+          "mean": 0.43247657018490343,
+          "std": 0.0026335173221111057,
+          "p025": 0.4294208786453161,
+          "p50": 0.43260405549044373,
+          "p975": 0.43570310401291823
+        },
+        "ece_uniform_10": {
+          "n": 5,
+          "mean": 0.28923773906098027,
+          "std": 0.0013205405416013484,
+          "p025": 0.28783444555442766,
+          "p50": 0.2888736057142647,
+          "p975": 0.29102170293663093
+        },
+        "pr_auc": {
+          "n": 5,
+          "mean": 0.4305818632191235,
+          "std": 0.028797959798671745,
+          "p025": 0.401443147094455,
+          "p50": 0.4252390939566041,
+          "p975": 0.466077623410711
+        }
+      },
+      "sigmoid": {
+        "brier": {
+          "n": 5,
+          "mean": 0.025459969720555753,
+          "std": 0.0005669827069164396,
+          "p025": 0.024757859882293672,
+          "p50": 0.025458527657484752,
+          "p975": 0.026027790739553053
+        },
+        "log_loss": {
+          "n": 5,
+          "mean": 0.103539658868221,
+          "std": 0.003106807383898129,
+          "p025": 0.10058279060361076,
+          "p50": 0.10214444431278115,
+          "p975": 0.1069731440019002
+        },
+        "ece_uniform_10": {
+          "n": 5,
+          "mean": 0.005882015410162796,
+          "std": 0.0009062300213644532,
+          "p025": 0.004573717872397565,
+          "p50": 0.006210221291593902,
+          "p975": 0.00676863229559287
+        },
+        "pr_auc": {
+          "n": 5,
+          "mean": 0.4305818632191235,
+          "std": 0.028797959798671745,
+          "p025": 0.401443147094455,
+          "p50": 0.4252390939566041,
+          "p975": 0.466077623410711
+        }
+      },
+      "isotonic": {
+        "brier": {
+          "n": 5,
+          "mean": 0.024786148152490427,
+          "std": 0.0007464985551792158,
+          "p025": 0.02382206753277482,
+          "p50": 0.02485536807602795,
+          "p975": 0.02554346453028477
+        },
+        "log_loss": {
+          "n": 5,
+          "mean": 0.10199420157437282,
+          "std": 0.002738084011791889,
+          "p025": 0.09912226562941621,
+          "p50": 0.10227296703882133,
+          "p975": 0.10469019017646843
+        },
+        "ece_uniform_10": {
+          "n": 5,
+          "mean": 0.0025440131428172107,
+          "std": 0.0003964881069499014,
+          "p025": 0.0022214150144274857,
+          "p50": 0.002436825253885007,
+          "p975": 0.0031236780082456992
+        },
+        "pr_auc": {
+          "n": 5,
+          "mean": 0.41589724247686066,
+          "std": 0.026277656717931152,
+          "p025": 0.3892272499134973,
+          "p50": 0.41275464204808765,
+          "p975": 0.4492814241101344
+        }
+      }
+    },
+    "pooled_oof": {
+      "raw": {
+        "label": "raw",
+        "brier": 0.1379999336135729,
+        "log_loss": 0.43247660873443156,
+        "ece_uniform_10": 0.2892377467847688,
+        "ece_quantile_10": 0.2892377467847688,
+        "mean_predicted": 0.32357919698289256,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 85435,
+        "n_positive": 3042,
+        "n_samples": 88581,
+        "pr_auc": 0.42999390635178036,
+        "roc_auc": 0.878309847616021,
+        "reliability_uniform": {
+          "ece": 0.2892377467847688,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 15898,
+              "n_positive": 5,
+              "mean_predicted": 0.05014342243377443,
+              "empirical_positive_rate": 0.000314504969178513,
+              "gap": 0.04982891746459592
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 12702,
+              "n_positive": 57,
+              "mean_predicted": 0.1515988402902714,
+              "empirical_positive_rate": 0.004487482286254133,
+              "gap": 0.14711135800401726
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 15955,
+              "n_positive": 158,
+              "mean_predicted": 0.25082738661104814,
+              "empirical_positive_rate": 0.009902851770604825,
+              "gap": 0.24092453484044332
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 14955,
+              "n_positive": 243,
+              "mean_predicted": 0.34828784475753793,
+              "empirical_positive_rate": 0.01624874623871615,
+              "gap": 0.3320390985188218
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 11025,
+              "n_positive": 240,
+              "mean_predicted": 0.4470151049398781,
+              "empirical_positive_rate": 0.021768707482993196,
+              "gap": 0.4252463974568849
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 7924,
+              "n_positive": 337,
+              "mean_predicted": 0.5468448140911837,
+              "empirical_positive_rate": 0.04252902574457345,
+              "gap": 0.5043157883466103
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 4748,
+              "n_positive": 354,
+              "mean_predicted": 0.6450503714313603,
+              "empirical_positive_rate": 0.07455770850884583,
+              "gap": 0.5704926629225145
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 2677,
+              "n_positive": 382,
+              "mean_predicted": 0.7455263980119853,
+              "empirical_positive_rate": 0.1426970489353754,
+              "gap": 0.6028293490766099
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 1481,
+              "n_positive": 428,
+              "mean_predicted": 0.8457136918852894,
+              "empirical_positive_rate": 0.2889939230249831,
+              "gap": 0.5567197688603063
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 1216,
+              "n_positive": 838,
+              "mean_predicted": 0.9515373597509766,
+              "empirical_positive_rate": 0.6891447368421053,
+              "gap": 0.26239262290887133
+            }
+          ]
+        }
+      },
+      "sigmoid": {
+        "label": "sigmoid",
+        "brier": 0.025459976178104554,
+        "log_loss": 0.10353969531436982,
+        "ece_uniform_10": 0.005207764368899191,
+        "ece_quantile_10": 0.0037810536299234467,
+        "mean_predicted": 0.03438221559056319,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 87886,
+        "n_positive": 3042,
+        "n_samples": 88581,
+        "pr_auc": 0.4282974657103745,
+        "roc_auc": 0.8781593016935061,
+        "reliability_uniform": {
+          "ece": 0.005207764368899191,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 81221,
+              "n_positive": 1220,
+              "mean_predicted": 0.014897616886119076,
+              "empirical_positive_rate": 0.015020745866216866,
+              "gap": 0.0001231289800977895
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 3767,
+              "n_positive": 378,
+              "mean_predicted": 0.14063411734179979,
+              "empirical_positive_rate": 0.10034510220334483,
+              "gap": 0.04028901513845495
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 1439,
+              "n_positive": 304,
+              "mean_predicted": 0.24414476166501817,
+              "empirical_positive_rate": 0.21125781792911744,
+              "gap": 0.03288694373590073
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 836,
+              "n_positive": 256,
+              "mean_predicted": 0.3461327456124971,
+              "empirical_positive_rate": 0.3062200956937799,
+              "gap": 0.03991264991871718
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 588,
+              "n_positive": 295,
+              "mean_predicted": 0.45107081411530403,
+              "empirical_positive_rate": 0.5017006802721088,
+              "gap": 0.05062986615680476
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 729,
+              "n_positive": 588,
+              "mean_predicted": 0.5477648043819441,
+              "empirical_positive_rate": 0.8065843621399177,
+              "gap": 0.2588195577579736
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 1,
+              "n_positive": 1,
+              "mean_predicted": 0.6015096313957768,
+              "empirical_positive_rate": 1.0,
+              "gap": 0.39849036860422316
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            }
+          ]
+        }
+      },
+      "isotonic": {
+        "label": "isotonic",
+        "brier": 0.02478615687078338,
+        "log_loss": 0.10199423210245502,
+        "ece_uniform_10": 0.0005613159500400696,
+        "ece_quantile_10": 0.0008455513114707836,
+        "mean_predicted": 0.03433407269406229,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 375,
+        "n_positive": 3042,
+        "n_samples": 88581,
+        "pr_auc": 0.42128151537990277,
+        "roc_auc": 0.875992350829065,
+        "reliability_uniform": {
+          "ece": 0.0005613159500400696,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 83582,
+              "n_positive": 1435,
+              "mean_predicted": 0.017049927879667016,
+              "empirical_positive_rate": 0.017168768395108995,
+              "gap": 0.0001188405154419793
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 1829,
+              "n_positive": 247,
+              "mean_predicted": 0.13467042725863568,
+              "empirical_positive_rate": 0.13504647348277748,
+              "gap": 0.0003760462241418072
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 1408,
+              "n_positive": 341,
+              "mean_predicted": 0.23640879955804162,
+              "empirical_positive_rate": 0.2421875,
+              "gap": 0.005778700441958384
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 471,
+              "n_positive": 151,
+              "mean_predicted": 0.33794710550891255,
+              "empirical_positive_rate": 0.3205944798301486,
+              "gap": 0.017352625678763944
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 375,
+              "n_positive": 165,
+              "mean_predicted": 0.44415292160842107,
+              "empirical_positive_rate": 0.44,
+              "gap": 0.004152921608421067
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 57,
+              "n_positive": 35,
+              "mean_predicted": 0.5475780145298464,
+              "empirical_positive_rate": 0.6140350877192983,
+              "gap": 0.06645707318945182
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 227,
+              "n_positive": 144,
+              "mean_predicted": 0.6578686143458564,
+              "empirical_positive_rate": 0.6343612334801763,
+              "gap": 0.02350738086568016
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 207,
+              "n_positive": 147,
+              "mean_predicted": 0.7427571686907107,
+              "empirical_positive_rate": 0.7101449275362319,
+              "gap": 0.032612241154478805
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 302,
+              "n_positive": 263,
+              "mean_predicted": 0.8621108028835067,
+              "empirical_positive_rate": 0.8708609271523179,
+              "gap": 0.008750124268811166
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 123,
+              "n_positive": 114,
+              "mean_predicted": 0.9489176347014079,
+              "empirical_positive_rate": 0.926829268292683,
+              "gap": 0.022088366408724913
+            }
+          ]
+        }
+      }
+    },
+    "note": "Each validation row is scored by a calibrator that did not see that row. Frozen TEST unused."
+  },
+  "train_fit_val_eval": {
+    "protocol": "fit_on_train_scores_eval_on_validation",
+    "train_n": 413378,
+    "train_positives": 14538,
+    "val_n": 88581,
+    "val_positives": 3042,
+    "methods": {
+      "raw": {
+        "label": "raw",
+        "brier": 0.1379999336135729,
+        "log_loss": 0.43247660873443156,
+        "ece_uniform_10": 0.2892377467847688,
+        "ece_quantile_10": 0.2892377467847688,
+        "mean_predicted": 0.32357919698289256,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 85435,
+        "n_positive": 3042,
+        "n_samples": 88581,
+        "pr_auc": 0.42999390635178036,
+        "roc_auc": 0.878309847616021
+      },
+      "sigmoid": {
+        "label": "sigmoid",
+        "brier": 0.02548151977235976,
+        "log_loss": 0.10408162024493332,
+        "ece_uniform_10": 0.00742376253122607,
+        "ece_quantile_10": 0.008836229136457806,
+        "mean_predicted": 0.038928515681273375,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 85435,
+        "n_positive": 3042,
+        "n_samples": 88581,
+        "pr_auc": 0.42999390635178036,
+        "roc_auc": 0.878309847616021
+      },
+      "isotonic": {
+        "label": "isotonic",
+        "brier": 0.024927442130949853,
+        "log_loss": 0.10178605088730892,
+        "ece_uniform_10": 0.003591136863215843,
+        "ece_quantile_10": 0.004704679870753778,
+        "mean_predicted": 0.0379325870613396,
+        "empirical_prevalence": 0.03434145019812375,
+        "n_unique_predictions": 149,
+        "n_positive": 3042,
+        "n_samples": 88581,
+        "pr_auc": 0.42250655054322017,
+        "roc_auc": 0.8782259076045446,
+        "staircase": {
+          "monotone_nondecreasing_in_raw": true,
+          "n_unique_raw": 85435,
+          "n_unique_calibrated": 149,
+          "unique_ratio": 0.0017440159185345583,
+          "pr_auc_raw": 0.42999390635178036,
+          "pr_auc_calibrated": 0.42250655054322017,
+          "pr_auc_calibrated_tiebroken_by_raw": 0.4299247834156242,
+          "pr_auc_drop": 0.007487355808560192,
+          "pr_auc_drop_after_tiebreak": 6.912293615618514e-05,
+          "drop_explained_by_ties": true,
+          "plateaus": {
+            "max_plateau_n": 4683,
+            "median_plateau_n": 135.0,
+            "n_plateaus": 149
+          },
+          "note": "Isotonic is monotone in the raw score, so it cannot reverse pairs. A PR-AUC drop that disappears after breaking ties with the raw order is staircase compression, not a rank reversal."
+        }
+      }
+    },
+    "note": "Pre-test only. Raw train scores are booster-in-sample. Frozen TEST unused."
+  },
+  "temporal_pretest_holdouts": [
+    {
+      "protocol": "temporal_cut_on_pretest_train_plus_validation",
+      "cut_frac": 0.5,
+      "seed": 42,
+      "fit_n": 250979,
+      "fit_positives": 8174,
+      "eval_n": 250980,
+      "eval_positives": 9406,
+      "fit_time_max": 5973383,
+      "eval_time_min": 5973411,
+      "strict_temporal": true,
+      "methods": {
+        "raw": {
+          "label": "raw",
+          "brier": 0.13590739406033084,
+          "log_loss": 0.4269419500099164,
+          "ece_uniform_10": 0.2854918210760567,
+          "ece_quantile_10": 0.2854918210760567,
+          "mean_predicted": 0.32296891088400953,
+          "empirical_prevalence": 0.03747708980795283,
+          "n_unique_predictions": 239715,
+          "n_positive": 9406,
+          "n_samples": 250980,
+          "pr_auc": 0.5050245101208944,
+          "roc_auc": 0.8960312398419297
+        },
+        "sigmoid": {
+          "label": "sigmoid",
+          "brier": 0.025852777328714403,
+          "log_loss": 0.1040926499454126,
+          "ece_uniform_10": 0.010406939146778517,
+          "ece_quantile_10": 0.008509137651145405,
+          "mean_predicted": 0.043456609528765275,
+          "empirical_prevalence": 0.03747708980795283,
+          "n_unique_predictions": 239715,
+          "n_positive": 9406,
+          "n_samples": 250980,
+          "pr_auc": 0.5050245101208944,
+          "roc_auc": 0.8960312398419297
+        },
+        "isotonic": {
+          "label": "isotonic",
+          "brier": 0.024954549765982714,
+          "log_loss": 0.10117483857290138,
+          "ece_uniform_10": 0.004921806483310122,
+          "ece_quantile_10": 0.005568503105173564,
+          "mean_predicted": 0.04239623909189521,
+          "empirical_prevalence": 0.03747708980795283,
+          "n_unique_predictions": 222,
+          "n_positive": 9406,
+          "n_samples": 250980,
+          "pr_auc": 0.49432853825348866,
+          "roc_auc": 0.8956990234720477,
+          "staircase": {
+            "monotone_nondecreasing_in_raw": true,
+            "n_unique_raw": 239715,
+            "n_unique_calibrated": 222,
+            "unique_ratio": 0.0009260997434453413,
+            "pr_auc_raw": 0.5050245101208944,
+            "pr_auc_calibrated": 0.49432853825348866,
+            "pr_auc_calibrated_tiebroken_by_raw": 0.5049972147702828,
+            "pr_auc_drop": 0.010695971867405785,
+            "pr_auc_drop_after_tiebreak": 2.7295350611633573e-05,
+            "drop_explained_by_ties": true,
+            "plateaus": {
+              "max_plateau_n": 22529,
+              "median_plateau_n": 1.0,
+              "n_plateaus": 222
+            },
+            "note": "Isotonic is monotone in the raw score, so it cannot reverse pairs. A PR-AUC drop that disappears after breaking ties with the raw order is staircase compression, not a rank reversal."
+          }
+        }
+      },
+      "lowest_brier_method": "isotonic",
+      "note": "Different temporal boundary from the official 70/15 val cut. TEST unused."
+    },
+    {
+      "protocol": "temporal_cut_on_pretest_train_plus_validation",
+      "cut_frac": 0.75,
+      "seed": 42,
+      "fit_n": 376469,
+      "fit_positives": 12837,
+      "eval_n": 125490,
+      "eval_positives": 4743,
+      "fit_time_max": 9409262,
+      "eval_time_min": 9409267,
+      "strict_temporal": true,
+      "methods": {
+        "raw": {
+          "label": "raw",
+          "brier": 0.14039871562984554,
+          "log_loss": 0.43809414991827095,
+          "ece_uniform_10": 0.29108363195263154,
+          "ece_quantile_10": 0.2910836319526316,
+          "mean_predicted": 0.32887947225863207,
+          "empirical_prevalence": 0.03779584030600048,
+          "n_unique_predictions": 120431,
+          "n_positive": 4743,
+          "n_samples": 125490,
+          "pr_auc": 0.4777640975810481,
+          "roc_auc": 0.8882760223819389
+        },
+        "sigmoid": {
+          "label": "sigmoid",
+          "brier": 0.026746686792790225,
+          "log_loss": 0.10758318788451683,
+          "ece_uniform_10": 0.008262673309783374,
+          "ece_quantile_10": 0.008170404323923873,
+          "mean_predicted": 0.04234049717254164,
+          "empirical_prevalence": 0.03779584030600048,
+          "n_unique_predictions": 120431,
+          "n_positive": 4743,
+          "n_samples": 125490,
+          "pr_auc": 0.4777640975810481,
+          "roc_auc": 0.8882760223819389
+        },
+        "isotonic": {
+          "label": "isotonic",
+          "brier": 0.026036112309638874,
+          "log_loss": 0.10488658959230723,
+          "ece_uniform_10": 0.0035208103303979,
+          "ece_quantile_10": 0.004145209663612109,
+          "mean_predicted": 0.04131665063639838,
+          "empirical_prevalence": 0.03779584030600048,
+          "n_unique_predictions": 160,
+          "n_positive": 4743,
+          "n_samples": 125490,
+          "pr_auc": 0.4691510939536997,
+          "roc_auc": 0.8880654167179607,
+          "staircase": {
+            "monotone_nondecreasing_in_raw": true,
+            "n_unique_raw": 120431,
+            "n_unique_calibrated": 160,
+            "unique_ratio": 0.001328561582981126,
+            "pr_auc_raw": 0.4777640975810481,
+            "pr_auc_calibrated": 0.4691510939536997,
+            "pr_auc_calibrated_tiebroken_by_raw": 0.47771333020463047,
+            "pr_auc_drop": 0.008613003627348403,
+            "pr_auc_drop_after_tiebreak": 5.076737641762641e-05,
+            "drop_explained_by_ties": true,
+            "plateaus": {
+              "max_plateau_n": 8402,
+              "median_plateau_n": 135.0,
+              "n_plateaus": 160
+            },
+            "note": "Isotonic is monotone in the raw score, so it cannot reverse pairs. A PR-AUC drop that disappears after breaking ties with the raw order is staircase compression, not a rank reversal."
+          }
+        }
+      },
+      "lowest_brier_method": "isotonic",
+      "note": "Different temporal boundary from the official 70/15 val cut. TEST unused."
+    }
+  ],
+  "historical_phase9_frozen_test": {
+    "quoted_not_recomputed": true,
+    "source": "ml/evaluation/ieee_results.json frozen_test_metrics (Phase 9)",
+    "calibrator_at_the_time": "isotonic",
+    "binary_threshold": 0.5,
+    "metrics": {
+      "pr_auc": 0.3371524181307357,
+      "roc_auc": 0.8688416207249846,
+      "precision": 0.39339622641509436,
+      "recall": 0.2705157314304249,
+      "f1": 0.3205842783009802,
+      "false_positive_rate": 0.015041287515497439,
+      "false_negative_rate": 0.729484268569575,
+      "confusion_matrix": {
+        "tn": 84212,
+        "fp": 1286,
+        "fn": 2249,
+        "tp": 834
+      }
+    },
+    "note": "Historical Phase 9 chronological TEST result. Quoted only. This audit did not overwrite ieee_results.json and did not use TEST to select a calibrator."
+  },
+  "n_boot": 200,
+  "n_nested": 40,
+  "n_folds": 5,
+  "seed": 42,
+  "audited_at": "2026-09-03T18:44:23.603663+00:00",
+  "recommendation": {
+    "decision": "INCONCLUSIVE_KEEP_CURRENT",
+    "recommended_calibration_method": "isotonic (current, inconclusive)",
+    "current_phase9_selection": "isotonic",
+    "test_used_for_decision": false,
+    "evidence": [
+      "In-sample validation Brier: raw=0.138000, sigmoid=0.025448, isotonic=0.024585 (isotonic unique p=68; in-sample advantage).",
+      "Nested val holdout mean Brier: raw=0.13796598608087987, sigmoid=0.025476760210600018, isotonic=0.024773247329344356; isotonic<sigmoid in 100% of repeats.",
+      "Nested mean PR-AUC: raw=0.43003457139348955, sigmoid=0.43003457139348955, isotonic=0.41513813472485117.",
+      "5-fold OOF pooled Brier raw=0.1379999336135729, sigmoid=0.025459976178104554, isotonic=0.02478615687078338; PR-AUC raw=0.42999390635178036, sigmoid=0.4282974657103745, isotonic=0.42128151537990277; isotonic unique p=375.",
+      "Train-fit/val-eval Brier isotonic=0.024927 sigmoid=0.025482; PR-AUC raw=0.4300 sigmoid=0.4300 isotonic=0.4225.",
+      "Staircase: unique 85435\u219268 ratio=0.0007959267279218119, monotone=True, PR-AUC drop=0.007614995859687113, after tie-break=-2.1920672563791044e-06.",
+      "Temporal pretest holdout lowest-Brier methods: ['isotonic', 'isotonic']."
+    ],
+    "rationale": [
+      "Nested Brier prefers isotonic; ranking/uniqueness prefer sigmoid. Evidence is mixed, so the current isotonic selection is kept.",
+      "In-sample PR-AUC drop is explained by plateau ties, not rank reversal.",
+      "Sigmoid nested PR-AUC matches raw (monotone map)."
+    ],
+    "checks": {
+      "nested_isotonic_brier_beats_sigmoid": true,
+      "oof_isotonic_brier_beats_sigmoid": true,
+      "train_holdout_isotonic_brier_beats_sigmoid": true,
+      "isotonic_ranking_hurt": true,
+      "staircase_explains_pr_auc_drop": true,
+      "isotonic_degenerate_unique_values": false,
+      "heavy_probability_compression": true,
+      "sigmoid_preserves_ranking": true,
+      "temporal_winner_changes": false,
+      "temporal_conflicts_with_isotonic": false
+    },
+    "allowed_decisions": [
+      "KEEP_ISOTONIC",
+      "PREFER_SIGMOID",
+      "INCONCLUSIVE_KEEP_CURRENT"
+    ]
+  },
+  "threshold_review": {
+    "existing_phase9_thresholds": {
+      "approve_below": 0.020004,
+      "block_above": 0.511628,
+      "review_from": 0.020004,
+      "review_to": 0.511628,
+      "source": "validation_only_phase9_isotonic"
+    },
+    "existing_on_isotonic_val": {
+      "decisions": {
+        "APPROVE": 66208,
+        "REVIEW": 21501,
+        "BLOCK": 872
+      },
+      "fraud_catch_rate_review_or_block": 0.8060486522024983,
+      "thresholds": {
+        "approve_below": 0.020004,
+        "block_above": 0.511628,
+        "review_from": 0.020004,
+        "review_to": 0.511628,
+        "source": "validation_only_phase9_isotonic"
+      },
+      "val_cost": 102922.0
+    },
+    "existing_on_sigmoid_val": {
+      "decisions": {
+        "APPROVE": 62700,
+        "REVIEW": 25212,
+        "BLOCK": 669
+      },
+      "fraud_catch_rate_review_or_block": 0.8274161735700197,
+      "thresholds": {
+        "approve_below": 0.020004,
+        "block_above": 0.511628,
+        "review_from": 0.020004,
+        "review_to": 0.511628,
+        "source": "validation_only_phase9_isotonic"
+      },
+      "val_cost": 103494.0
+    },
+    "reselected_for_operating_method": "isotonic",
+    "reselected_operating": {
+      "decisions": {
+        "APPROVE": 66208,
+        "REVIEW": 21501,
+        "BLOCK": 872
+      },
+      "fraud_catch_rate_review_or_block": 0.8060486522024983,
+      "thresholds": {
+        "approve_below": 0.020004,
+        "block_above": 0.511628,
+        "review_from": 0.020004,
+        "review_to": 0.511628,
+        "val_cost": 102922.0,
+        "val_n_review": 21501,
+        "source": "validation_only",
+        "cost_assumptions": {
+          "false_negative": 100.0,
+          "false_positive": 5.0,
+          "review": 2.0,
+          "units": "relative prototype units, not a bank loss model"
+        }
+      },
+      "val_cost": 102922.0
+    },
+    "keep_existing_if_not_prefer_sigmoid": true,
+    "note": "Phase 9 cutpoints were chosen on isotonic validation scores. This review does not search TEST. If the decision is KEEP_ISOTONIC or INCONCLUSIVE_KEEP_CURRENT, the published 0.020004 / 0.511628 cutpoints remain."
+  },
+  "split_matches_phase9_manifest": true,
+  "integrity": {
+    "protected_artifacts_unchanged": true,
+    "new_calibration_artifact_written": false,
+    "wrote": [
+      "ieee_calibration_robustness.json",
+      "ieee_calibration_robustness_report.md"
+    ],
+    "protected_artifact_fingerprints": {
+      "ml/models/xgb_fraud.joblib": {
+        "path": "ml/models/xgb_fraud.joblib",
+        "sha256": "79b2b82ae1c9722178223881953cb92f6d47188280dc083c5f897c551d30ee5c",
+        "nbytes": 177854
+      },
+      "ml/models/version.txt": {
+        "path": "ml/models/version.txt",
+        "sha256": "9507a8dd0b2ec8ebdefc8802af7fdb6443dcf13ff495a595dcc9dec0a996d44c",
+        "nbytes": 25
+      },
+      "ml/models/calibrator.joblib": {
+        "path": "ml/models/calibrator.joblib",
+        "sha256": "6d728c22c0ca165e9b8fb98e85014c984b67683c327841d823a1e3f58d77e147",
+        "nbytes": 759
+      },
+      "ml/models/iforest.joblib": {
+        "path": "ml/models/iforest.joblib",
+        "sha256": "4b7897dea637e32fc9889dc1e34fdf7f01220df3566021468a8b944b26cffc50",
+        "nbytes": 1721625
+      },
+      "ml/models/metrics.json": {
+        "path": "ml/models/metrics.json",
+        "sha256": "6412e5594842c548db4cfcee9b60a866c6f4141110345269d46c3d41d61202ed",
+        "nbytes": 2603
+      },
+      "ml/evaluation/ulb_metrics.json": {
+        "path": "ml/evaluation/ulb_metrics.json",
+        "sha256": "5bf19ba71a1dc57327f5dd9c752d095beb31f0d1128e21360a12a15c6db20f41",
+        "nbytes": 8575
+      },
+      "ml/evaluation/calibration_metrics.json": {
+        "path": "ml/evaluation/calibration_metrics.json",
+        "sha256": "43a823edc9250ec7f8b779255e20d9d40a00837b724db74ff10aed53fe38e1da",
+        "nbytes": 107705
+      },
+      "ml/evaluation/calibration_robustness.json": {
+        "path": "ml/evaluation/calibration_robustness.json",
+        "sha256": "e802bf6aca37ef47057a89e20f48dd9ef72de12c9745ae1c5e9b0380dca97622",
+        "nbytes": 43105
+      },
+      "ml/evaluation/calibration_robustness_report.md": {
+        "path": "ml/evaluation/calibration_robustness_report.md",
+        "sha256": "6f5cb01b17929936bd020b0da0681e3797b097f5587718a78c4b2836b50b7df2",
+        "nbytes": 17088
+      },
+      "ml/models/ulb/model.joblib": {
+        "path": "ml/models/ulb/model.joblib",
+        "sha256": "ebe56d0e135be80c9f09364525670d29c1fe78e59a45e81cfb649326eac0d107",
+        "nbytes": 253835
+      },
+      "ml/evaluation/ieee_results.json": {
+        "path": "ml/evaluation/ieee_results.json",
+        "sha256": "31a0fd20503693dee2f5a5b4c603dc0432eae6bd79f77e178d0b8a021adee57e",
+        "nbytes": 122091
+      },
+      "ml/evaluation/ieee_results.md": {
+        "path": "ml/evaluation/ieee_results.md",
+        "sha256": "0caa6fbf4af41eadbb9da35f95eadd333166687557dafbd79b869d6573227af0",
+        "nbytes": 7344
+      },
+      "ml/evaluation/ieee_experiment_manifest.json": {
+        "path": "ml/evaluation/ieee_experiment_manifest.json",
+        "sha256": "82c33664cc65539e34927d49825f659d4704156b8855d9ab8b79d69240711a45",
+        "nbytes": 46625
+      },
+      "ml/evaluation/ieee_data_audit.json": {
+        "path": "ml/evaluation/ieee_data_audit.json",
+        "sha256": "ba468f3f9c5e43bc4b96e6d19219261ffb1f10c6f21c672a8a60cb2dae4a81a1",
+        "nbytes": 48631
+      },
+      "ml/evaluation/ieee_leakage_report.json": {
+        "path": "ml/evaluation/ieee_leakage_report.json",
+        "sha256": "fbdaa4084bb4397e6782f1ce9eac84981710ba23c139da01c8df269c900d6796",
+        "nbytes": 88042
+      },
+      "ml/models/ieee/ieee-xgb-combined-v1.joblib": {
+        "path": "ml/models/ieee/ieee-xgb-combined-v1.joblib",
+        "sha256": "6dc3553c42c9432128821d99530423a6fea1168ae0c2329dde99ed199a39c7b4",
+        "nbytes": 482344
+      },
+      "ml/models/ieee/ieee-xgb-combined-v1.json": {
+        "path": "ml/models/ieee/ieee-xgb-combined-v1.json",
+        "sha256": "cdb60cc27cc84461f59b290c468f4838c10e61d85acb9730d6bf414616622d95",
+        "nbytes": 2215
+      },
+      "ml/models/ieee/ieee-xgb-baseline-v1.joblib": {
+        "path": "ml/models/ieee/ieee-xgb-baseline-v1.joblib",
+        "sha256": "e8251b40307bcd8218ba05cc52d8989eba214e5dffc7c5d81d3938c69131ec2a",
+        "nbytes": 205821
+      },
+      "ml/models/ieee/ieee-xgb-baseline-v1.json": {
+        "path": "ml/models/ieee/ieee-xgb-baseline-v1.json",
+        "sha256": "cda1715e7c950d8cd1e284f391ced9bb35b61ad7c687df46ea74f77e365facd0",
+        "nbytes": 2124
+      },
+      "ml/models/ieee/ieee-xgb-graph-v1.joblib": {
+        "path": "ml/models/ieee/ieee-xgb-graph-v1.joblib",
+        "sha256": "c3587044551d50b4ddc9c15da15c36201028201083a505816c6a0752f0b36bb6",
+        "nbytes": 208848
+      },
+      "ml/models/ieee/ieee-xgb-graph-v1.json": {
+        "path": "ml/models/ieee/ieee-xgb-graph-v1.json",
+        "sha256": "8da4a41324484c4e01a8d8f7fec224331c1f10a903dea222c2473b37eef89c8f",
+        "nbytes": 2134
+      }
+    }
+  }
+}

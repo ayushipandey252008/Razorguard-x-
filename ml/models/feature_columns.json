@@ -1,0 +1,15 @@
+[
+  "amount",
+  "account_age_days",
+  "failed_attempts",
+  "transaction_velocity",
+  "previous_transaction_count",
+  "previous_average_amount",
+  "current_device_known",
+  "current_location_known",
+  "amount_vs_avg_ratio",
+  "hour_of_day",
+  "day_of_week",
+  "payment_method_code",
+  "merchant_category_code"
+]

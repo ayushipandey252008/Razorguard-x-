@@ -1,0 +1,92 @@
+{
+  "precision": 0.9657534246575342,
+  "recall": 0.7833333333333333,
+  "f1": 0.8650306748466258,
+  "roc_auc": 0.8892837690631809,
+  "pr_auc": 0.8184372855533046,
+  "false_positive_rate": 0.004901960784313725,
+  "false_negative_rate": 0.21666666666666667,
+  "brier": 0.03551218203466044,
+  "confusion_matrix": {
+    "tn": 1015,
+    "fp": 5,
+    "fn": 39,
+    "tp": 141
+  },
+  "n_samples": 1200,
+  "positive_rate": 0.15,
+  "track": "SYNTHETIC_DATASET",
+  "model_version": "xgb-iforest-v1-calibrated",
+  "booster_family": "xgboost",
+  "scale_pos_weight": 5.65083135391924,
+  "feature_columns": [
+    "amount",
+    "account_age_days",
+    "failed_attempts",
+    "transaction_velocity",
+    "previous_transaction_count",
+    "previous_average_amount",
+    "current_device_known",
+    "current_location_known",
+    "amount_vs_avg_ratio",
+    "hour_of_day",
+    "day_of_week",
+    "payment_method_code",
+    "merchant_category_code"
+  ],
+  "duplicate_feature_rows": 0,
+  "split": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15,
+    "strategy": "stratified_random",
+    "seed": 42
+  },
+  "probability_calibrated": true,
+  "uncalibrated_test": {
+    "precision": 0.9591836734693877,
+    "recall": 0.7833333333333333,
+    "f1": 0.8623853211009175,
+    "roc_auc": 0.8893681917211329,
+    "pr_auc": 0.8224575240578269,
+    "false_positive_rate": 0.0058823529411764705,
+    "false_negative_rate": 0.21666666666666667,
+    "brier": 0.04851818906218027,
+    "confusion_matrix": {
+      "tn": 1014,
+      "fp": 6,
+      "fn": 39,
+      "tp": 141
+    },
+    "n_samples": 1200,
+    "positive_rate": 0.15
+  },
+  "calibrated_test": {
+    "precision": 0.9657534246575342,
+    "recall": 0.7833333333333333,
+    "f1": 0.8650306748466258,
+    "roc_auc": 0.8892837690631809,
+    "pr_auc": 0.8184372855533046,
+    "false_positive_rate": 0.004901960784313725,
+    "false_negative_rate": 0.21666666666666667,
+    "brier": 0.03551218203466044,
+    "confusion_matrix": {
+      "tn": 1015,
+      "fp": 5,
+      "fn": 39,
+      "tp": 141
+    },
+    "n_samples": 1200,
+    "positive_rate": 0.15
+  },
+  "threshold_experiment": {
+    "threshold_review": 0.05,
+    "threshold_block": 0.814,
+    "precision_at_review": 0.8777777777777778,
+    "recall_at_review": 0.8729281767955801,
+    "false_positives_block": 4,
+    "false_negatives_approve": 23,
+    "expected_cost": 2392.0
+  },
+  "note": "SYNTHETIC_DATASET track. Calibrated probabilities are isotonic regression on validation booster scores (prefit). Risk score is 0\u2013100 from calibrated P(fraud). Threshold experiment is cost-based on validation, not industry-standard."
+}

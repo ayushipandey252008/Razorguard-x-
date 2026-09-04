@@ -1,0 +1,123 @@
+{
+  "label": "LOCAL LLM INVESTIGATION VERIFICATION",
+  "phase": "10A-local",
+  "status": "LOCAL_LLM_VERIFIED",
+  "real_provider_request_made": true,
+  "disclaimer": "Independent student prototype. Not production payment-fraud accuracy. Not an official Razorpay product. Synthetic data only.",
+  "runtime": {
+    "ollama_version": "0.33.2",
+    "model": "llama3.1:8b",
+    "quantization": "Q4_K_M",
+    "provider_class": "OpenAIProvider",
+    "provider_name": "llm",
+    "llm_provider_env": "ollama",
+    "endpoint": "http://127.0.0.1:11434/v1/chat/completions",
+    "api_key_required_by_ollama": false,
+    "dummy_key_required_by_config_gate": true,
+    "hardware": "Apple M3 24GB unified Metal"
+  },
+  "precheck": {
+    "llm_provider": "ollama",
+    "llm_model": "llama3.1:8b",
+    "llm_base_url": "http://127.0.0.1:11434/v1",
+    "llm_base_url_loopback": true,
+    "uses_openai_host": false,
+    "uses_openrouter": false,
+    "uses_groq": false,
+    "llm_is_configured": true,
+    "resolved_provider_class": "OpenAIProvider",
+    "resolved_provider_name": "llm",
+    "supports_tool_calling": true,
+    "model_present_locally": true
+  },
+  "controlled_real_llm_test": {
+    "ran": true,
+    "scenario_tag": "stolen_account",
+    "synthetic_only": true,
+    "provider": "llm",
+    "model": "llama3.1:8b",
+    "investigation_id": "55eda86a-99f9-4b36-9b9d-9b50f2d5e522",
+    "transaction_id": "txn_c3af9777843c4f39",
+    "engine_decision": "BLOCK",
+    "engine_ml_probability": 0.9800000190734863,
+    "engine_final_risk_score": 70.13,
+    "engine_model_version": "xgb-iforest-v1-calibrated",
+    "tool_calls": ["get_transaction", "get_model_explanation"],
+    "tool_call_count": 2,
+    "evidence_count": 2,
+    "recommendation": "BLOCK",
+    "risk_level": "HIGH",
+    "cluster_identified": false,
+    "fallback": false,
+    "latency_ms": 16025.1,
+    "provider_error": null
+  },
+  "tool_calling": {
+    "tools": true,
+    "tool_calls": true,
+    "tool_call_id": true,
+    "role_tool": true,
+    "multi_round": true,
+    "tool_choice_honored": false,
+    "role_tool_name_field_error": false,
+    "unbounded_generation_timeout_before_prompt_and_max_tokens_fix": true
+  },
+  "grounding": {
+    "live_llm_output_validated": true,
+    "existing_grounding_validator": "app.agents.investigator._ground_report",
+    "copies_engine_probability": true,
+    "cannot_overwrite_decision": true,
+    "ml_probability_matches_engine": true,
+    "final_risk_score_matches_engine": true,
+    "recommendation_matches_engine_decision": true
+  },
+  "tool_boundary": {
+    "closed_registry": true,
+    "sql_tool": false,
+    "filesystem_tool": false,
+    "shell_tool": false,
+    "arbitrary_http_tool": false,
+    "unrestricted_execution": false,
+    "backend_executes_tools": true,
+    "extra_tools_on_live_run": []
+  },
+  "fallback": {
+    "live_provider_failure_test": true,
+    "trigger": "Ollama stopped; ConnectError to 127.0.0.1:11434",
+    "investigation_id": "37fe66ba-a61d-4f89-8f7a-a6963b213eb7",
+    "transaction_id": "txn_d918db12d60e48d9",
+    "provider": "deterministic_fallback",
+    "completed": true,
+    "tool_call_count": 12,
+    "latency_ms": 78.8,
+    "engine_decision_unchanged": true,
+    "ollama_restored": true
+  },
+  "security": {
+    "secrets_written_to_this_artifact": false,
+    "redaction_layer": "app.utils.redact",
+    "log_redaction": true,
+    "dummy_local_key_is_not_a_credential": true
+  },
+  "risk_decision_separation": {
+    "ml_probability_authoritative": true,
+    "llm_cannot_overwrite_approve_review_block": true,
+    "verified_against_live_llm": true
+  },
+  "training_rerun": false,
+  "live_model_changed": false,
+  "live_xgb_sha256": "79b2b82ae1c9722178223881953cb92f6d47188280dc083c5f897c551d30ee5c",
+  "ulb_artifacts_changed": false,
+  "ieee_artifacts_changed": false,
+  "tests": {
+    "agent": "tests/test_agent_phase3.py: 30 passed",
+    "full_backend_suite": "153 passed, 2 skipped",
+    "ieee_ulb_training": false
+  },
+  "isolated_code_changes": [
+    "local HTTP timeout 180s",
+    "local max_tokens 768",
+    "system prompt requires native tool_calls before JSON report",
+    "pytest isolates LLM_PROVIDER=none"
+  ]
+}

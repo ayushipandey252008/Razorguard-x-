@@ -1,0 +1,441 @@
+# IEEE-CIS leakage report
+
+The IEEE-CIS experiment is an offline public-dataset evaluation. It does not represent production payment-fraud performance.
+
+Overall passed: **True**
+
+## Checks
+- [PASS] `target_leakage` — isFraud is not a covariate.
+- [PASS] `transaction_id_leakage` — TransactionID is not a covariate.
+- [PASS] `raw_time_leakage` — Raw TransactionDT excluded; hour_of_day_proxy may be used.
+- [PASS] `target_encoding_leakage` — Target encoding is not used.
+- [PASS] `preprocessing_fit_scope` — train_only
+- [PASS] `train_test_exact_overlap` — exact overlapping hashes=0
+- [PASS] `train_val_exact_overlap` — exact overlapping hashes=0
+- [PASS] `duplicate_ids_across_splits` — TransactionID overlap train/test=0
+- [PASS] `temporal_split_order` — max(train) < min(val) < max(val) < min(test)
+- [PASS] `graph_temporal_safety` — Graph features recomputed from strict past for a late test row.
+- [PASS] `join_not_on_target` — Join key is TransactionID, not a target-derived key.
+- [PASS] `post_outcome_fields` — No chargeback/outcome columns are in the IEEE-CIS public train schema used here.
+
+## Excluded features (every exclusion has a reason)
+
+- `TransactionID`: Join key / transaction identifier. Using it as a feature is ID leakage.
+- `isFraud`: Training target. Never a covariate.
+- `TransactionDT`: Monotonic contest clock. Raw TransactionDT leaks split position (later rows are always in val/test). Hour-of-day proxy is used instead.
+- `dist2`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C3`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C4`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C5`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C6`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C7`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C8`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C9`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C10`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C11`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C12`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C13`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `C14`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D2`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D3`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D4`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D5`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D6`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D7`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D8`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D9`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D10`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D11`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D12`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D13`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D14`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `D15`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M3`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M4`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M5`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M6`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M7`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M8`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `M9`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `V1`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V2`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V3`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V4`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V5`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V6`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V7`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V8`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V9`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V10`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V11`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V12`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V13`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V14`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V15`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V16`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V17`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V18`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V19`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V20`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V21`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V22`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V23`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V24`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V25`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V26`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V27`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V28`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V29`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V30`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V31`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V32`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V33`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V34`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V35`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V36`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V37`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V38`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V39`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V40`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V41`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V42`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V43`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V44`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V45`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V46`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V47`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V48`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V49`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V50`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V51`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V52`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V53`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V54`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V55`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V56`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V57`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V58`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V59`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V60`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V61`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V62`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V63`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V64`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V65`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V66`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V67`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V68`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V69`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V70`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V71`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V72`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V73`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V74`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V75`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V76`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V77`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V78`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V79`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V80`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V81`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V82`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V83`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V84`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V85`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V86`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V87`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V88`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V89`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V90`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V91`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V92`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V93`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V94`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V95`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V96`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V97`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V98`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V99`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V100`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V101`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V102`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V103`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V104`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V105`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V106`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V107`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V108`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V109`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V110`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V111`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V112`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V113`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V114`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V115`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V116`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V117`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V118`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V119`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V120`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V121`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V122`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V123`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V124`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V125`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V126`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V127`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V128`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V129`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V130`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V131`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V132`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V133`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V134`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V135`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V136`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V137`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V138`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V139`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V140`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V141`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V142`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V143`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V144`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V145`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V146`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V147`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V148`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V149`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V150`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V151`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V152`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V153`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V154`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V155`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V156`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V157`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V158`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V159`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V160`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V161`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V162`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V163`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V164`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V165`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V166`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V167`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V168`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V169`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V170`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V171`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V172`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V173`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V174`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V175`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V176`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V177`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V178`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V179`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V180`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V181`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V182`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V183`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V184`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V185`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V186`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V187`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V188`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V189`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V190`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V191`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V192`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V193`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V194`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V195`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V196`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V197`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V198`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V199`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V200`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V201`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V202`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V203`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V204`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V205`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V206`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V207`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V208`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V209`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V210`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V211`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V212`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V213`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V214`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V215`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V216`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V217`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V218`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V219`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V220`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V221`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V222`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V223`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V224`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V225`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V226`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V227`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V228`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V229`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V230`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V231`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V232`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V233`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V234`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V235`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V236`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V237`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V238`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V239`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V240`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V241`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V242`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V243`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V244`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V245`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V246`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V247`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V248`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V249`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V250`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V251`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V252`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V253`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V254`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V255`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V256`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V257`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V258`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V259`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V260`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V261`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V262`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V263`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V264`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V265`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V266`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V267`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V268`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V269`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V270`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V271`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V272`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V273`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V274`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V275`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V276`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V277`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V278`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V279`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V280`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V281`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V282`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V283`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V284`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V285`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V286`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V287`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V288`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V289`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V290`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V291`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V292`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V293`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V294`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V295`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V296`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V297`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V298`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V299`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V300`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V301`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V302`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V303`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V304`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V305`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V306`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V307`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V308`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V309`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V310`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V311`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V312`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V313`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V314`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V315`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V316`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V317`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V318`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V319`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V320`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V321`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V322`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V323`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V324`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V325`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V326`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V327`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V328`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V329`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V330`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V331`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V332`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V333`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V334`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V335`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V336`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V337`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V338`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `V339`: Anonymized Vesta matching/aggregate column. Not dropped silently from the audit; excluded from models because contest derivation may include matching that is not guaranteed to be strictly causal at time T.
+- `id_03`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_04`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_05`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_06`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_07`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_08`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_09`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_10`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_11`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_13`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_14`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_15`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_16`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_17`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_18`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_19`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_20`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_21`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_22`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_23`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_24`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_25`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_26`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_27`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_28`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_29`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_32`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_33`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_34`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_35`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_36`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_37`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+- `id_38`: Present in the joined table but not selected for this experiment's feature families. Documented rather than silently discarded.
+
+## Graph construction
+
+- Offline IEEE graph features are built by scanning transactions in TransactionDT order.
+- A row at time T only sees entity statistics from transactions with time < T.
+- Current-row isFraud is never written into that row's graph features.
+- Prior-label neighbor counts use historical isFraud from earlier rows only.
+- IEEE-CIS identity has no raw IP; graph_ip_entity_unavailable=1 and IP counts are not fabricated.
+- addr1 is a coarse billing/geo entity, not an IP address.
+- These features do not replace the live GraphBackend (NetworkX / optional Neo4j).

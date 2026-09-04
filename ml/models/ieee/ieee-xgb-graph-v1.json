@@ -1,0 +1,69 @@
+{
+  "id": "ieee-xgb-graph-v1",
+  "status": "CANDIDATE",
+  "deployed_to_live_pipeline": false,
+  "track": "IEEE_CIS_OFFLINE",
+  "dataset": "IEEE-CIS Fraud Detection",
+  "dataset_source": "IEEE_CIS_CSV",
+  "dataset_version": "ml/data/ieee/train_transaction.csv",
+  "data_dir": "ml/data/ieee",
+  "feature_families": [
+    "transaction",
+    "graph"
+  ],
+  "feature_count": 18,
+  "train_rows": 413378,
+  "train_fraud_rows": 14538,
+  "validation_rows": 88581,
+  "test_rows": 88581,
+  "metrics": {
+    "threshold": 0.5,
+    "precision": 0.12557179515787126,
+    "recall": 0.7301329873499838,
+    "f1": 0.21428911418915703,
+    "roc_auc": 0.8651765394401753,
+    "pr_auc": 0.3748364293730476,
+    "false_positive_rate": 0.18333762193267678,
+    "false_negative_rate": 0.2698670126500162,
+    "fraud_catch_rate": 0.7301329873499838,
+    "brier": 0.14415401810576503,
+    "log_loss": 0.4516723088584896,
+    "confusion_matrix": {
+      "tn": 69823,
+      "fp": 15675,
+      "fn": 832,
+      "tp": 2251
+    },
+    "n_samples": 88581,
+    "n_fraud": 3083,
+    "n_legitimate": 85498,
+    "fraud_prevalence": 0.03480430340592226
+  },
+  "val_metrics": {
+    "threshold": 0.5,
+    "precision": 0.13815991641570893,
+    "recall": 0.7389875082182774,
+    "f1": 0.23279656190131,
+    "roc_auc": 0.8750404491166466,
+    "pr_auc": 0.4202018682475606,
+    "false_positive_rate": 0.16393691766328808,
+    "false_negative_rate": 0.26101249178172253,
+    "fraud_catch_rate": 0.7389875082182774,
+    "brier": 0.13017735996596308,
+    "log_loss": 0.4138568808873503,
+    "confusion_matrix": {
+      "tn": 71516,
+      "fp": 14023,
+      "fn": 794,
+      "tp": 2248
+    },
+    "n_samples": 88581,
+    "n_fraud": 3042,
+    "n_legitimate": 85539,
+    "fraud_prevalence": 0.03434145019812375
+  },
+  "artifact_path": "ml/models/ieee/ieee-xgb-graph-v1.joblib",
+  "training_timestamp": "2026-09-03T18:19:35.403450+00:00",
+  "live_model_unchanged": "xgb-iforest-v1-calibrated",
+  "note": "OFFLINE CANDIDATE. Not routed to live scoring. Not production fraud accuracy."
+}

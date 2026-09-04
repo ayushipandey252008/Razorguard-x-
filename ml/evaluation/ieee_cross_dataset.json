@@ -1,0 +1,30 @@
+{
+  "label": "OFFLINE PUBLIC DATASET EVALUATION",
+  "not_equivalent": true,
+  "caveats": [
+    "ULB and IEEE-CIS are different datasets, time periods, feature spaces, and prevalence regimes.",
+    "Metrics are not interchangeable and are not production payment-fraud accuracy.",
+    "IEEE-CIS identity/device fields do not exist on ULB PCA columns.",
+    "Do not mix IEEE rows into ULB evaluation or synthetic scenario labels into IEEE evaluation."
+  ],
+  "table": [
+    {
+      "Dataset": "ULB Credit Card Fraud Detection",
+      "Rows": 283726,
+      "Fraud": 473,
+      "Features": 33,
+      "PR-AUC": 0.757883672773321,
+      "ROC-AUC": 0.9829638919200638,
+      "source": "committed ulb_metrics.json"
+    },
+    {
+      "Dataset": "IEEE-CIS Fraud Detection",
+      "Rows": 590540,
+      "Fraud": 20663,
+      "Features": 49,
+      "PR-AUC": 0.3371524181307357,
+      "ROC-AUC": 0.8688416207249846,
+      "source": "measured IEEE-CIS chronological test"
+    }
+  ]
+}

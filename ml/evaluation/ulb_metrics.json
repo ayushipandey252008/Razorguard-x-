@@ -1,0 +1,353 @@
+{
+  "track": "REAL_DATASET",
+  "skipped": false,
+  "dataset_id": "ULB_CREDIT_CARD_FRAUD",
+  "source": "ULB Credit Card Fraud Detection",
+  "download_url": "https://storage.googleapis.com/download.tensorflow.org/data/creditcard.csv",
+  "raw_path": "ml/data/raw/creditcard.csv",
+  "incompatible_with_product_pipeline": true,
+  "label": "OFFLINE EVALUATION",
+  "n_rows_cleaned": 283726,
+  "duplicates_removed": 1081,
+  "cleaning_notes": [
+    "Exact duplicates dropped (identical Time, V1\u2013V28, Amount, Class).",
+    "Infinite feature values converted to NaN for train-only imputation later.",
+    "No outlier clipping: fraud may itself be an outlier.",
+    "No full-dataset scaling or imputation.",
+    "Class labels preserved as 0/1."
+  ],
+  "class_distribution": {
+    "full_fraud": 473,
+    "full_legitimate": 283253,
+    "full_prevalence": 0.001667101358352777
+  },
+  "official_split": {
+    "strategy": "chronological",
+    "train": {
+      "name": "train",
+      "n": 198608,
+      "fraud": 366,
+      "legitimate": 198242,
+      "prevalence": 0.0018428260694433255,
+      "time_min": 0.0,
+      "time_max": 132906.0
+    },
+    "val": {
+      "name": "val",
+      "n": 42559,
+      "fraud": 55,
+      "legitimate": 42504,
+      "prevalence": 0.0012923235978288964,
+      "time_min": 132906.0,
+      "time_max": 151320.0
+    },
+    "test": {
+      "name": "test",
+      "n": 42559,
+      "fraud": 52,
+      "legitimate": 42507,
+      "prevalence": 0.001221833219765502,
+      "time_min": 151320.0,
+      "time_max": 172792.0
+    },
+    "no_future_in_train": true
+  },
+  "split_comparison": {
+    "chronological_pr_auc": 0.757883672773321,
+    "stratified_pr_auc": 0.7730157196913747,
+    "stratified_no_future_in_train": false,
+    "note": "Official artifact is chronological. Stratified numbers are a comparison only."
+  },
+  "booster_family": "xgboost",
+  "model_version": "ulb-xgb-v1",
+  "scale_pos_weight": 541.6448087431694,
+  "feature_names": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7",
+    "V8",
+    "V9",
+    "V10",
+    "V11",
+    "V12",
+    "V13",
+    "V14",
+    "V15",
+    "V16",
+    "V17",
+    "V18",
+    "V19",
+    "V20",
+    "V21",
+    "V22",
+    "V23",
+    "V24",
+    "V25",
+    "V26",
+    "V27",
+    "V28",
+    "Time",
+    "Amount",
+    "log_amount",
+    "time_of_day_proxy",
+    "transaction_time_bucket"
+  ],
+  "trained_at": "2026-09-03T06:31:06.357521+00:00",
+  "val_threshold": 0.9,
+  "metrics_at_half": {
+    "precision": 0.3076923076923077,
+    "recall": 0.7692307692307693,
+    "f1": 0.43956043956043955,
+    "roc_auc": 0.9829638919200638,
+    "pr_auc": 0.757883672773321,
+    "false_positive_rate": 0.002117298327334321,
+    "false_negative_rate": 0.23076923076923078,
+    "brier": 0.0023770125271789936,
+    "confusion_matrix": {
+      "tn": 42417,
+      "fp": 90,
+      "fn": 12,
+      "tp": 40
+    },
+    "n_samples": 42559,
+    "n_fraud": 52,
+    "n_legitimate": 42507,
+    "fraud_prevalence": 0.001221833219765502
+  },
+  "metrics_at_val_threshold": {
+    "precision": 0.7358490566037735,
+    "recall": 0.75,
+    "f1": 0.7428571428571429,
+    "roc_auc": 0.9829638919200638,
+    "pr_auc": 0.757883672773321,
+    "false_positive_rate": 0.0003293575175853389,
+    "false_negative_rate": 0.25,
+    "brier": 0.0023770125271789936,
+    "confusion_matrix": {
+      "tn": 42493,
+      "fp": 14,
+      "fn": 13,
+      "tp": 39
+    },
+    "n_samples": 42559,
+    "n_fraud": 52,
+    "n_legitimate": 42507,
+    "fraud_prevalence": 0.001221833219765502
+  },
+  "shap": {
+    "available": true,
+    "n_explained": 800,
+    "global_mean_abs_shap": [
+      {
+        "feature": "V4",
+        "mean_abs_shap": 1.3268096446990967
+      },
+      {
+        "feature": "V14",
+        "mean_abs_shap": 1.0760115385055542
+      },
+      {
+        "feature": "V12",
+        "mean_abs_shap": 0.7655633687973022
+      },
+      {
+        "feature": "V10",
+        "mean_abs_shap": 0.6113728880882263
+      },
+      {
+        "feature": "V11",
+        "mean_abs_shap": 0.33409205079078674
+      },
+      {
+        "feature": "V8",
+        "mean_abs_shap": 0.31448885798454285
+      },
+      {
+        "feature": "V1",
+        "mean_abs_shap": 0.2853907346725464
+      },
+      {
+        "feature": "V17",
+        "mean_abs_shap": 0.2144985795021057
+      },
+      {
+        "feature": "time_of_day_proxy",
+        "mean_abs_shap": 0.2086067795753479
+      },
+      {
+        "feature": "V18",
+        "mean_abs_shap": 0.19040019810199738
+      },
+      {
+        "feature": "V16",
+        "mean_abs_shap": 0.17876917123794556
+      },
+      {
+        "feature": "V19",
+        "mean_abs_shap": 0.1725768893957138
+      },
+      {
+        "feature": "V7",
+        "mean_abs_shap": 0.17091158032417297
+      },
+      {
+        "feature": "Time",
+        "mean_abs_shap": 0.16947676241397858
+      },
+      {
+        "feature": "Amount",
+        "mean_abs_shap": 0.15341351926326752
+      },
+      {
+        "feature": "V5",
+        "mean_abs_shap": 0.14966823160648346
+      },
+      {
+        "feature": "V20",
+        "mean_abs_shap": 0.14746709167957306
+      },
+      {
+        "feature": "V23",
+        "mean_abs_shap": 0.13555754721164703
+      },
+      {
+        "feature": "V22",
+        "mean_abs_shap": 0.1318616420030594
+      },
+      {
+        "feature": "V3",
+        "mean_abs_shap": 0.12411726266145706
+      },
+      {
+        "feature": "V2",
+        "mean_abs_shap": 0.12213519960641861
+      },
+      {
+        "feature": "V21",
+        "mean_abs_shap": 0.11844460666179657
+      },
+      {
+        "feature": "V27",
+        "mean_abs_shap": 0.10613324493169785
+      },
+      {
+        "feature": "V24",
+        "mean_abs_shap": 0.1024046540260315
+      },
+      {
+        "feature": "V25",
+        "mean_abs_shap": 0.09495075047016144
+      },
+      {
+        "feature": "transaction_time_bucket",
+        "mean_abs_shap": 0.0858977809548378
+      },
+      {
+        "feature": "V6",
+        "mean_abs_shap": 0.08226995170116425
+      },
+      {
+        "feature": "V13",
+        "mean_abs_shap": 0.07632514834403992
+      },
+      {
+        "feature": "V26",
+        "mean_abs_shap": 0.07615873217582703
+      },
+      {
+        "feature": "V28",
+        "mean_abs_shap": 0.07496397197246552
+      },
+      {
+        "feature": "V15",
+        "mean_abs_shap": 0.06897646933794022
+      },
+      {
+        "feature": "V9",
+        "mean_abs_shap": 0.06715787947177887
+      },
+      {
+        "feature": "log_amount",
+        "mean_abs_shap": 0.04969685524702072
+      }
+    ],
+    "local_examples": [
+      {
+        "label": "legitimate",
+        "row_in_shap_sample": 0,
+        "top_features": [
+          {
+            "feature": "V4",
+            "shap": -2.561802864074707,
+            "value": -2.695814
+          },
+          {
+            "feature": "V14",
+            "shap": -1.2178504467010498,
+            "value": 0.475806
+          },
+          {
+            "feature": "V12",
+            "shap": -1.0407443046569824,
+            "value": 0.617401
+          },
+          {
+            "feature": "V25",
+            "shap": -0.7169776558876038,
+            "value": 0.700984
+          },
+          {
+            "feature": "V10",
+            "shap": 0.4891882538795471,
+            "value": -1.666154
+          },
+          {
+            "feature": "V7",
+            "shap": -0.30642905831336975,
+            "value": 0.41776
+          },
+          {
+            "feature": "V3",
+            "shap": -0.2608705163002014,
+            "value": 0.395549
+          },
+          {
+            "feature": "V8",
+            "shap": 0.25593236088752747,
+            "value": -1.839801
+          }
+        ]
+      }
+    ],
+    "limitation": "V1\u2013V28 are anonymized PCA components from the dataset publisher. SHAP ranking does not recover a business feature name."
+  },
+  "leakage": {
+    "train_test_overlap": 0,
+    "train_val_overlap": 0,
+    "n_train_fit": 198608,
+    "resampling": "none \u2014 original training class distribution; scale_pos_weight only",
+    "chronological_order_ok": true,
+    "class_not_in_features": true,
+    "imputer_fitted_on_train": true,
+    "scaler_fitted_on_train": true
+  },
+  "precision": 0.3076923076923077,
+  "recall": 0.7692307692307693,
+  "f1": 0.43956043956043955,
+  "roc_auc": 0.9829638919200638,
+  "pr_auc": 0.757883672773321,
+  "false_positive_rate": 0.002117298327334321,
+  "false_negative_rate": 0.23076923076923078,
+  "confusion_matrix": {
+    "tn": 42417,
+    "fp": 90,
+    "fn": 12,
+    "tp": 40
+  },
+  "n_samples": 42559,
+  "positive_rate": 0.001221833219765502
+}

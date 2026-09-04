@@ -1,0 +1,24 @@
+{
+  "precision": 0.3076923076923077,
+  "recall": 0.7692307692307693,
+  "f1": 0.43956043956043955,
+  "roc_auc": 0.9829638919200638,
+  "pr_auc": 0.757883672773321,
+  "false_positive_rate": 0.002117298327334321,
+  "false_negative_rate": 0.23076923076923078,
+  "confusion_matrix": {
+    "tn": 42417,
+    "fp": 90,
+    "fn": 12,
+    "tp": 40
+  },
+  "n_samples": 42559,
+  "positive_rate": 0.001221833219765502,
+  "track": "REAL_DATASET",
+  "skipped": false,
+  "source": "ULB Credit Card Fraud Detection",
+  "incompatible_with_product_pipeline": true,
+  "model_version": "ulb-xgb-v1",
+  "label": "OFFLINE EVALUATION",
+  "note": "REAL_DATASET / ULB offline evaluation. Not the live synthetic product model."
+}

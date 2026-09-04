@@ -1,0 +1,68 @@
+{
+  "id": "ieee-xgb-baseline-v1",
+  "status": "CANDIDATE",
+  "deployed_to_live_pipeline": false,
+  "track": "IEEE_CIS_OFFLINE",
+  "dataset": "IEEE-CIS Fraud Detection",
+  "dataset_source": "IEEE_CIS_CSV",
+  "dataset_version": "ml/data/ieee/train_transaction.csv",
+  "data_dir": "ml/data/ieee",
+  "feature_families": [
+    "transaction"
+  ],
+  "feature_count": 9,
+  "train_rows": 413378,
+  "train_fraud_rows": 14538,
+  "validation_rows": 88581,
+  "test_rows": 88581,
+  "metrics": {
+    "threshold": 0.5,
+    "precision": 0.11310208778563209,
+    "recall": 0.669477781381771,
+    "f1": 0.19351209450590662,
+    "roc_auc": 0.8155603175494288,
+    "pr_auc": 0.3333169051250197,
+    "false_positive_rate": 0.1893026737467543,
+    "false_negative_rate": 0.330522218618229,
+    "fraud_catch_rate": 0.669477781381771,
+    "brier": 0.1505501916197524,
+    "log_loss": 0.47786259621987054,
+    "confusion_matrix": {
+      "tn": 69313,
+      "fp": 16185,
+      "fn": 1019,
+      "tp": 2064
+    },
+    "n_samples": 88581,
+    "n_fraud": 3083,
+    "n_legitimate": 85498,
+    "fraud_prevalence": 0.03480430340592226
+  },
+  "val_metrics": {
+    "threshold": 0.5,
+    "precision": 0.12406557377049181,
+    "recall": 0.6219592373438527,
+    "f1": 0.206866389678548,
+    "roc_auc": 0.814514420484302,
+    "pr_auc": 0.33089780751684844,
+    "false_positive_rate": 0.15616268602625702,
+    "false_negative_rate": 0.3780407626561473,
+    "fraud_catch_rate": 0.6219592373438527,
+    "brier": 0.13391842603193768,
+    "log_loss": 0.4368485783111174,
+    "confusion_matrix": {
+      "tn": 72181,
+      "fp": 13358,
+      "fn": 1150,
+      "tp": 1892
+    },
+    "n_samples": 88581,
+    "n_fraud": 3042,
+    "n_legitimate": 85539,
+    "fraud_prevalence": 0.03434145019812375
+  },
+  "artifact_path": "ml/models/ieee/ieee-xgb-baseline-v1.joblib",
+  "training_timestamp": "2026-09-03T18:19:35.381590+00:00",
+  "live_model_unchanged": "xgb-iforest-v1-calibrated",
+  "note": "OFFLINE CANDIDATE. Not routed to live scoring. Not production fraud accuracy."
+}

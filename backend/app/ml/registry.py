@@ -1,0 +1,72 @@
+"""Product vs offline model identities. Live scoring stays on the synthetic ensemble."""
+
+from __future__ import annotations
+
+MODEL_REGISTRY = [
+    {
+        "id": "xgb-iforest-v1-calibrated",
+        "track": "SYNTHETIC_DATASET",
+        "role": "live_product_scoring",
+        "final_output": "final_risk_score",
+        "final_output_is_probability": False,
+        "deployed_to_live_pipeline": True,
+        "note": "Live RazorGuard X scoring. Final risk is a weighted combination, not P(fraud).",
+    },
+    {
+        "id": "ulb-xgb-v1",
+        "track": "REAL_DATASET",
+        "role": "offline_supervised_raw",
+        "final_output": "raw_probability",
+        "final_output_is_probability": False,
+        "deployed_to_live_pipeline": False,
+        "note": "Uncalibrated ULB booster. Offline evaluation only.",
+    },
+    {
+        "id": "ulb-xgb-v1-calibrated",
+        "track": "REAL_DATASET",
+        "role": "offline_supervised_calibrated",
+        "final_output": "calibrated_probability",
+        "final_output_is_probability": True,
+        "deployed_to_live_pipeline": False,
+        "note": "Validation-calibrated ULB P(Class=1). Not the product final_risk_score.",
+    },
+    {
+        "id": "xgb-feedback-v*",
+        "track": "SYNTHETIC_FEEDBACK",
+        "role": "offline_feedback_candidate",
+        "final_output": "ml_probability",
+        "final_output_is_probability": True,
+        "deployed_to_live_pipeline": False,
+        "note": "Trained from analyst-confirmed labels. Stays CANDIDATE until explicitly selected. Never auto-replaces live scoring.",
+    },
+    {
+        "id": "ieee-xgb-baseline-v1",
+        "track": "IEEE_CIS_OFFLINE",
+        "role": "offline_ieee_candidate",
+        "final_output": "model_probability",
+        "final_output_is_probability": True,
+        "deployed_to_live_pipeline": False,
+        "status": "CANDIDATE",
+        "note": "IEEE-CIS transaction-only baseline. OFFLINE CANDIDATE. Not live scoring. Not production fraud accuracy.",
+    },
+    {
+        "id": "ieee-xgb-combined-v1",
+        "track": "IEEE_CIS_OFFLINE",
+        "role": "offline_ieee_candidate",
+        "final_output": "model_probability",
+        "final_output_is_probability": True,
+        "deployed_to_live_pipeline": False,
+        "status": "CANDIDATE",
+        "note": "IEEE-CIS combined families. OFFLINE CANDIDATE. Never auto-activated.",
+    },
+    {
+        "id": "ieee-xgb-graph-v1",
+        "track": "IEEE_CIS_OFFLINE",
+        "role": "offline_ieee_candidate",
+        "final_output": "model_probability",
+        "final_output_is_probability": True,
+        "deployed_to_live_pipeline": False,
+        "status": "CANDIDATE",
+        "note": "IEEE-CIS transaction + time-aware graph features. Does not replace live NetworkX/Neo4j.",
+    },
+]

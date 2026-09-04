@@ -1,0 +1,9 @@
+.git
+.venv
+node_modules
+frontend/.next
+frontend/node_modules
+**/__pycache__
+*.db
+.env
+ml/models/*.joblib

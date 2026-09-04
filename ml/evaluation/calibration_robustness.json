@@ -1,0 +1,1326 @@
+{
+  "label": "CALIBRATION ROBUSTNESS AUDIT",
+  "track": "REAL_DATASET",
+  "dataset_id": "ULB_CREDIT_CARD_FRAUD",
+  "dataset": "ULB Credit Card Fraud Detection",
+  "booster_model_version": "ulb-xgb-v1",
+  "current_phase2_selection": "isotonic",
+  "artifacts_left_intact_policy": true,
+  "methodology": {
+    "train": "Frozen ulb-xgb-v1 booster scores only; booster is not refit.",
+    "validation": "Calibrator comparison, bootstrap, nested holdout, k-fold OOF.",
+    "test_scored": false,
+    "test_used_for_fit": false,
+    "test_used_for_method_selection": false,
+    "test_used_for_recommendation": false,
+    "train_n": 198608,
+    "train_positives": 366,
+    "validation_n": 42559,
+    "validation_positives": 55
+  },
+  "official_split": {
+    "strategy": "chronological",
+    "train": {
+      "name": "train",
+      "n": 198608,
+      "fraud": 366,
+      "legitimate": 198242,
+      "prevalence": 0.0018428260694433255,
+      "time_min": 0.0,
+      "time_max": 132906.0
+    },
+    "val": {
+      "name": "val",
+      "n": 42559,
+      "fraud": 55,
+      "legitimate": 42504,
+      "prevalence": 0.0012923235978288964,
+      "time_min": 132906.0,
+      "time_max": 151320.0
+    },
+    "test": {
+      "name": "test",
+      "n": 42559,
+      "fraud": 52,
+      "legitimate": 42507,
+      "prevalence": 0.001221833219765502,
+      "time_min": 151320.0,
+      "time_max": 172792.0
+    },
+    "no_future_in_train": true
+  },
+  "split_matches_ulb_metrics": true,
+  "in_sample_validation": {
+    "raw": {
+      "label": "raw",
+      "brier": 0.0023626101488038757,
+      "log_loss": 0.014619125690538153,
+      "ece_uniform_10": 0.011792216936643998,
+      "ece_quantile_10": 0.011792216936644,
+      "mean_predicted": 0.013084540534472895,
+      "empirical_prevalence": 0.0012923235978288964,
+      "n_unique_predictions": 40677,
+      "n_positive": 55,
+      "n_samples": 42559,
+      "pr_auc": 0.8390992199622515,
+      "roc_auc": 0.9877393357630512,
+      "reliability_uniform": {
+        "strategy": "uniform",
+        "n_bins": 10,
+        "ece": 0.011792216936643998,
+        "bins": [
+          {
+            "bin": 0,
+            "lo": 0.0,
+            "hi": 0.1,
+            "count": 41644,
+            "n_positive": 4,
+            "mean_predicted": 0.00694719731086189,
+            "empirical_positive_rate": 9.605225242531937e-05,
+            "gap": 0.00685114505843657
+          },
+          {
+            "bin": 1,
+            "lo": 0.1,
+            "hi": 0.2,
+            "count": 496,
+            "n_positive": 2,
+            "mean_predicted": 0.13915902352140797,
+            "empirical_positive_rate": 0.004032258064516129,
+            "gap": 0.13512676545689184
+          },
+          {
+            "bin": 2,
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "count": 153,
+            "n_positive": 0,
+            "mean_predicted": 0.24338177187380447,
+            "empirical_positive_rate": 0.0,
+            "gap": 0.24338177187380447
+          },
+          {
+            "bin": 3,
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "count": 60,
+            "n_positive": 1,
+            "mean_predicted": 0.3469354862968127,
+            "empirical_positive_rate": 0.016666666666666666,
+            "gap": 0.33026881963014604
+          },
+          {
+            "bin": 4,
+            "lo": 0.4,
+            "hi": 0.5,
+            "count": 52,
+            "n_positive": 1,
+            "mean_predicted": 0.4420824996553935,
+            "empirical_positive_rate": 0.019230769230769232,
+            "gap": 0.42285173042462426
+          },
+          {
+            "bin": 5,
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "count": 38,
+            "n_positive": 0,
+            "mean_predicted": 0.5560248760800612,
+            "empirical_positive_rate": 0.0,
+            "gap": 0.5560248760800612
+          },
+          {
+            "bin": 6,
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "count": 34,
+            "n_positive": 1,
+            "mean_predicted": 0.6479180700638715,
+            "empirical_positive_rate": 0.029411764705882353,
+            "gap": 0.6185063053579891
+          },
+          {
+            "bin": 7,
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "count": 22,
+            "n_positive": 2,
+            "mean_predicted": 0.7371447411450472,
+            "empirical_positive_rate": 0.09090909090909091,
+            "gap": 0.6462356502359563
+          },
+          {
+            "bin": 8,
+            "lo": 0.8,
+            "hi": 0.9,
+            "count": 10,
+            "n_positive": 1,
+            "mean_predicted": 0.8655747473239899,
+            "empirical_positive_rate": 0.1,
+            "gap": 0.7655747473239899
+          },
+          {
+            "bin": 9,
+            "lo": 0.9,
+            "hi": 1.0,
+            "count": 50,
+            "n_positive": 43,
+            "mean_predicted": 0.9892015683650971,
+            "empirical_positive_rate": 0.86,
+            "gap": 0.1292015683650971
+          }
+        ]
+      }
+    },
+    "sigmoid": {
+      "label": "sigmoid",
+      "brier": 0.0004950641803340926,
+      "log_loss": 0.0027061440490916684,
+      "ece_uniform_10": 0.000696169194173015,
+      "ece_quantile_10": 0.0004549037335407287,
+      "mean_predicted": 0.0012663286543010569,
+      "empirical_prevalence": 0.0012923235978288964,
+      "n_unique_predictions": 40674,
+      "n_positive": 55,
+      "n_samples": 42559,
+      "pr_auc": 0.8390992199622515,
+      "roc_auc": 0.9877393357630512,
+      "reliability_uniform": {
+        "strategy": "uniform",
+        "n_bins": 10,
+        "ece": 0.000696169194173015,
+        "bins": [
+          {
+            "bin": 0,
+            "lo": 0.0,
+            "hi": 0.1,
+            "count": 42476,
+            "n_positive": 9,
+            "mean_predicted": 0.0004334766117444847,
+            "empirical_positive_rate": 0.00021188435822582164,
+            "gap": 0.00022159225351866304
+          },
+          {
+            "bin": 1,
+            "lo": 0.1,
+            "hi": 0.2,
+            "count": 21,
+            "n_positive": 1,
+            "mean_predicted": 0.13220463848676545,
+            "empirical_positive_rate": 0.047619047619047616,
+            "gap": 0.08458559086771783
+          },
+          {
+            "bin": 2,
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "count": 4,
+            "n_positive": 1,
+            "mean_predicted": 0.2245054284647286,
+            "empirical_positive_rate": 0.25,
+            "gap": 0.025494571535271404
+          },
+          {
+            "bin": 3,
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "count": 8,
+            "n_positive": 1,
+            "mean_predicted": 0.34820806488402,
+            "empirical_positive_rate": 0.125,
+            "gap": 0.22320806488402
+          },
+          {
+            "bin": 4,
+            "lo": 0.4,
+            "hi": 0.5,
+            "count": 5,
+            "n_positive": 1,
+            "mean_predicted": 0.45733169577020905,
+            "empirical_positive_rate": 0.2,
+            "gap": 0.25733169577020903
+          },
+          {
+            "bin": 5,
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "count": 20,
+            "n_positive": 17,
+            "mean_predicted": 0.5847968407972008,
+            "empirical_positive_rate": 0.85,
+            "gap": 0.26520315920279913
+          },
+          {
+            "bin": 6,
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "count": 25,
+            "n_positive": 25,
+            "mean_predicted": 0.6015499880796695,
+            "empirical_positive_rate": 1.0,
+            "gap": 0.39845001192033047
+          },
+          {
+            "bin": 7,
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 8,
+            "lo": 0.8,
+            "hi": 0.9,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 9,
+            "lo": 0.9,
+            "hi": 1.0,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          }
+        ]
+      }
+    },
+    "isotonic": {
+      "label": "isotonic",
+      "brier": 0.0003044803702192282,
+      "log_loss": 0.0017826573889476915,
+      "ece_uniform_10": 3.619654260617094e-20,
+      "ece_quantile_10": 0.0,
+      "mean_predicted": 0.0012923235978288966,
+      "empirical_prevalence": 0.0012923235978288964,
+      "n_unique_predictions": 11,
+      "n_positive": 55,
+      "n_samples": 42559,
+      "pr_auc": 0.8370188123429215,
+      "roc_auc": 0.9910590233218692,
+      "reliability_uniform": {
+        "strategy": "uniform",
+        "n_bins": 10,
+        "ece": 3.619654260617094e-20,
+        "bins": [
+          {
+            "bin": 0,
+            "lo": 0.0,
+            "hi": 0.1,
+            "count": 42498,
+            "n_positive": 10,
+            "mean_predicted": 0.00023530519083250973,
+            "empirical_positive_rate": 0.00023530519083250976,
+            "gap": 2.710505431213761e-20
+          },
+          {
+            "bin": 1,
+            "lo": 0.1,
+            "hi": 0.2,
+            "count": 13,
+            "n_positive": 2,
+            "mean_predicted": 0.15384615384615385,
+            "empirical_positive_rate": 0.15384615384615385,
+            "gap": 0.0
+          },
+          {
+            "bin": 2,
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "count": 7,
+            "n_positive": 2,
+            "mean_predicted": 0.28571428571428564,
+            "empirical_positive_rate": 0.2857142857142857,
+            "gap": 5.551115123125783e-17
+          },
+          {
+            "bin": 3,
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 4,
+            "lo": 0.4,
+            "hi": 0.5,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 5,
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 6,
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 7,
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 8,
+            "lo": 0.8,
+            "hi": 0.9,
+            "count": 0,
+            "n_positive": 0,
+            "mean_predicted": null,
+            "empirical_positive_rate": null,
+            "gap": null
+          },
+          {
+            "bin": 9,
+            "lo": 0.9,
+            "hi": 1.0,
+            "count": 41,
+            "n_positive": 41,
+            "mean_predicted": 1.0,
+            "empirical_positive_rate": 1.0,
+            "gap": 0.0
+          }
+        ]
+      }
+    }
+  },
+  "staircase_in_sample_validation": {
+    "monotone_nondecreasing_in_raw": true,
+    "n_unique_raw": 40677,
+    "n_unique_calibrated": 11,
+    "unique_ratio": 0.00027042308921503553,
+    "pr_auc_raw": 0.8390992199622515,
+    "pr_auc_calibrated": 0.8370188123429215,
+    "pr_auc_calibrated_tiebroken_by_raw": 0.8390992199622515,
+    "pr_auc_drop": 0.002080407619329927,
+    "pr_auc_drop_after_tiebreak": 0.0,
+    "drop_explained_by_ties": true,
+    "note": "Isotonic is monotone in the raw score, so it cannot reverse pairs. A PR-AUC drop that disappears after breaking ties with the raw order is staircase compression, not a rank reversal."
+  },
+  "bootstrap_frozen_maps": {
+    "n_boot": 400,
+    "seed": 42,
+    "stratified": true,
+    "methods": {
+      "raw": {
+        "brier": {
+          "n": 400,
+          "mean": 0.002355492851925175,
+          "std": 0.0001339719371031246,
+          "p025": 0.0021122735117634693,
+          "p50": 0.002350301941278019,
+          "p975": 0.0026403864474546707
+        },
+        "log_loss": {
+          "n": 400,
+          "mean": 0.014598121883042907,
+          "std": 0.0004211353255408283,
+          "p025": 0.0137976327394692,
+          "p50": 0.01459387886595035,
+          "p975": 0.015473350596854358
+        },
+        "ece_uniform_10": {
+          "n": 400,
+          "mean": 0.011788488903100816,
+          "std": 0.00022024404024839042,
+          "p025": 0.011374940612018707,
+          "p50": 0.011788281041130354,
+          "p975": 0.012237834627736555
+        },
+        "pr_auc": {
+          "n": 400,
+          "mean": 0.8425094578040188,
+          "std": 0.042731676890672726,
+          "p025": 0.7461923467851007,
+          "p50": 0.8459381737557028,
+          "p975": 0.9104958770536539
+        }
+      },
+      "sigmoid": {
+        "brier": {
+          "n": 400,
+          "mean": 0.0004905233536156938,
+          "std": 5.290968549809081e-05,
+          "p025": 0.000402185151223239,
+          "p50": 0.0004888738205595152,
+          "p975": 0.000594705633697462
+        },
+        "log_loss": {
+          "n": 400,
+          "mean": 0.0026836562883207687,
+          "std": 0.00038460688137757944,
+          "p025": 0.002042303473745669,
+          "p50": 0.0026586569450915074,
+          "p975": 0.0035633672541945443
+        },
+        "ece_uniform_10": {
+          "n": 400,
+          "mean": 0.0007232242216537968,
+          "std": 9.697345870139807e-05,
+          "p025": 0.0005208890611588075,
+          "p50": 0.0007283948332704791,
+          "p975": 0.0009013614362465905
+        },
+        "pr_auc": {
+          "n": 400,
+          "mean": 0.8425094578040188,
+          "std": 0.042731676890672726,
+          "p025": 0.7461923467851007,
+          "p50": 0.8459381737557028,
+          "p975": 0.9104958770536539
+        }
+      },
+      "isotonic": {
+        "brier": {
+          "n": 400,
+          "mean": 0.00029697246132433713,
+          "std": 6.255261217268477e-05,
+          "p025": 0.000192933641531914,
+          "p50": 0.0002932503193326043,
+          "p975": 0.00042738068010501505
+        },
+        "log_loss": {
+          "n": 400,
+          "mean": 0.0017529917100357257,
+          "std": 0.000375907758682368,
+          "p025": 0.0011144902388908653,
+          "p50": 0.0017257670471735997,
+          "p975": 0.0025749301491158837
+        },
+        "ece_uniform_10": {
+          "n": 400,
+          "mean": 9.392364037180252e-05,
+          "std": 4.488894262724698e-05,
+          "p025": 1.9720372199836324e-05,
+          "p50": 9.063908124315665e-05,
+          "p975": 0.00018618127374768362
+        },
+        "pr_auc": {
+          "n": 400,
+          "mean": 0.8404362085127852,
+          "std": 0.04304536729325325,
+          "p025": 0.7427635092181502,
+          "p50": 0.8433553184118829,
+          "p975": 0.9096186640740763
+        }
+      }
+    },
+    "paired_differences": {
+      "brier_isotonic_minus_sigmoid": {
+        "n": 400,
+        "mean": -0.00019355089229135668,
+        "std": 2.2389422341155943e-05,
+        "p025": -0.00023698913746302762,
+        "p50": -0.0001933751399411498,
+        "p975": -0.00014901918043208173
+      },
+      "brier_isotonic_minus_raw": {
+        "n": 400,
+        "mean": -0.002058520390600838,
+        "std": 0.0001249491797204496,
+        "p025": -0.0022942364086773466,
+        "p50": -0.0020567230035341937,
+        "p975": -0.0017995523540189364
+      },
+      "pr_auc_isotonic_minus_raw": {
+        "n": 400,
+        "mean": -0.002073249291233708,
+        "std": 0.001489459405344592,
+        "p025": -0.0057232211800044225,
+        "p50": -0.0017740299027758644,
+        "p975": -8.766932413541166e-05
+      },
+      "note": "Paired differences on resampled (y, p) of frozen maps. Negative Brier difference means isotonic looks better. This is still in-sample for the calibrator fit."
+    }
+  },
+  "nested_holdout_validation": {
+    "protocol": "stratified_shuffle_split_on_validation",
+    "n_splits_requested": 40,
+    "n_splits_used": 40,
+    "n_splits_skipped": 0,
+    "test_size": 0.3,
+    "seed": 42,
+    "methods": {
+      "raw": {
+        "brier": {
+          "n": 40,
+          "mean": 0.0023585941065249,
+          "std": 0.00021954493150220196,
+          "p025": 0.0020121506401629655,
+          "p50": 0.0023809996938305156,
+          "p975": 0.002736827799962822
+        },
+        "log_loss": {
+          "n": 40,
+          "mean": 0.014600220461869918,
+          "std": 0.0007134008207078613,
+          "p025": 0.01337232797748698,
+          "p50": 0.014531340816821437,
+          "p975": 0.015858836337830376
+        },
+        "ece_uniform_10": {
+          "n": 40,
+          "mean": 0.011760513366234454,
+          "std": 0.00029505535184874796,
+          "p025": 0.011235646569485324,
+          "p50": 0.011705182725552246,
+          "p975": 0.012349115248131978
+        },
+        "pr_auc": {
+          "n": 40,
+          "mean": 0.8413524514277168,
+          "std": 0.06672991109615409,
+          "p025": 0.7174211160378072,
+          "p50": 0.8434743267275588,
+          "p975": 0.9591383260293365
+        },
+        "n_unique": {
+          "n": 40,
+          "mean": 12510.75,
+          "std": 12.029344462817923,
+          "p025": 12488.95,
+          "p50": 12514.0,
+          "p975": 12534.025
+        }
+      },
+      "sigmoid": {
+        "brier": {
+          "n": 40,
+          "mean": 0.0005318385991135297,
+          "std": 7.316614804795113e-05,
+          "p025": 0.00041186646948089225,
+          "p50": 0.000532837493443067,
+          "p975": 0.0006651387266323155
+        },
+        "log_loss": {
+          "n": 40,
+          "mean": 0.0028650109161453895,
+          "std": 0.0005467812138099842,
+          "p025": 0.0018937889460183277,
+          "p50": 0.0028736323249008142,
+          "p975": 0.003996064093319408
+        },
+        "ece_uniform_10": {
+          "n": 40,
+          "mean": 0.0008404062595526564,
+          "std": 0.00020306280371148788,
+          "p025": 0.0005128822061052174,
+          "p50": 0.0008248161000532488,
+          "p975": 0.0011783620375276015
+        },
+        "pr_auc": {
+          "n": 40,
+          "mean": 0.8413524514277168,
+          "std": 0.06672991109615409,
+          "p025": 0.7174211160378072,
+          "p50": 0.8434743267275588,
+          "p975": 0.9591383260293365
+        },
+        "n_unique": {
+          "n": 40,
+          "mean": 12510.575,
+          "std": 12.127289633143667,
+          "p025": 12488.925,
+          "p50": 12514.0,
+          "p975": 12534.025
+        }
+      },
+      "isotonic": {
+        "brier": {
+          "n": 40,
+          "mean": 0.000353208989416054,
+          "std": 0.00010454859757102762,
+          "p025": 0.000200334676058446,
+          "p50": 0.00035510027405924894,
+          "p975": 0.0005320690219705633
+        },
+        "log_loss": {
+          "n": 40,
+          "mean": 0.0029570663078599796,
+          "std": 0.0020207095434154948,
+          "p025": 0.0010103867855448712,
+          "p50": 0.002455033509728938,
+          "p975": 0.007522857293516872
+        },
+        "ece_uniform_10": {
+          "n": 40,
+          "mean": 0.00021231031229541376,
+          "std": 0.00011038893269039803,
+          "p025": 4.9535843544762185e-05,
+          "p50": 0.00021555121716728917,
+          "p975": 0.0004573282144249191
+        },
+        "pr_auc": {
+          "n": 40,
+          "mean": 0.8142121958241635,
+          "std": 0.07206129707348571,
+          "p025": 0.6643763657257807,
+          "p50": 0.8203209830134619,
+          "p975": 0.9270898672953743
+        },
+        "n_unique": {
+          "n": 40,
+          "mean": 11.75,
+          "std": 2.5191573682788944,
+          "p025": 8.0,
+          "p50": 11.5,
+          "p975": 17.025
+        }
+      }
+    },
+    "win_rates": {
+      "isotonic_brier_lt_sigmoid": 1.0,
+      "isotonic_brier_lt_raw": 1.0,
+      "sigmoid_brier_lt_raw": 1.0,
+      "isotonic_pr_auc_ge_raw": 0.0,
+      "sigmoid_pr_auc_ge_raw": 1.0
+    },
+    "paired_differences": {
+      "brier_isotonic_minus_sigmoid": {
+        "n": 40,
+        "mean": -0.0001786296096974757,
+        "std": 4.035070940445351e-05,
+        "p025": -0.00024161653072603687,
+        "p50": -0.00018261805089134662,
+        "p975": -0.00011635533184498395
+      },
+      "pr_auc_isotonic_minus_raw": {
+        "n": 40,
+        "mean": -0.02714025560355334,
+        "std": 0.014621951595974058,
+        "p025": -0.0530447503120265,
+        "p50": -0.026321149747434436,
+        "p975": -0.003180927288572894
+      },
+      "pr_auc_sigmoid_minus_raw": {
+        "n": 40,
+        "mean": 0.0,
+        "std": 0.0,
+        "p025": 0.0,
+        "p50": 0.0,
+        "p975": 0.0
+      }
+    },
+    "note": "Calibrators are refit on each validation subset and scored on the held-out subset. This removes the in-sample advantage isotonic has when fit and scored on the same 55 positives."
+  },
+  "kfold_oof_validation": {
+    "protocol": "stratified_kfold_oof_on_validation",
+    "n_splits": 5,
+    "seed": 42,
+    "fold_summaries": {
+      "raw": {
+        "brier": {
+          "n": 5,
+          "mean": 0.0023625990437880656,
+          "std": 0.00038019360663147034,
+          "p025": 0.0019168813138153865,
+          "p50": 0.00226893988860446,
+          "p975": 0.0027988492622753264
+        },
+        "log_loss": {
+          "n": 5,
+          "mean": 0.014619090101208886,
+          "std": 0.001161740621457095,
+          "p025": 0.013201215499062566,
+          "p50": 0.014346280428458109,
+          "p975": 0.01583074090762885
+        },
+        "ece_uniform_10": {
+          "n": 5,
+          "mean": 0.011794489101095157,
+          "std": 0.0005578947680941162,
+          "p025": 0.01102483603843553,
+          "p50": 0.011873424209671387,
+          "p975": 0.01239295576107404
+        },
+        "pr_auc": {
+          "n": 5,
+          "mean": 0.831021878525559,
+          "std": 0.1535404986356552,
+          "p025": 0.6822348948138703,
+          "p50": 0.8047124341365495,
+          "p975": 0.9980519480519481
+        }
+      },
+      "sigmoid": {
+        "brier": {
+          "n": 5,
+          "mean": 0.0005023079507231242,
+          "std": 0.0001979347561464132,
+          "p025": 0.0002797581426998636,
+          "p50": 0.0005078406374465657,
+          "p975": 0.000747239613229746
+        },
+        "log_loss": {
+          "n": 5,
+          "mean": 0.002760685914494661,
+          "std": 0.001184029193151153,
+          "p025": 0.0014550368238956998,
+          "p50": 0.003056071463319705,
+          "p975": 0.004056389806711021
+        },
+        "ece_uniform_10": {
+          "n": 5,
+          "mean": 0.0008824144855417656,
+          "std": 0.0003397137235596542,
+          "p025": 0.0005001314285799623,
+          "p50": 0.0008163989499689097,
+          "p975": 0.0012417293994269561
+        },
+        "pr_auc": {
+          "n": 5,
+          "mean": 0.831021878525559,
+          "std": 0.1535404986356552,
+          "p025": 0.6822348948138703,
+          "p50": 0.8047124341365495,
+          "p975": 0.9980519480519481
+        }
+      },
+      "isotonic": {
+        "brier": {
+          "n": 5,
+          "mean": 0.0003882985957227862,
+          "std": 0.0003426372834536492,
+          "p025": 3.385515749056467e-05,
+          "p50": 0.0003479632356937103,
+          "p975": 0.000874497210913271
+        },
+        "log_loss": {
+          "n": 5,
+          "mean": 0.005101214530866203,
+          "std": 0.006226444938983551,
+          "p025": 0.0003938840392308291,
+          "p50": 0.0023176077701957593,
+          "p975": 0.014423066608192044
+        },
+        "ece_uniform_10": {
+          "n": 5,
+          "mean": 0.0003894038898774197,
+          "std": 0.0002787763120889598,
+          "p025": 0.00010907288213622965,
+          "p50": 0.00033900979197820506,
+          "p975": 0.0007976390347744074
+        },
+        "pr_auc": {
+          "n": 5,
+          "mean": 0.7786310932253621,
+          "std": 0.22043198215607857,
+          "p025": 0.4918164867256662,
+          "p50": 0.7913082690256603,
+          "p975": 0.9971590909090909
+        }
+      }
+    },
+    "pooled_oof": {
+      "raw": {
+        "label": "raw",
+        "brier": 0.0023626101488038757,
+        "log_loss": 0.014619125690538153,
+        "ece_uniform_10": 0.011792216936643998,
+        "ece_quantile_10": 0.011792216936644,
+        "mean_predicted": 0.013084540534472895,
+        "empirical_prevalence": 0.0012923235978288964,
+        "n_unique_predictions": 40677,
+        "n_positive": 55,
+        "n_samples": 42559,
+        "pr_auc": 0.8390992199622515,
+        "roc_auc": 0.9877393357630512,
+        "reliability_uniform": {
+          "ece": 0.011792216936643998,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 41644,
+              "n_positive": 4,
+              "mean_predicted": 0.00694719731086189,
+              "empirical_positive_rate": 9.605225242531937e-05,
+              "gap": 0.00685114505843657
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 496,
+              "n_positive": 2,
+              "mean_predicted": 0.13915902352140797,
+              "empirical_positive_rate": 0.004032258064516129,
+              "gap": 0.13512676545689184
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 153,
+              "n_positive": 0,
+              "mean_predicted": 0.24338177187380447,
+              "empirical_positive_rate": 0.0,
+              "gap": 0.24338177187380447
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 60,
+              "n_positive": 1,
+              "mean_predicted": 0.3469354862968127,
+              "empirical_positive_rate": 0.016666666666666666,
+              "gap": 0.33026881963014604
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 52,
+              "n_positive": 1,
+              "mean_predicted": 0.4420824996553935,
+              "empirical_positive_rate": 0.019230769230769232,
+              "gap": 0.42285173042462426
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 38,
+              "n_positive": 0,
+              "mean_predicted": 0.5560248760800612,
+              "empirical_positive_rate": 0.0,
+              "gap": 0.5560248760800612
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 34,
+              "n_positive": 1,
+              "mean_predicted": 0.6479180700638715,
+              "empirical_positive_rate": 0.029411764705882353,
+              "gap": 0.6185063053579891
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 22,
+              "n_positive": 2,
+              "mean_predicted": 0.7371447411450472,
+              "empirical_positive_rate": 0.09090909090909091,
+              "gap": 0.6462356502359563
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 10,
+              "n_positive": 1,
+              "mean_predicted": 0.8655747473239899,
+              "empirical_positive_rate": 0.1,
+              "gap": 0.7655747473239899
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 50,
+              "n_positive": 43,
+              "mean_predicted": 0.9892015683650971,
+              "empirical_positive_rate": 0.86,
+              "gap": 0.1292015683650971
+            }
+          ]
+        }
+      },
+      "sigmoid": {
+        "label": "sigmoid",
+        "brier": 0.0005023133670922522,
+        "log_loss": 0.0027607170440154477,
+        "ece_uniform_10": 0.0006768254163482055,
+        "ece_quantile_10": 0.000449899616085108,
+        "mean_predicted": 0.0012713657189094886,
+        "empirical_prevalence": 0.0012923235978288964,
+        "n_unique_predictions": 41909,
+        "n_positive": 55,
+        "n_samples": 42559,
+        "pr_auc": 0.8003329015812657,
+        "roc_auc": 0.9614106907585167,
+        "reliability_uniform": {
+          "ece": 0.0006768254163482055,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 42476,
+              "n_positive": 9,
+              "mean_predicted": 0.00043639950203793663,
+              "empirical_positive_rate": 0.00021188435822582164,
+              "gap": 0.000224515143812115
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 21,
+              "n_positive": 1,
+              "mean_predicted": 0.13237130836876937,
+              "empirical_positive_rate": 0.047619047619047616,
+              "gap": 0.08475226074972175
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 4,
+              "n_positive": 1,
+              "mean_predicted": 0.2293072103503671,
+              "empirical_positive_rate": 0.25,
+              "gap": 0.020692789649632892
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 8,
+              "n_positive": 1,
+              "mean_predicted": 0.34851071810877976,
+              "empirical_positive_rate": 0.125,
+              "gap": 0.22351071810877976
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 2,
+              "n_positive": 0,
+              "mean_predicted": 0.4260723967691524,
+              "empirical_positive_rate": 0.0,
+              "gap": 0.4260723967691524
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 34,
+              "n_positive": 29,
+              "mean_predicted": 0.5713073956301601,
+              "empirical_positive_rate": 0.8529411764705882,
+              "gap": 0.2816337808404281
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 14,
+              "n_positive": 14,
+              "mean_predicted": 0.6292742911089935,
+              "empirical_positive_rate": 1.0,
+              "gap": 0.37072570889100653
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            }
+          ]
+        }
+      },
+      "isotonic": {
+        "label": "isotonic",
+        "brier": 0.0003883073190954092,
+        "log_loss": 0.005101326202594777,
+        "ece_uniform_10": 0.0001587846288895137,
+        "ece_quantile_10": 0.00021330185930923737,
+        "mean_predicted": 0.0013416596932271662,
+        "empirical_prevalence": 0.0012923235978288964,
+        "n_unique_predictions": 46,
+        "n_positive": 55,
+        "n_samples": 42559,
+        "pr_auc": 0.7690165842221484,
+        "roc_auc": 0.9758474068750749,
+        "reliability_uniform": {
+          "ece": 0.0001587846288895137,
+          "bins": [
+            {
+              "bin": 0,
+              "lo": 0.0,
+              "hi": 0.1,
+              "count": 42495,
+              "n_positive": 11,
+              "mean_predicted": 0.00022426153440926084,
+              "empirical_positive_rate": 0.0002588539828215084,
+              "gap": 3.4592448412247556e-05
+            },
+            {
+              "bin": 1,
+              "lo": 0.1,
+              "hi": 0.2,
+              "count": 15,
+              "n_positive": 2,
+              "mean_predicted": 0.1386638127470719,
+              "empirical_positive_rate": 0.13333333333333333,
+              "gap": 0.00533047941373857
+            },
+            {
+              "bin": 2,
+              "lo": 0.2,
+              "hi": 0.30000000000000004,
+              "count": 2,
+              "n_positive": 0,
+              "mean_predicted": 0.2,
+              "empirical_positive_rate": 0.0,
+              "gap": 0.2
+            },
+            {
+              "bin": 3,
+              "lo": 0.30000000000000004,
+              "hi": 0.4,
+              "count": 1,
+              "n_positive": 1,
+              "mean_predicted": 0.36989880258654606,
+              "empirical_positive_rate": 1.0,
+              "gap": 0.6301011974134539
+            },
+            {
+              "bin": 4,
+              "lo": 0.4,
+              "hi": 0.5,
+              "count": 1,
+              "n_positive": 0,
+              "mean_predicted": 0.44040822508343846,
+              "empirical_positive_rate": 0.0,
+              "gap": 0.44040822508343846
+            },
+            {
+              "bin": 5,
+              "lo": 0.5,
+              "hi": 0.6000000000000001,
+              "count": 1,
+              "n_positive": 0,
+              "mean_predicted": 0.5083395361923743,
+              "empirical_positive_rate": 0.0,
+              "gap": 0.5083395361923743
+            },
+            {
+              "bin": 6,
+              "lo": 0.6000000000000001,
+              "hi": 0.7000000000000001,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 7,
+              "lo": 0.7000000000000001,
+              "hi": 0.8,
+              "count": 1,
+              "n_positive": 1,
+              "mean_predicted": 0.7710972242649916,
+              "empirical_positive_rate": 1.0,
+              "gap": 0.2289027757350084
+            },
+            {
+              "bin": 8,
+              "lo": 0.8,
+              "hi": 0.9,
+              "count": 0,
+              "n_positive": 0,
+              "mean_predicted": null,
+              "empirical_positive_rate": null,
+              "gap": null
+            },
+            {
+              "bin": 9,
+              "lo": 0.9,
+              "hi": 1.0,
+              "count": 43,
+              "n_positive": 40,
+              "mean_predicted": 1.0,
+              "empirical_positive_rate": 0.9302325581395349,
+              "gap": 0.06976744186046513
+            }
+          ]
+        }
+      }
+    },
+    "note": "Each validation row is scored by a calibrator that did not see that row. Pooled OOF Brier/log loss/ECE/PR-AUC are the primary CV estimates."
+  },
+  "train_fit_val_eval": {
+    "protocol": "fit_on_train_scores_eval_on_validation",
+    "train_n": 198608,
+    "train_positives": 366,
+    "val_n": 42559,
+    "val_positives": 55,
+    "methods": {
+      "raw": {
+        "label": "raw",
+        "brier": 0.0023626101488038757,
+        "log_loss": 0.014619125690538153,
+        "ece_uniform_10": 0.011792216936643998,
+        "ece_quantile_10": 0.011792216936644,
+        "mean_predicted": 0.013084540534472895,
+        "empirical_prevalence": 0.0012923235978288964,
+        "n_unique_predictions": 40677,
+        "n_positive": 55,
+        "n_samples": 42559,
+        "pr_auc": 0.8390992199622515,
+        "roc_auc": 0.9877393357630512
+      },
+      "sigmoid": {
+        "label": "sigmoid",
+        "brier": 0.0004409947242123648,
+        "log_loss": 0.00251503702742368,
+        "ece_uniform_10": 0.000387960886489041,
+        "ece_quantile_10": 0.00021534659978642988,
+        "mean_predicted": 0.0013588805839093079,
+        "empirical_prevalence": 0.0012923235978288964,
+        "n_unique_predictions": 40626,
+        "n_positive": 55,
+        "n_samples": 42559,
+        "pr_auc": 0.8390992199622515,
+        "roc_auc": 0.9877393357630512
+      },
+      "isotonic": {
+        "label": "isotonic",
+        "brier": 0.00046859459094886885,
+        "log_loss": 0.00881086466226993,
+        "ece_uniform_10": 0.0003032284971314119,
+        "ece_quantile_10": 0.00023543045989682723,
+        "mean_predicted": 0.0010568931379320691,
+        "empirical_prevalence": 0.0012923235978288964,
+        "n_unique_predictions": 9,
+        "n_positive": 55,
+        "n_samples": 42559,
+        "pr_auc": 0.7058327925928649,
+        "roc_auc": 0.9089775507759699,
+        "staircase": {
+          "monotone_nondecreasing_in_raw": true,
+          "n_unique_raw": 40677,
+          "n_unique_calibrated": 9,
+          "unique_ratio": 0.0002212552548123018,
+          "pr_auc_raw": 0.8390992199622515,
+          "pr_auc_calibrated": 0.7058327925928649,
+          "pr_auc_calibrated_tiebroken_by_raw": 0.8390992199622515,
+          "pr_auc_drop": 0.13326642736938654,
+          "pr_auc_drop_after_tiebreak": 0.0,
+          "drop_explained_by_ties": true,
+          "note": "Isotonic is monotone in the raw score, so it cannot reverse pairs. A PR-AUC drop that disappears after breaking ties with the raw order is staircase compression, not a rank reversal."
+        }
+      }
+    },
+    "note": "Calibrator holdout uses more positives (train) than the 55 in validation. Raw train scores are booster-in-sample, so this is not a fully clean calibration CV."
+  },
+  "raw_path": "ml/data/raw/creditcard.csv",
+  "audited_at": "2026-09-03T09:46:09.248013+00:00",
+  "n_boot": 400,
+  "n_nested": 40,
+  "n_folds": 5,
+  "seed": 42,
+  "recommendation": {
+    "recommended_calibration_method": "sigmoid/Platt",
+    "inconclusive": true,
+    "evidence": [
+      "In-sample validation Brier: raw=0.002363, sigmoid=0.000495, isotonic=0.000304 (isotonic has an in-sample advantage; 11 unique p).",
+      "Nested val holdout mean Brier: raw=0.002359, sigmoid=0.000532, isotonic=0.000353; isotonic better than sigmoid in 100% of repeats; paired isotonic-sigmoid Brier mean=-0.0001786296096974757, 95% interval [-0.00024161653072603687, -0.00011635533184498395].",
+      "Nested mean PR-AUC: raw=0.8414, sigmoid=0.8414, isotonic=0.8142.",
+      "5-fold OOF pooled: Brier raw=0.0023626101488038757, sigmoid=0.0005023133670922522, isotonic=0.0003883073190954092; PR-AUC raw=0.8390992199622515, sigmoid=0.8003329015812657, isotonic=0.7690165842221484; isotonic unique p=46.",
+      "Train-fit/val-eval Brier: raw=0.002363, sigmoid=0.000441, isotonic=0.000469; PR-AUC raw=0.8391, sigmoid=0.8391, isotonic=0.7058.",
+      "Staircase: unique 40677\u219211, monotone=True, PR-AUC drop=0.002080407619329927, after raw-order tie-break drop=0.0 (explained_by_ties=True)."
+    ],
+    "rationale": [
+      "Nested validation Brier favors isotonic in most repeats; that is a real result, not dismissed because the in-sample Brier was also lowest.",
+      "Isotonic PR-AUC degradation is from plateau ties, not rank reversal. The calibrated score is still a weaker ranking statistic.",
+      "Isotonic stays a coarse step function under resampling (nested mean unique p=11.75).",
+      "When calibrators are fit on train scores and scored on validation, sigmoid has lower Brier than isotonic and does not collapse PR-AUC. That holdout has more positives than the 55-row validation nest.",
+      "Sigmoid is a strictly monotone map (nested PR-AUC matches raw), reduces Brier vs raw, and avoids the staircase. It is the robustness pick when Brier and ranking disagree.",
+      "Inconclusive as a single 'best' map: nested Brier prefers isotonic; ranking, uniqueness, and the train-fit/val-eval holdout prefer sigmoid. The recommended method is the conservative operational map, not the lowest nested Brier."
+    ],
+    "uncertainty": "Validation has 55 positives, so ECE and even Brier have wide resampling intervals. Nested holdout used 40 splits (eval fraction 0.3). Frozen-map bootstrap intervals describe in-sample metric noise, not calibrator generalization. Train-fit/val-eval uses 366 train positives but booster-in-sample scores.",
+    "remaining_limitation": "The chronological test set was not used. A later one-shot test evaluation of a changed calibrator would still be a single draw at ~52 fraud cases. Product scoring is unchanged. Sigmoid/isotonic fitted on 55 val positives cannot be treated as a production probability of fraud.",
+    "checks": {
+      "isotonic_nested_brier_not_robustly_better_than_sigmoid": false,
+      "isotonic_ranking_hurt": true,
+      "staircase_explains_pr_auc_drop": true,
+      "isotonic_degenerate_unique_values": true,
+      "sigmoid_helps_nested_brier": true,
+      "sigmoid_preserves_ranking": true
+    }
+  },
+  "previous_in_sample_brier_ranking": "isotonic < sigmoid < raw (not used as the decision rule)",
+  "protected_artifacts_unchanged": true,
+  "protected_artifact_fingerprints": {
+    "calibration_metrics.json": {
+      "path": "ml/evaluation/calibration_metrics.json",
+      "sha256": "43a823edc9250ec7f8b779255e20d9d40a00837b724db74ff10aed53fe38e1da",
+      "nbytes": 107705
+    },
+    "calibration_report.md": {
+      "path": "ml/evaluation/calibration_report.md",
+      "sha256": "4032329759eaf76890e4a4827652fca1b4a69d641c6d9ebe2d9641bd775cc024",
+      "nbytes": 12329
+    },
+    "ulb_metrics.json": {
+      "path": "ml/evaluation/ulb_metrics.json",
+      "sha256": "5bf19ba71a1dc57327f5dd9c752d095beb31f0d1128e21360a12a15c6db20f41",
+      "nbytes": 8575
+    }
+  }
+}

@@ -1,0 +1,101 @@
+# --- Secrets / local env ---
+.env
+.env.*
+!.env.example
+!.env.example.*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+backend/.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.cache/
+.coverage
+htmlcov/
+coverage/
+coverage.xml
+*.cover
+*.log
+logs/
+
+# --- Node / frontend ---
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo
+frontend/coverage/
+frontend/dist/
+frontend/build/
+dist/
+build/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- Local databases ---
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+backend/*.db
+backend/*.sqlite
+docker-compose.override.yml
+
+# --- Docker / local runtime data ---
+postgres_data/
+redis_data/
+neo4j_data/
+kafka_data/
+*.pid
+
+# --- Temporary ---
+tmp/
+temp/
+*.tmp
+*.bak
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+
+# --- Datasets (raw public CSVs are local-only) ---
+*.zip
+ml/data/**/*.csv
+ml/data/**/*.parquet
+ml/data/raw/*
+!ml/data/raw/.gitkeep
+ml/data/processed/*
+!ml/data/processed/.gitkeep
+ml/data/feedback/*
+!ml/data/feedback/.gitkeep
+!ml/data/feedback/README.md
+ml/data/ieee/**
+!ml/data/ieee/.gitkeep
+!ml/data/ieee/README.md
+
+# --- Offline / generated model binaries (reproducible; do not replace live) ---
+ml/models/ulb/*.joblib
+ml/models/ieee/**/*.joblib
+ml/models/feedback/**
+!ml/models/feedback/.gitkeep
+!ml/models/feedback/README.md
+
+# Live product artifacts under ml/models/ are committed (small, required to run the API).
+# Do not add other large joblibs at the live root.

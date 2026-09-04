@@ -1,0 +1,187 @@
+{
+  "available": true,
+  "n_explained": 800,
+  "global_mean_abs_shap": [
+    {
+      "feature": "V4",
+      "mean_abs_shap": 1.3268096446990967
+    },
+    {
+      "feature": "V14",
+      "mean_abs_shap": 1.0760115385055542
+    },
+    {
+      "feature": "V12",
+      "mean_abs_shap": 0.7655633687973022
+    },
+    {
+      "feature": "V10",
+      "mean_abs_shap": 0.6113728880882263
+    },
+    {
+      "feature": "V11",
+      "mean_abs_shap": 0.33409205079078674
+    },
+    {
+      "feature": "V8",
+      "mean_abs_shap": 0.31448885798454285
+    },
+    {
+      "feature": "V1",
+      "mean_abs_shap": 0.2853907346725464
+    },
+    {
+      "feature": "V17",
+      "mean_abs_shap": 0.2144985795021057
+    },
+    {
+      "feature": "time_of_day_proxy",
+      "mean_abs_shap": 0.2086067795753479
+    },
+    {
+      "feature": "V18",
+      "mean_abs_shap": 0.19040019810199738
+    },
+    {
+      "feature": "V16",
+      "mean_abs_shap": 0.17876917123794556
+    },
+    {
+      "feature": "V19",
+      "mean_abs_shap": 0.1725768893957138
+    },
+    {
+      "feature": "V7",
+      "mean_abs_shap": 0.17091158032417297
+    },
+    {
+      "feature": "Time",
+      "mean_abs_shap": 0.16947676241397858
+    },
+    {
+      "feature": "Amount",
+      "mean_abs_shap": 0.15341351926326752
+    },
+    {
+      "feature": "V5",
+      "mean_abs_shap": 0.14966823160648346
+    },
+    {
+      "feature": "V20",
+      "mean_abs_shap": 0.14746709167957306
+    },
+    {
+      "feature": "V23",
+      "mean_abs_shap": 0.13555754721164703
+    },
+    {
+      "feature": "V22",
+      "mean_abs_shap": 0.1318616420030594
+    },
+    {
+      "feature": "V3",
+      "mean_abs_shap": 0.12411726266145706
+    },
+    {
+      "feature": "V2",
+      "mean_abs_shap": 0.12213519960641861
+    },
+    {
+      "feature": "V21",
+      "mean_abs_shap": 0.11844460666179657
+    },
+    {
+      "feature": "V27",
+      "mean_abs_shap": 0.10613324493169785
+    },
+    {
+      "feature": "V24",
+      "mean_abs_shap": 0.1024046540260315
+    },
+    {
+      "feature": "V25",
+      "mean_abs_shap": 0.09495075047016144
+    },
+    {
+      "feature": "transaction_time_bucket",
+      "mean_abs_shap": 0.0858977809548378
+    },
+    {
+      "feature": "V6",
+      "mean_abs_shap": 0.08226995170116425
+    },
+    {
+      "feature": "V13",
+      "mean_abs_shap": 0.07632514834403992
+    },
+    {
+      "feature": "V26",
+      "mean_abs_shap": 0.07615873217582703
+    },
+    {
+      "feature": "V28",
+      "mean_abs_shap": 0.07496397197246552
+    },
+    {
+      "feature": "V15",
+      "mean_abs_shap": 0.06897646933794022
+    },
+    {
+      "feature": "V9",
+      "mean_abs_shap": 0.06715787947177887
+    },
+    {
+      "feature": "log_amount",
+      "mean_abs_shap": 0.04969685524702072
+    }
+  ],
+  "local_examples": [
+    {
+      "label": "legitimate",
+      "row_in_shap_sample": 0,
+      "top_features": [
+        {
+          "feature": "V4",
+          "shap": -2.561802864074707,
+          "value": -2.695814
+        },
+        {
+          "feature": "V14",
+          "shap": -1.2178504467010498,
+          "value": 0.475806
+        },
+        {
+          "feature": "V12",
+          "shap": -1.0407443046569824,
+          "value": 0.617401
+        },
+        {
+          "feature": "V25",
+          "shap": -0.7169776558876038,
+          "value": 0.700984
+        },
+        {
+          "feature": "V10",
+          "shap": 0.4891882538795471,
+          "value": -1.666154
+        },
+        {
+          "feature": "V7",
+          "shap": -0.30642905831336975,
+          "value": 0.41776
+        },
+        {
+          "feature": "V3",
+          "shap": -0.2608705163002014,
+          "value": 0.395549
+        },
+        {
+          "feature": "V8",
+          "shap": 0.25593236088752747,
+          "value": -1.839801
+        }
+      ]
+    }
+  ],
+  "limitation": "V1\u2013V28 are anonymized PCA components from the dataset publisher. SHAP ranking does not recover a business feature name."
+}
