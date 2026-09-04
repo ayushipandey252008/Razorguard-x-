@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 export default function ModelMonitoringPage() {
   const [status, setStatus] = useState<any>(null);
   const [drift, setDrift] = useState<any>(null);
-  const [error, setError] = useState<string | None>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([api("/api/v1/ml/model-status"), api("/api/v1/ml/drift")])

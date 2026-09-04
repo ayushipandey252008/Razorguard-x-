@@ -312,7 +312,7 @@ Executed for this repository (2026-09-05, `backend/.venv` Python 3.12.9):
 
 | Suite | Result |
 | --- | --- |
-| Backend `pytest -q` | **161 passed, 12 skipped** (opt-in Kafka + Neo4j integrations skipped) |
+| Backend `pytest -q` | **162 passed, 12 skipped** (opt-in Kafka + Neo4j integrations skipped) |
 | Frontend `npm test` (Vitest) | **5 passed** (2 files) |
 
 Opt-in integrations (need running services):
@@ -337,7 +337,8 @@ ml/ulb/           ULB adapter
 docs/             Architecture, API, agent, graph, Kafka, ML
 scripts/          Local backend/frontend helpers
 docker-compose.yml
-DEPLOYMENT.md     Local runtimes only — no cloud deploy config yet
+DEPLOYMENT.md     Render + Vercel public demo (no secrets)
+render.yaml
 .env.example
 ```
 
@@ -365,8 +366,18 @@ Never commit `.env`.
 - Local LLM is optional; default investigator is deterministic
 - Kafka and Neo4j need extra local infrastructure; they are optional
 - Dockerized backend/event-worker with `EVENT_BUS=kafka` was **not** verified as a container pair
-- No GNN, feature store, online learning, real cards, bank APIs, or cloud deploy config in this repo
-- Default JWT secret and seed password are lab-only
+- First public cloud deploy uses Render + Vercel with in-process events and NetworkX (see `DEPLOYMENT.md`). Kafka/Neo4j/Ollama are not claimed in production unless separately verified
+- No GNN, feature store, online learning, real cards, or bank APIs
+- Default JWT secret and seed password are lab-only; production Render refuses `prototype-pass`
+
+---
+
+## Public demo
+
+Cloud URLs are recorded here only after a real deploy succeeds. Until then use local setup above.
+
+- Blueprint: `render.yaml`
+- Steps: `DEPLOYMENT.md`
 
 ---
 

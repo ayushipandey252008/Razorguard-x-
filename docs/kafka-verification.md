@@ -125,7 +125,7 @@ RUN_KAFKA_TESTS=1 PYTHONPATH=. ./.venv/bin/pytest -q --tb=line
 
 | Run | Result |
 | --- | --- |
-| Default suite (no `RUN_KAFKA_TESTS`) | **161 passed, 12 skipped** (2026-09-05; Kafka + Neo4j integrations skipped) |
+| Default suite (no `RUN_KAFKA_TESTS`) | **162 passed, 12 skipped** (2026-09-05; Kafka + Neo4j integrations skipped) |
 | `RUN_KAFKA_TESTS=1` Kafka file | **11 passed** against the live broker (recorded during Kafka verification) |
 | `RUN_KAFKA_TESTS=1` full suite | **167 passed, 1 skipped** (`RUN_NEO4J_TESTS` not set; recorded during Kafka verification) |
 

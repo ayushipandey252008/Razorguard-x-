@@ -1,0 +1,52 @@
+# RazorGuard X — Render Blueprint
+# FastAPI web service + managed Postgres.
+# Kafka, Neo4j, Redis, and Ollama are not provisioned here (local-lab / optional).
+# Never put real secret values in this file.
+
+databases:
+  - name: razorguard-x-db
+    postgresMajorVersion: "16"
+    databaseName: razorguard
+
+services:
+  - type: web
+    name: razorguard-x-api
+    runtime: docker
+    plan: starter
+    repo: https://github.com/ayushipandey252008/Razorguard-x-
+    branch: main
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    dockerCommand: "sh -c 'uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}'"
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: SEED_ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: razorguard-x-db
+          property: connectionString
+      - key: CORS_ORIGINS
+        sync: false
+      - key: EVENT_BUS
+        value: inprocess
+      - key: EVENT_BUS_FALLBACK
+        value: "true"
+      - key: OUTBOX_ENABLED
+        value: "true"
+      - key: OUTBOX_BACKGROUND_WORKER
+        value: "true"
+      - key: GRAPH_BACKEND
+        value: networkx
+      - key: GRAPH_NEO4J_FALLBACK
+        value: "true"
+      - key: LLM_PROVIDER
+        value: none
+      - key: LLM_MODEL
+        value: gpt-4o-mini
+      - key: REDIS_URL
+        value: ""

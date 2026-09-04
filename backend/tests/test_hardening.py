@@ -1,4 +1,4 @@
-from app.config import assert_secure_settings, get_settings
+from app.config import assert_secure_settings, database_connect_args, get_settings, normalize_database_url
 from app.graph.rings import cluster_for_transaction
 from app.graph.service import ingest_transaction, score_entity
 from app.ml.predictor import model_service
@@ -92,6 +92,16 @@ def test_merchant_only_neighbors_do_not_count_as_connected_users():
     )
     scored = score_entity("USER", "u_merch_a")
     assert "u_merch_b" not in scored["connected_users"]
+
+
+def test_normalize_database_url_for_render_postgres():
+    assert normalize_database_url("sqlite+aiosqlite:///./razorguard.db").startswith("sqlite")
+    assert normalize_database_url("postgres://u:p@db:5432/razorguard") == "postgresql+asyncpg://u:p@db:5432/razorguard"
+    assert normalize_database_url("postgresql://u:p@db:5432/razorguard") == "postgresql+asyncpg://u:p@db:5432/razorguard"
+    assert normalize_database_url("postgresql+asyncpg://u:p@db:5432/razorguard") == "postgresql+asyncpg://u:p@db:5432/razorguard"
+    assert database_connect_args("sqlite+aiosqlite:///./razorguard.db") == {"check_same_thread": False}
+    assert database_connect_args("postgresql+asyncpg://u:p@localhost:5432/razorguard") == {}
+    assert database_connect_args("postgresql+asyncpg://u:p@dpg-example.render.com/razorguard") == {"ssl": True}
 
 
 def test_production_secret_refused():

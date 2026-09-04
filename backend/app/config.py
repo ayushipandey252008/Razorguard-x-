@@ -3,11 +3,34 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SECRET_PLACEHOLDERS = frozenset({"dev-secret-change-me", "change-me-to-a-long-random-string"})
+
+
+def normalize_database_url(url: str) -> str:
+    """Accept Render/Heroku postgres URLs and SQLAlchemy async DSN forms."""
+    value = (url or "").strip()
+    if not value:
+        return value
+    if value.startswith("postgres://"):
+        value = "postgresql://" + value[len("postgres://") :]
+    scheme, sep, rest = value.partition("://")
+    if sep and scheme == "postgresql":
+        value = f"postgresql+asyncpg://{rest}"
+    return value
+
+
+def database_connect_args(url: str) -> dict:
+    if url.startswith("sqlite"):
+        return {"check_same_thread": False}
+    host_is_local = "localhost" in url or "127.0.0.1" in url
+    if "+asyncpg" in url and not host_is_local:
+        return {"ssl": True}
+    return {}
 
 
 class Settings(BaseSettings):
@@ -22,6 +45,13 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite+aiosqlite:///./razorguard.db"
     redis_url: str | None = "redis://localhost:6379/0"
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def _normalize_database_url(cls, value: object) -> object:
+        if isinstance(value, str):
+            return normalize_database_url(value)
+        return value
 
     weight_ml: float = 0.35
     weight_behavior: float = 0.20
