@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Shell } from "@/components/layout/shell";
 import { Toaster } from "sonner";
@@ -6,6 +6,12 @@ import { Toaster } from "sonner";
 export const metadata: Metadata = {
   title: "RazorGuard X",
   description: "Agentic payment risk intelligence prototype — synthetic data only.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -20,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans antialiased">
         <Shell>{children}</Shell>
-        <Toaster theme="dark" richColors />
+        <Toaster theme="dark" richColors closeButton className="!max-w-[min(24rem,calc(100vw-1.5rem))]" />
       </body>
     </html>
   );

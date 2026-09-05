@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { decisionStyle, formatInr } from "./lib/utils";
+import { decisionStyle, formatInr } from "./utils";
 
 describe("formatters", () => {
   it("formats INR", () => {

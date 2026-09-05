@@ -114,7 +114,7 @@ export default function FraudNetworkPage() {
   return (
     <div className="space-y-4">
       <header>
-        <h1 className="text-2xl font-semibold">Entity graph</h1>
+        <h1 className="text-xl font-semibold sm:text-2xl">Entity graph</h1>
         <p className="text-sm text-slate-400">
           Relationship map via GraphBackend. Clusters are potential rings, not confirmed fraud.
         </p>
@@ -124,7 +124,7 @@ export default function FraudNetworkPage() {
         {connected === false && <Badge>not connected{metrics?.reason ? ` · ${metrics.reason}` : ""}</Badge>}
         {metrics?.fallback && <Badge>NetworkX fallback</Badge>}
       </div>
-      <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6 text-xs">
+      <div className="grid grid-cols-2 gap-3 text-xs sm:grid-cols-3 lg:grid-cols-6">
         {["USER", "DEVICE", "IP", "MERCHANT", "LOCATION", "TRANSACTION"].map((k) => (
           <div key={k} className="rounded-lg border border-white/10 p-2">
             <div className="text-slate-500">{k}</div>
@@ -132,12 +132,12 @@ export default function FraudNetworkPage() {
           </div>
         ))}
       </div>
-      <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
-        <div className="h-[640px] rounded-xl border border-white/10 overflow-hidden bg-ink-900">
-          <ReactFlow nodes={nodes} edges={edges} fitView onNodeClick={onNodeClick}>
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)]">
+        <div className="h-[min(70vh,28rem)] min-h-[22rem] overflow-hidden rounded-xl border border-white/10 bg-ink-900 sm:h-[32rem] lg:h-[640px]">
+          <ReactFlow nodes={nodes} edges={edges} fitView minZoom={0.2} onNodeClick={onNodeClick}>
             <Background color="#1a2433" />
             <Controls />
-            <MiniMap nodeColor="#3ee0c6" maskColor="rgba(7,9,13,0.8)" />
+            <MiniMap className="!hidden md:!block" nodeColor="#3ee0c6" maskColor="rgba(7,9,13,0.8)" />
           </ReactFlow>
         </div>
         <div className="space-y-4">
@@ -167,7 +167,7 @@ export default function FraudNetworkPage() {
               {!selected ? (
                 <p className="text-sm text-slate-500">Click a node to load neighbors.</p>
               ) : (
-                <pre className="text-[11px] overflow-x-auto text-slate-300">{JSON.stringify(selected, null, 2)}</pre>
+                <pre className="overflow-x-auto break-all text-[11px] text-slate-300">{JSON.stringify(selected, null, 2)}</pre>
               )}
             </CardContent>
           </Card>

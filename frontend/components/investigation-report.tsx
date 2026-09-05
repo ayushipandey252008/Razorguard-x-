@@ -98,8 +98,8 @@ export function InvestigationReportView({
         {findings.length ? (
           <ul className="space-y-1">
             {findings.map((f, i) => (
-              <li key={i} className="text-slate-200">
-                <span className="text-mint mr-2">✓</span>
+              <li key={i} className="break-words text-slate-200">
+                <span className="mr-2 text-mint">✓</span>
                 {f}
               </li>
             ))}
@@ -160,7 +160,7 @@ export function InvestigationReportView({
         {trace.length ? (
           <ol className="space-y-1 font-mono text-xs">
             {trace.map((t, i) => (
-              <li key={`${t.tool}-${i}`} className="flex gap-2 items-start">
+              <li key={`${t.tool}-${i}`} className="flex min-w-0 flex-col items-start gap-1 sm:flex-row sm:gap-2">
                 <span
                   className={
                     t.status === "error"
@@ -172,12 +172,12 @@ export function InvestigationReportView({
                 >
                   {statusMark(t.status)}
                 </span>
-                <span className="text-slate-200">{t.tool}</span>
+                <span className="break-all text-slate-200">{t.tool}</span>
                 <span className="text-slate-500">
                   {t.status}
                   {t.duration_ms != null ? ` · ${t.duration_ms}ms` : ""}
                 </span>
-                {t.result_summary ? <span className="text-slate-500 truncate">{t.result_summary}</span> : null}
+                {t.result_summary ? <span className="min-w-0 break-words text-slate-500">{t.result_summary}</span> : null}
               </li>
             ))}
           </ol>

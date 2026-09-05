@@ -82,41 +82,41 @@ export default function InvestigationDetail() {
 
   return (
     <div className="space-y-5">
-      <header className="flex justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold">Investigation</h1>
-          <p className="text-sm text-slate-400 font-mono">
+      <header className="flex flex-col gap-3 sm:flex-row sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-xl font-semibold sm:text-2xl">Investigation</h1>
+          <p className="mt-1 break-all font-mono text-sm text-slate-400">
             {data.id} ·{" "}
             <Link className="text-mint" href={`/transactions/${data.transaction_id}`}>
               {data.transaction_id}
             </Link>
           </p>
         </div>
-        <Badge>{data.status}</Badge>
+        <Badge className="self-start">{data.status}</Badge>
       </header>
 
-      <div className="flex flex-wrap gap-2">
-        <Button size="sm" onClick={run} disabled={busy}>
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+        <Button size="sm" className="w-full sm:w-auto" onClick={run} disabled={busy}>
           Run AI investigation
         </Button>
-        <Button size="sm" variant="outline" onClick={() => decide("APPROVE")} disabled={busy}>
+        <Button size="sm" className="w-full sm:w-auto" variant="outline" onClick={() => decide("APPROVE")} disabled={busy}>
           Approve
         </Button>
-        <Button size="sm" variant="danger" onClick={() => decide("BLOCK")} disabled={busy}>
+        <Button size="sm" className="w-full sm:w-auto" variant="danger" onClick={() => decide("BLOCK")} disabled={busy}>
           Block
         </Button>
-        <Button size="sm" variant="warn" onClick={() => decide("ESCALATE")} disabled={busy}>
+        <Button size="sm" className="w-full sm:w-auto" variant="warn" onClick={() => decide("ESCALATE")} disabled={busy}>
           Escalate
         </Button>
       </div>
-      <div className="flex flex-wrap gap-2">
-        <Button size="sm" variant="danger" onClick={() => feedback("CONFIRM_FRAUD")} disabled={busy}>
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+        <Button size="sm" className="w-full sm:w-auto" variant="danger" onClick={() => feedback("CONFIRM_FRAUD")} disabled={busy}>
           Confirm fraud
         </Button>
-        <Button size="sm" variant="outline" onClick={() => feedback("CONFIRM_LEGITIMATE")} disabled={busy}>
+        <Button size="sm" className="w-full sm:w-auto" variant="outline" onClick={() => feedback("CONFIRM_LEGITIMATE")} disabled={busy}>
           Confirm legitimate
         </Button>
-        <Button size="sm" variant="ghost" onClick={() => feedback("NEEDS_REVIEW")} disabled={busy}>
+        <Button size="sm" className="w-full sm:w-auto" variant="ghost" onClick={() => feedback("NEEDS_REVIEW")} disabled={busy}>
           Needs review
         </Button>
       </div>

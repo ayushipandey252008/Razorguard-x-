@@ -31,7 +31,7 @@ export default function ModelMonitoringPage() {
   return (
     <div className="space-y-5 max-w-4xl">
       <header>
-        <h1 className="text-2xl font-semibold">Model monitoring</h1>
+        <h1 className="text-xl font-semibold sm:text-2xl">Model monitoring</h1>
         <p className="text-sm text-slate-400">
           Prototype drift and feedback. Candidates stay offline. This is not production model ops.
         </p>
@@ -41,21 +41,21 @@ export default function ModelMonitoringPage() {
         <CardHeader>
           <CardTitle>Active model</CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-2 text-sm">
+        <CardContent className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
           <div>Version</div>
-          <div className="font-mono text-right">{active.version || "—"}</div>
+          <div className="break-all font-mono sm:text-right">{active.version || "—"}</div>
           <div>Dataset</div>
-          <div className="font-mono text-right">{active.dataset || "—"}</div>
+          <div className="break-all font-mono sm:text-right">{active.dataset || "—"}</div>
           <div>Training rows</div>
-          <div className="font-mono text-right">{active.training_rows ?? "—"}</div>
+          <div className="font-mono sm:text-right">{active.training_rows ?? "—"}</div>
           <div>Last evaluation PR-AUC</div>
-          <div className="font-mono text-right">{fmt(evalMetrics.pr_auc)}</div>
+          <div className="font-mono sm:text-right">{fmt(evalMetrics.pr_auc)}</div>
           <div>Status</div>
-          <div className="text-right">
+          <div className="sm:text-right">
             <Badge>{active.status || "ACTIVE"}</Badge>
           </div>
           <div>IEEE-CIS</div>
-          <div className="text-right">
+          <div className="sm:text-right">
             <Badge>{status.ieee_cis?.status || "OFFLINE CANDIDATE"}</Badge>
           </div>
         </CardContent>
@@ -66,18 +66,19 @@ export default function ModelMonitoringPage() {
           <CardTitle>Drift</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             <div>Overall status</div>
-            <div className="font-mono text-right">{drift?.status || status.drift_status?.status || "—"}</div>
+            <div className="break-all font-mono sm:text-right">{drift?.status || status.drift_status?.status || "—"}</div>
             <div>Last checked</div>
-            <div className="font-mono text-right text-xs">{drift?.checked_at || status.drift_status?.checked_at || "—"}</div>
+            <div className="break-all font-mono text-xs sm:text-right">{drift?.checked_at || status.drift_status?.checked_at || "—"}</div>
             <div>Recommendation</div>
-            <div className="text-right text-slate-300">{drift?.recommendation || "—"}</div>
+            <div className="text-pretty text-slate-300 sm:text-right">{drift?.recommendation || "—"}</div>
           </div>
           <p className="text-[11px] text-slate-500">
             PSI thresholds are prototype heuristics (&lt;0.10 low, 0.10–0.25 moderate, &gt;0.25 high), not production standards.
           </p>
-          <table className="w-full text-xs">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[20rem] text-xs">
             <thead className="text-slate-500">
               <tr>
                 <th className="text-left py-1">Feature</th>
@@ -103,6 +104,7 @@ export default function ModelMonitoringPage() {
               )}
             </tbody>
           </table>
+          </div>
         </CardContent>
       </Card>
 
@@ -110,7 +112,7 @@ export default function ModelMonitoringPage() {
         <CardHeader>
           <CardTitle>Feedback</CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-3 gap-3 text-sm">
+        <CardContent className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
           <Stat label="Confirmed fraud" value={feedback.CONFIRM_FRAUD} />
           <Stat label="Confirmed legitimate" value={feedback.CONFIRM_LEGITIMATE} />
           <Stat label="Needs review" value={feedback.NEEDS_REVIEW} />
@@ -125,17 +127,17 @@ export default function ModelMonitoringPage() {
           {!candidate ? (
             <p className="text-slate-500">No offline candidate. Training never auto-replaces the live model.</p>
           ) : (
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <div>Version</div>
-              <div className="font-mono text-right">{candidate.version}</div>
+              <div className="break-all font-mono sm:text-right">{candidate.version}</div>
               <div>Dataset</div>
-              <div className="font-mono text-right">{candidate.dataset || "SYNTHETIC_FEEDBACK"}</div>
+              <div className="break-all font-mono sm:text-right">{candidate.dataset || "SYNTHETIC_FEEDBACK"}</div>
               <div>Status</div>
-              <div className="text-right">
+              <div className="sm:text-right">
                 <Badge>{candidate.status}</Badge>
               </div>
               <div>PR-AUC</div>
-              <div className="font-mono text-right">{fmt(candidate.metrics?.pr_auc)}</div>
+              <div className="font-mono sm:text-right">{fmt(candidate.metrics?.pr_auc)}</div>
             </div>
           )}
           <p className="text-[11px] text-slate-500">There is no automatic model activation in this prototype.</p>

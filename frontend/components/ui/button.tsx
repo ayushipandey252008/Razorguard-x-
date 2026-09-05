@@ -14,8 +14,8 @@ const buttonVariants = cva(
         warn: "bg-ember text-ink-950 hover:bg-ember/90",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 px-3 text-xs",
+        default: "min-h-10 h-10 px-4 py-2",
+        sm: "min-h-9 h-9 px-3 text-xs",
         lg: "h-11 px-6",
       },
     },

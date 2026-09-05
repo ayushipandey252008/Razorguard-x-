@@ -43,17 +43,17 @@ export default function SimulationPage() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-semibold">Simulation range</h1>
+        <h1 className="text-xl font-semibold sm:text-2xl">Simulation range</h1>
         <p className="text-sm text-slate-400">
           Generated payments are scored by the real ML, rules, graph, and risk engine. Results are not faked.
         </p>
       </header>
       <Card>
-        <CardContent className="p-5 flex flex-wrap gap-3 items-end">
-          <label className="text-sm">
+        <CardContent className="flex flex-col flex-wrap items-stretch gap-3 p-4 sm:flex-row sm:items-end sm:p-5">
+          <label className="min-w-0 flex-1 text-sm">
             Scenario
             <select
-              className="mt-1 block h-10 rounded-md bg-ink-900 border border-white/10 px-3"
+              className="mt-1 block h-10 w-full max-w-full rounded-md border border-white/10 bg-ink-900 px-3"
               value={scenario}
               onChange={(e) => setScenario(e.target.value)}
             >
@@ -75,14 +75,14 @@ export default function SimulationPage() {
               onChange={(e) => setCount(Number(e.target.value))}
             />
           </label>
-          <Button onClick={run} disabled={busy}>
+          <Button className="w-full sm:w-auto" onClick={run} disabled={busy}>
             {busy ? "Scoring…" : "Fire scenario"}
           </Button>
         </CardContent>
       </Card>
       {result && (
         <div className="space-y-4">
-          <div className="grid sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <Stat label="Generated" value={result.count} />
             <Stat label="Flagged" value={result.detected_flagged} />
             <Stat label="FP vs injected label" value={result.false_positives_vs_injected_label} />
@@ -94,7 +94,7 @@ export default function SimulationPage() {
               <CardTitle>Pipeline output</CardTitle>
             </CardHeader>
             <CardContent className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full min-w-[36rem] text-sm">
                 <thead className="text-left text-xs text-slate-500">
                   <tr>
                     <th>Txn</th>

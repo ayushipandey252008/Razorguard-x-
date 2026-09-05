@@ -59,7 +59,7 @@ export default function ScenarioEvaluationPage() {
   return (
     <div className="space-y-5 max-w-4xl">
       <header>
-        <h1 className="text-2xl font-semibold">Scenario evaluation</h1>
+        <h1 className="text-xl font-semibold sm:text-2xl">Scenario evaluation</h1>
         <p className="text-[11px] uppercase tracking-wider text-ember">Synthetic scenario evaluation — not public dataset evaluation</p>
         <p className="text-sm text-slate-400 mt-1">
           Generator labels describe synthetic patterns. They are not ULB Class labels and not real-world fraud accuracy.
@@ -77,7 +77,7 @@ export default function ScenarioEvaluationPage() {
                 key={name}
                 type="button"
                 onClick={() => toggle(name)}
-                className={`text-xs rounded-full border px-2 py-1 ${
+                className={`min-h-9 rounded-full border px-3 py-2 text-xs ${
                   selected.includes(name) ? "border-mint/40 bg-mint/10 text-mint" : "border-white/10 text-slate-400"
                 }`}
               >
@@ -107,7 +107,7 @@ export default function ScenarioEvaluationPage() {
                 onChange={(e) => setSeed(Number(e.target.value))}
               />
             </label>
-            <Button onClick={run} disabled={busy || selected.length === 0}>
+            <Button className="w-full sm:w-auto" onClick={run} disabled={busy || selected.length === 0}>
               {busy ? "Scoring…" : "Evaluate"}
             </Button>
           </div>
@@ -135,8 +135,8 @@ export default function ScenarioEvaluationPage() {
             <CardHeader>
               <CardTitle>Scenario matrix</CardTitle>
             </CardHeader>
-            <CardContent>
-              <table className="w-full text-xs">
+            <CardContent className="overflow-x-auto">
+              <table className="w-full min-w-[32rem] text-xs">
                 <thead className="text-slate-500">
                   <tr>
                     <th className="text-left py-1">Scenario</th>

@@ -35,7 +35,7 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-semibold">Telemetry</h1>
+        <h1 className="text-xl font-semibold sm:text-2xl">Telemetry</h1>
         <p className="text-sm text-slate-400">{data.disclaimer}</p>
       </header>
       <div className="grid gap-4 lg:grid-cols-2">
@@ -99,7 +99,7 @@ export default function AnalyticsPage() {
           <CardTitle>Merchant category mix</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[28rem] text-sm">
             <thead className="text-left text-xs text-slate-500">
               <tr>
                 <th>Category</th>

@@ -6,6 +6,7 @@ import { api } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { TableScroll } from "@/components/layout/table-scroll";
 import { formatInr, formatTime } from "@/lib/utils";
 import { useLiveEvents } from "@/hooks/use-live-events";
 import type { Transaction } from "@/types";
@@ -43,11 +44,11 @@ export default function TransactionsPage() {
 
   return (
     <div className="space-y-5">
-      <header className="flex items-end justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">Live wire</h1>
-          <p className="text-sm text-slate-400">WebSocket {connected ? "connected" : "not connected"} · updates without refresh</p>
-        </div>
+      <header>
+        <h1 className="text-xl font-semibold sm:text-2xl">Live wire</h1>
+        <p className="mt-1 text-sm text-slate-400">
+          WebSocket {connected ? "connected" : "not connected"} · updates without refresh
+        </p>
       </header>
       {flash.length > 0 && (
         <div className="flex flex-wrap gap-2">
@@ -70,8 +71,8 @@ export default function TransactionsPage() {
           ) : rows.length === 0 ? (
             <p className="text-slate-500 text-sm">Empty. Seed or simulate traffic.</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+            <TableScroll>
+              <table className="w-full min-w-[760px] text-sm">
                 <thead className="text-left text-[11px] uppercase text-slate-500">
                   <tr>
                     <th className="pb-2">ID</th>
@@ -87,25 +88,31 @@ export default function TransactionsPage() {
                 <tbody>
                   {rows.map((row) => (
                     <tr key={row.transaction_id} className="border-t border-white/5 hover:bg-white/[0.03]">
-                      <td className="py-2 font-mono text-xs">
+                      <td className="max-w-[10rem] truncate py-2 font-mono text-xs" title={row.transaction_id}>
                         <Link className="text-mint" href={`/transactions/${row.transaction_id}`}>
                           {row.transaction_id}
                         </Link>
                       </td>
-                      <td className="font-mono text-xs">{row.user_id}</td>
-                      <td className="font-mono text-xs">{row.merchant_id}</td>
-                      <td>{formatInr(row.amount)}</td>
-                      <td>{row.location}</td>
+                      <td className="max-w-[8rem] truncate font-mono text-xs" title={row.user_id}>
+                        {row.user_id}
+                      </td>
+                      <td className="max-w-[8rem] truncate font-mono text-xs" title={row.merchant_id}>
+                        {row.merchant_id}
+                      </td>
+                      <td className="whitespace-nowrap">{formatInr(row.amount)}</td>
+                      <td className="max-w-[7rem] truncate" title={row.location}>
+                        {row.location}
+                      </td>
                       <td className="font-mono">{row.final_risk_score ?? "—"}</td>
                       <td>
                         <Badge decision={row.decision}>{row.decision || "—"}</Badge>
                       </td>
-                      <td className="text-xs text-slate-500">{formatTime(row.timestamp)}</td>
+                      <td className="whitespace-nowrap text-xs text-slate-500">{formatTime(row.timestamp)}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
+            </TableScroll>
           )}
         </CardContent>
       </Card>

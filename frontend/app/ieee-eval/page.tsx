@@ -51,7 +51,7 @@ export default function IeeeEvalPage() {
   return (
     <div className="space-y-5 max-w-5xl">
       <header>
-        <h1 className="text-2xl font-semibold">IEEE-CIS evaluation</h1>
+        <h1 className="text-xl font-semibold sm:text-2xl">IEEE-CIS evaluation</h1>
         <p className="text-[11px] uppercase tracking-wider text-ember mt-1">
           OFFLINE PUBLIC DATASET EVALUATION — not live production performance
         </p>
@@ -62,17 +62,17 @@ export default function IeeeEvalPage() {
         <CardHeader>
           <CardTitle>Model status</CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-2 text-sm">
+        <CardContent className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
           <div>ACTIVE MODEL</div>
-          <div className="font-mono text-right">{data.active_live_model || data.active_model?.version}</div>
+          <div className="break-all font-mono sm:text-right">{data.active_live_model || data.active_model?.version}</div>
           <div>IEEE-CIS</div>
-          <div className="text-right">
+          <div className="sm:text-right">
             <Badge>OFFLINE CANDIDATE</Badge>
           </div>
           <div>Auto-activated</div>
-          <div className="font-mono text-right">{String(data.auto_activated ?? false)}</div>
+          <div className="font-mono sm:text-right">{String(data.auto_activated ?? false)}</div>
           <div>Source</div>
-          <div className="font-mono text-right">{data.source || "MISSING"}</div>
+          <div className="break-all font-mono sm:text-right">{data.source || "MISSING"}</div>
         </CardContent>
       </Card>
 
@@ -95,21 +95,21 @@ export default function IeeeEvalPage() {
         <CardHeader>
           <CardTitle>Dataset audit</CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-2 text-sm">
+        <CardContent className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
           <div>Transaction rows</div>
-          <div className="font-mono text-right">{txn.n_rows ?? "—"}</div>
+          <div className="font-mono sm:text-right">{txn.n_rows ?? "—"}</div>
           <div>Transaction columns</div>
-          <div className="font-mono text-right">{txn.n_columns ?? "—"}</div>
+          <div className="font-mono sm:text-right">{txn.n_columns ?? "—"}</div>
           <div>Identity rows</div>
-          <div className="font-mono text-right">{ident.n_rows ?? "—"}</div>
+          <div className="font-mono sm:text-right">{ident.n_rows ?? "—"}</div>
           <div>Fraud (txn)</div>
-          <div className="font-mono text-right">{txn.target_distribution?.positive ?? "—"}</div>
+          <div className="font-mono sm:text-right">{txn.target_distribution?.positive ?? "—"}</div>
           <div>Prevalence</div>
-          <div className="font-mono text-right">{fmt(txn.target_distribution?.prevalence)}</div>
+          <div className="font-mono sm:text-right">{fmt(txn.target_distribution?.prevalence)}</div>
           <div>Join coverage</div>
-          <div className="font-mono text-right">{fmt(join.identity_coverage)}</div>
+          <div className="font-mono sm:text-right">{fmt(join.identity_coverage)}</div>
           <div>Unmatched identity</div>
-          <div className="font-mono text-right">{join.unmatched_identity_rows ?? "—"}</div>
+          <div className="font-mono sm:text-right">{join.unmatched_identity_rows ?? "—"}</div>
         </CardContent>
       </Card>
 
@@ -122,7 +122,7 @@ export default function IeeeEvalPage() {
           {["train", "validation", "test"].map((name) => {
             const part = split[name] || {};
             return (
-              <div key={name} className="grid grid-cols-4 gap-2 text-xs font-mono">
+              <div key={name} className="grid grid-cols-2 gap-2 font-mono text-xs sm:grid-cols-4">
                 <div className="uppercase text-slate-500">{name}</div>
                 <div>n={part.n ?? "—"}</div>
                 <div>fraud={part.fraud ?? "—"}</div>
@@ -140,8 +140,8 @@ export default function IeeeEvalPage() {
         <CardContent className="space-y-1 text-xs">
           <p>Overall: {String(leakage.all_passed ?? "—")}</p>
           {(leakage.checks || []).map((c: any) => (
-            <div key={c.id} className="flex justify-between gap-4">
-              <span className="font-mono">{c.id}</span>
+            <div key={c.id} className="flex flex-col justify-between gap-1 sm:flex-row sm:gap-4">
+              <span className="break-all font-mono">{c.id}</span>
               <span className={c.passed ? "text-mint" : "text-flare"}>{c.passed ? "PASS" : "FAIL"}</span>
             </div>
           ))}
@@ -152,9 +152,9 @@ export default function IeeeEvalPage() {
         <CardHeader>
           <CardTitle>Feature families</CardTitle>
         </CardHeader>
-        <CardContent className="text-xs font-mono space-y-1">
+        <CardContent className="space-y-1 overflow-x-auto font-mono text-xs">
           {Object.entries(families).map(([k, v]) => (
-            <div key={k}>
+            <div key={k} className="break-words">
               {k}: {Array.isArray(v) ? v.join(" + ") : String(v)}
             </div>
           ))}
@@ -171,7 +171,7 @@ export default function IeeeEvalPage() {
               Numbers below are not IEEE-CIS public-dataset results unless source is IEEE_CIS_CSV.
             </p>
           ) : null}
-          <table className="w-full text-xs">
+          <table className="w-full min-w-[44rem] text-xs">
             <thead className="text-slate-500">
               <tr>
                 {["Experiment", "Features", "PR-AUC", "ROC-AUC", "Precision", "Recall", "F1", "FPR"].map((h) => (
@@ -205,13 +205,13 @@ export default function IeeeEvalPage() {
         </CardHeader>
         <CardContent className="text-xs space-y-2">
           <p>{ablation.honest_note}</p>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             <div>PR-AUC without graph</div>
-            <div className="font-mono text-right">{fmt(ablation.without_graph?.pr_auc)}</div>
+            <div className="font-mono sm:text-right">{fmt(ablation.without_graph?.pr_auc)}</div>
             <div>PR-AUC with graph</div>
-            <div className="font-mono text-right">{fmt(ablation.with_graph?.pr_auc)}</div>
+            <div className="font-mono sm:text-right">{fmt(ablation.with_graph?.pr_auc)}</div>
             <div>Graph improved PR-AUC</div>
-            <div className="font-mono text-right">{String(ablation.improved?.pr_auc ?? "—")}</div>
+            <div className="font-mono sm:text-right">{String(ablation.improved?.pr_auc ?? "—")}</div>
           </div>
         </CardContent>
       </Card>
@@ -231,11 +231,11 @@ export default function IeeeEvalPage() {
         <CardHeader>
           <CardTitle>Thresholds (validation only)</CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-2 text-xs">
+        <CardContent className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
           <div>APPROVE below</div>
-          <div className="font-mono text-right">{fmt(thresholds.approve_below)}</div>
+          <div className="font-mono sm:text-right">{fmt(thresholds.approve_below)}</div>
           <div>BLOCK above</div>
-          <div className="font-mono text-right">{fmt(thresholds.block_above)}</div>
+          <div className="font-mono sm:text-right">{fmt(thresholds.block_above)}</div>
         </CardContent>
       </Card>
 
@@ -265,7 +265,7 @@ export default function IeeeEvalPage() {
           <CardTitle>Cross-dataset (not equivalent)</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full min-w-[32rem] text-xs">
             <thead className="text-slate-500">
               <tr>
                 {["Dataset", "Rows", "Fraud", "Features", "PR-AUC", "ROC-AUC"].map((h) => (

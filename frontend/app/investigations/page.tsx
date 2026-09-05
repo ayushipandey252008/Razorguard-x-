@@ -42,7 +42,7 @@ export default function InvestigationsPage() {
 
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Case files</h1>
+      <h1 className="text-xl font-semibold sm:text-2xl">Case files</h1>
       {loading && <Skeleton className="h-40" />}
       {error && <p className="text-flare">{error}</p>}
       {!loading && !rows.length && <p className="text-slate-500">No investigations yet.</p>}
@@ -50,8 +50,8 @@ export default function InvestigationsPage() {
         {rows.map((inv) => (
           <Link key={inv.id} href={`/investigations/${inv.id}`}>
             <Card className="hover:border-mint/30 transition-colors">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="font-mono text-xs">{inv.transaction_id}</CardTitle>
+              <CardHeader className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <CardTitle className="min-w-0 break-all font-mono text-xs">{inv.transaction_id}</CardTitle>
                 <Badge decision={inv.decision}>{inv.status}</Badge>
               </CardHeader>
               <CardContent className="text-sm space-y-1">

@@ -32,11 +32,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen grid place-items-center px-4">
-      <form onSubmit={submit} className="w-full max-w-md rounded-2xl border border-white/10 bg-ink-800 p-8 shadow-glow">
+    <div className="min-h-screen grid place-items-center px-4 py-8">
+      <form onSubmit={submit} className="w-full max-w-md rounded-2xl border border-white/10 bg-ink-800 p-5 shadow-glow sm:p-8">
         <div className="mb-6">
-          <div className="text-xs tracking-[0.3em] text-mint">RAZORGUARD X</div>
-          <h1 className="mt-2 text-2xl font-semibold">Operator sign-in</h1>
+          <div className="text-xs tracking-[0.2em] text-mint sm:tracking-[0.3em]">RAZORGUARD X</div>
+          <h1 className="mt-2 text-xl font-semibold sm:text-2xl">Operator sign-in</h1>
           <p className="mt-2 text-sm text-slate-400">
             Independent student prototype. Local lab seed password is documented in the repo README. The
             production Render seed password is set only on the server and is not the lab default.

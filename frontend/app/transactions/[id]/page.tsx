@@ -71,20 +71,20 @@ export default function TransactionDetailPage() {
 
   return (
     <div className="space-y-6">
-      <header className="flex flex-wrap items-start justify-between gap-4">
-        <div>
+      <header className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:flex-wrap">
+        <div className="min-w-0">
           <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500">Transaction file</div>
-          <h1 className="font-mono text-xl mt-1">{t.transaction_id}</h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <h1 className="mt-1 break-all font-mono text-base sm:text-xl">{t.transaction_id}</h1>
+          <p className="mt-1 break-words text-sm text-slate-400">
             {t.user_id} → {t.merchant_id} · {formatInr(t.amount)} {t.currency} · {formatTime(t.timestamp)}
           </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="text-right">
-            <div className="text-4xl font-mono font-semibold">{r?.final_risk_score ?? "—"}</div>
+            <div className="font-mono text-3xl font-semibold sm:text-4xl">{r?.final_risk_score ?? "—"}</div>
             <div className="text-[11px] text-slate-500">final risk / 100</div>
           </div>
-          <Badge decision={r?.decision} className="text-sm px-3 py-1">
+          <Badge decision={r?.decision} className="px-3 py-1 text-sm">
             {r?.decision}
           </Badge>
         </div>
@@ -190,7 +190,7 @@ export default function TransactionDetailPage() {
             ) : (
               r.triggered_rules.map((rule: any) => (
                 <div key={rule.rule_id} className="rounded-lg border border-white/10 p-3">
-                  <div className="flex justify-between text-sm">
+                  <div className="flex flex-col gap-1 text-sm sm:flex-row sm:justify-between">
                     <span className="font-medium">{rule.rule_name}</span>
                     <span className="font-mono text-ember">+{rule.score_contribution}</span>
                   </div>
@@ -213,15 +213,17 @@ export default function TransactionDetailPage() {
             ) : (
               <ul className="space-y-2">
                 {r.shap_top_features.map((f: any) => (
-                  <li key={f.feature} className="flex items-center gap-3 text-sm">
-                    <span className="w-44 font-mono text-xs text-slate-400">{f.feature}</span>
-                    <div className="flex-1 h-2 rounded bg-white/5">
+                  <li key={f.feature} className="flex min-w-0 items-center gap-2 text-sm sm:gap-3">
+                    <span className="w-24 shrink-0 truncate font-mono text-xs text-slate-400 sm:w-44" title={f.feature}>
+                      {f.feature}
+                    </span>
+                    <div className="h-2 min-w-0 flex-1 rounded bg-white/5">
                       <div
                         className={`h-2 rounded ${f.contribution > 0 ? "bg-flare" : "bg-mint"}`}
                         style={{ width: `${Math.min(100, Math.abs(f.contribution) * 80)}%` }}
                       />
                     </div>
-                    <span className="font-mono text-xs w-16 text-right">{f.contribution}</span>
+                    <span className="w-14 shrink-0 text-right font-mono text-xs sm:w-16">{f.contribution}</span>
                   </li>
                 ))}
               </ul>
@@ -261,9 +263,9 @@ export default function TransactionDetailPage() {
       </div>
 
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
+        <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle>AI investigation</CardTitle>
-          <Button size="sm" onClick={runInvestigation} disabled={running}>
+          <Button size="sm" className="w-full sm:w-auto" onClick={runInvestigation} disabled={running}>
             {running ? "Running tools…" : "Run agent"}
           </Button>
         </CardHeader>
@@ -287,10 +289,10 @@ export default function TransactionDetailPage() {
         <CardContent>
           <ul className="space-y-2 text-sm">
             {(data.audit_trail || []).map((a: any) => (
-              <li key={a.id} className="flex gap-4 border-b border-white/5 pb-2">
-                <span className="text-xs text-slate-500 w-44">{formatTime(a.timestamp)}</span>
-                <span className="font-mono text-xs text-mint w-40">{a.action}</span>
-                <span className="text-xs text-slate-400">{a.actor}</span>
+              <li key={a.id} className="flex flex-col gap-1 border-b border-white/5 pb-2 sm:flex-row sm:gap-4">
+                <span className="w-auto text-xs text-slate-500 sm:w-44">{formatTime(a.timestamp)}</span>
+                <span className="break-all font-mono text-xs text-mint sm:w-40">{a.action}</span>
+                <span className="break-all text-xs text-slate-400">{a.actor}</span>
               </li>
             ))}
             {!data.audit_trail?.length && <p className="text-slate-500 text-sm">No audit events stored.</p>}
@@ -312,9 +314,9 @@ function Metric({ label, value }: { label: string; value: any }) {
 
 function Row({ k, v, known }: { k: string; v: any; known?: boolean }) {
   return (
-    <div className="flex justify-between gap-4">
-      <span className="text-slate-500">{k}</span>
-      <span className="font-mono text-xs text-right">
+    <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
+      <span className="shrink-0 text-slate-500">{k}</span>
+      <span className="min-w-0 break-all text-left font-mono text-xs sm:text-right">
         {String(v)}
         {known === false && <span className="ml-2 text-ember">new</span>}
         {known === true && <span className="ml-2 text-mint">known</span>}

@@ -16,13 +16,13 @@ export default function SystemPage() {
 
   return (
     <div className="space-y-5 max-w-3xl">
-      <h1 className="text-2xl font-semibold">Model bay</h1>
+      <h1 className="text-xl font-semibold sm:text-2xl">Model bay</h1>
       <Card>
         <CardHeader>
           <CardTitle>Runtime</CardTitle>
         </CardHeader>
         <CardContent>
-          <pre className="text-xs">{JSON.stringify(health, null, 2)}</pre>
+          <pre className="overflow-x-auto whitespace-pre-wrap break-all text-xs">{JSON.stringify(health, null, 2)}</pre>
           {health?.graph_cluster_thresholds && (
             <p className="text-xs text-slate-500 mt-3">
               Graph cluster thresholds are prototype heuristics, not production-grade: min users{" "}
@@ -40,7 +40,7 @@ export default function SystemPage() {
           <CardTitle>Active product model (SYNTHETIC_DATASET)</CardTitle>
         </CardHeader>
         <CardContent>
-          <pre className="text-xs overflow-x-auto max-h-[480px]">
+          <pre className="max-h-[480px] overflow-x-auto whitespace-pre-wrap break-all text-xs">
             {JSON.stringify(analytics?.model, null, 2)}
           </pre>
         </CardContent>
@@ -90,36 +90,36 @@ function EventInfrastructure() {
               Durable event delivery:{" "}
               {status.outbox?.durable_event_delivery || status.outbox?.enabled ? "enabled" : "off"}
             </p>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
               <div>Event Bus</div>
-              <div className="font-mono text-right">{busLabel}</div>
+              <div className="break-all font-mono sm:text-right">{busLabel}</div>
               <div>Active bus</div>
-              <div className="font-mono text-right">{busLabel}</div>
+              <div className="break-all font-mono sm:text-right">{busLabel}</div>
               <div>Configured</div>
-              <div className="font-mono text-right">{status.configured || "inprocess"}</div>
+              <div className="break-all font-mono sm:text-right">{status.configured || "inprocess"}</div>
               <div>Kafka</div>
-              <div className="font-mono text-right">{kafkaLabel}</div>
+              <div className="break-all font-mono sm:text-right">{kafkaLabel}</div>
               {status.fallback ? (
                 <>
                   <div>Fallback</div>
-                  <div className="font-mono text-right">true</div>
+                  <div className="font-mono sm:text-right">true</div>
                 </>
               ) : null}
               <div>Durable event delivery</div>
-              <div className="font-mono text-right">
+              <div className="font-mono sm:text-right">
                 {status.outbox?.durable_event_delivery || status.outbox?.enabled ? "enabled" : "off"}
               </div>
             </div>
             {status.outbox ? (
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
                 <div>Outbox pending</div>
-                <div className="font-mono text-right">{status.outbox.pending ?? "—"}</div>
+                <div className="font-mono sm:text-right">{status.outbox.pending ?? "—"}</div>
                 <div>Outbox processing</div>
-                <div className="font-mono text-right">{status.outbox.processing ?? "—"}</div>
+                <div className="font-mono sm:text-right">{status.outbox.processing ?? "—"}</div>
                 <div>Outbox published</div>
-                <div className="font-mono text-right">{status.outbox.published ?? "—"}</div>
+                <div className="font-mono sm:text-right">{status.outbox.published ?? "—"}</div>
                 <div>Outbox failed</div>
-                <div className="font-mono text-right">{status.outbox.failed ?? "—"}</div>
+                <div className="font-mono sm:text-right">{status.outbox.failed ?? "—"}</div>
               </div>
             ) : null}
             <div>
@@ -185,13 +185,13 @@ function OfflineUlbCard() {
           <p className="text-slate-500">{ulb.reason || "ULB metrics not generated yet."}</p>
         ) : (
           <>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
               <div>Dataset</div>
-              <div className="font-mono text-right">{ulb.dataset}</div>
+              <div className="break-all font-mono sm:text-right">{ulb.dataset}</div>
               <div>Model</div>
-              <div className="font-mono text-right">{ulb.model}</div>
+              <div className="break-all font-mono sm:text-right">{ulb.model}</div>
               <div>Model version</div>
-              <div className="font-mono text-right">{ulb.model_version}</div>
+              <div className="break-all font-mono sm:text-right">{ulb.model_version}</div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
               {metrics.map(([label, value]) => (
@@ -232,11 +232,11 @@ function IeeeOfflineCard() {
         <p className="text-[11px] uppercase tracking-wider text-ember">
           Not live scores · not ULB · not production fraud accuracy
         </p>
-        <div className="grid grid-cols-2 gap-2 text-xs">
+        <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
           <div>ACTIVE MODEL</div>
-          <div className="font-mono text-right">{ieee?.active_live_model || "xgb-iforest-v1-calibrated"}</div>
+          <div className="break-all font-mono sm:text-right">{ieee?.active_live_model || "xgb-iforest-v1-calibrated"}</div>
           <div>IEEE-CIS</div>
-          <div className="font-mono text-right">OFFLINE CANDIDATE</div>
+          <div className="font-mono sm:text-right">OFFLINE CANDIDATE</div>
         </div>
         <p className="text-xs text-slate-500">
           {ieee?.disclaimer ||

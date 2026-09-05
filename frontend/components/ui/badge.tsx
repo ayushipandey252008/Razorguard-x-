@@ -13,7 +13,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-semibold tracking-wide",
+        "inline-flex max-w-full items-center whitespace-normal break-words rounded-full border px-2 py-0.5 text-[11px] font-semibold tracking-wide",
         decision ? decisionStyle(decision) : "border-white/10 bg-white/5 text-slate-300",
         className
       )}
