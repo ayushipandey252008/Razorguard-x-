@@ -18,7 +18,8 @@ services:
     branch: main
     dockerfilePath: ./backend/Dockerfile
     dockerContext: .
-    dockerCommand: "sh -c 'uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}'"
+    # Render wraps this in `sh -c`. Do not nest another quoted sh -c.
+    dockerCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/v1/health
     envVars:
       - key: ENVIRONMENT

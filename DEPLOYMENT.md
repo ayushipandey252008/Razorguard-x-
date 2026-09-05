@@ -46,10 +46,10 @@ Resources created:
 - Web service `razorguard-x-api` (Docker, `backend/Dockerfile`, context `.`, **Free** plan)
 - Postgres `razorguard-x-db` (PostgreSQL 16, **Free** plan, 30-day expiry)
 
-Start command (binds Render `$PORT`):
+Start command (binds Render `$PORT`; Render wraps this in `sh -c`):
 
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
 ```
 
 Health check: `GET /api/v1/health`

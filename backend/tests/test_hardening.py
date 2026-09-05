@@ -99,8 +99,13 @@ def test_normalize_database_url_for_render_postgres():
     assert normalize_database_url("postgres://u:p@db:5432/razorguard") == "postgresql+asyncpg://u:p@db:5432/razorguard"
     assert normalize_database_url("postgresql://u:p@db:5432/razorguard") == "postgresql+asyncpg://u:p@db:5432/razorguard"
     assert normalize_database_url("postgresql+asyncpg://u:p@db:5432/razorguard") == "postgresql+asyncpg://u:p@db:5432/razorguard"
+    assert (
+        normalize_database_url("postgresql://u:p@db:5432/razorguard?sslmode=require")
+        == "postgresql+asyncpg://u:p@db:5432/razorguard"
+    )
     assert database_connect_args("sqlite+aiosqlite:///./razorguard.db") == {"check_same_thread": False}
     assert database_connect_args("postgresql+asyncpg://u:p@localhost:5432/razorguard") == {}
+    assert database_connect_args("postgresql+asyncpg://u:p@dpg-example-a/razorguard") == {}
     assert database_connect_args("postgresql+asyncpg://u:p@dpg-example.render.com/razorguard") == {"ssl": True}
 
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlparse
 
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -9,6 +10,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SECRET_PLACEHOLDERS = frozenset({"dev-secret-change-me", "change-me-to-a-long-random-string"})
+
+
+_LIBPQ_QUERY_KEYS = frozenset({"sslmode", "ssl", "channel_binding", "gssencmode"})
 
 
 def normalize_database_url(url: str) -> str:
@@ -21,16 +25,26 @@ def normalize_database_url(url: str) -> str:
     scheme, sep, rest = value.partition("://")
     if sep and scheme == "postgresql":
         value = f"postgresql+asyncpg://{rest}"
+    # SQLAlchemy forwards query params to asyncpg.connect(); libpq keys are invalid there.
+    if "+asyncpg" in value and "?" in value:
+        base, _, query = value.partition("?")
+        kept = [(k, v) for k, v in parse_qsl(query, keep_blank_values=True) if k.lower() not in _LIBPQ_QUERY_KEYS]
+        value = f"{base}?{urlencode(kept)}" if kept else base
     return value
 
 
 def database_connect_args(url: str) -> dict:
     if url.startswith("sqlite"):
         return {"check_same_thread": False}
-    host_is_local = "localhost" in url or "127.0.0.1" in url
-    if "+asyncpg" in url and not host_is_local:
-        return {"ssl": True}
-    return {}
+    if "+asyncpg" not in url:
+        return {}
+    host = urlparse(url.replace("postgresql+asyncpg://", "postgresql://", 1)).hostname or ""
+    if host in {"localhost", "127.0.0.1"}:
+        return {}
+    # Render internal hostnames have no dots (dpg-...-a). Forcing TLS there closes the socket.
+    if "." not in host:
+        return {}
+    return {"ssl": True}
 
 
 class Settings(BaseSettings):
