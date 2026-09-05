@@ -5,6 +5,7 @@
 
 databases:
   - name: razorguard-x-db
+    plan: free
     postgresMajorVersion: "16"
     databaseName: razorguard
 
@@ -12,7 +13,7 @@ services:
   - type: web
     name: razorguard-x-api
     runtime: docker
-    plan: starter
+    plan: free
     repo: https://github.com/ayushipandey252008/Razorguard-x-
     branch: main
     dockerfilePath: ./backend/Dockerfile

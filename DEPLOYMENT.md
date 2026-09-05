@@ -43,8 +43,8 @@ Blueprint: root `render.yaml`.
 
 Resources created:
 
-- Web service `razorguard-x-api` (Docker, `backend/Dockerfile`, context `.`)
-- Postgres `razorguard-x-db` (PostgreSQL 16)
+- Web service `razorguard-x-api` (Docker, `backend/Dockerfile`, context `.`, **Free** plan)
+- Postgres `razorguard-x-db` (PostgreSQL 16, **Free** plan, 30-day expiry)
 
 Start command (binds Render `$PORT`):
 
@@ -170,7 +170,7 @@ Public demo uses `EVENT_BUS=inprocess`. Outbox rows are still written and draine
 | --- | --- |
 | API crash on boot: production seed password | `SEED_ADMIN_PASSWORD` must be set and must not be `prototype-pass` |
 | API crash: SECRET_KEY | must be ≥32 chars and not a documented placeholder |
-| Health 502 / spin-up delay | Starter instances may cold-start; retry after ~30–60s |
+| Health 502 / spin-up delay | Free instances spin down after inactivity; retry after ~30–60s |
 | Browser CORS errors | `CORS_ORIGINS` must match the Vercel origin exactly (scheme + host, no slash) |
 | Login works locally, fails on Vercel | `NEXT_PUBLIC_API_URL` baked at **build** time; rebuild after changing it |
 | Live wire silent | `NEXT_PUBLIC_WS_URL` must be `wss://` to the same Render host; production WebSocket requires a JWT query token |
