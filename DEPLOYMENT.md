@@ -68,6 +68,31 @@ Health check: `GET /api/v1/health`
 
 ### After the first deploy
 
+## Live URLs (verified 2026-09-05)
+
+| Surface | URL |
+| --- | --- |
+| Operator UI | https://razorguard-x.vercel.app |
+| API | https://razorguard-x-api.onrender.com |
+| Health | https://razorguard-x-api.onrender.com/api/v1/health |
+
+Vercel project: `ayushis-armor/razorguard-x` (Hobby). Root directory for the Next.js app is `frontend`.
+
+Browser env baked at build time (public, not secrets):
+
+| Name | Production value |
+| --- | --- |
+| `NEXT_PUBLIC_API_URL` | `https://razorguard-x-api.onrender.com` |
+| `NEXT_PUBLIC_WS_URL` | `wss://razorguard-x-api.onrender.com` |
+
+The UI appends `/api/v1/ws/transactions` to `NEXT_PUBLIC_WS_URL` (backend route: `/api/v1` + `/ws/transactions`). Production WebSocket requires a JWT query token.
+
+Render `CORS_ORIGINS` is the exact Vercel origin `https://razorguard-x.vercel.app` (no wildcard, no trailing slash).
+
+Production login uses `admin@razorguard.local` and the Render `SEED_ADMIN_PASSWORD`. The lab password `prototype-pass` is refused.
+
+Free-plan limits: the API may cold-start after idle; Free Postgres expires 2026-10-05.
+
 Record the public API URL, e.g. `https://razorguard-x-api.onrender.com`.
 
 Verify:

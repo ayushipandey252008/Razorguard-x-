@@ -10,7 +10,7 @@ import { toast } from "sonner";
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("admin@razorguard.local");
-  const [password, setPassword] = useState("prototype-pass");
+  const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
 
   async function submit(e: FormEvent) {
@@ -38,7 +38,8 @@ export default function LoginPage() {
           <div className="text-xs tracking-[0.3em] text-mint">RAZORGUARD X</div>
           <h1 className="mt-2 text-2xl font-semibold">Operator sign-in</h1>
           <p className="mt-2 text-sm text-slate-400">
-            Independent student prototype. Seed accounts use password <span className="font-mono">prototype-pass</span>.
+            Independent student prototype. Local lab seed password is documented in the repo README. The
+            production Render seed password is set only on the server and is not the lab default.
           </p>
         </div>
         <label className="text-xs text-slate-400">Email</label>

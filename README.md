@@ -28,6 +28,21 @@ The AI investigation agent does not determine fraud probability. The risk engine
 
 ---
 
+## Public demo
+
+Independent student prototype. Synthetic traffic only.
+
+| Surface | URL |
+| --- | --- |
+| Operator UI | https://razorguard-x.vercel.app |
+| API | https://razorguard-x-api.onrender.com |
+
+Production uses Render FastAPI + Render Postgres + Vercel Next.js. Events are in-process; graph is NetworkX; investigator is deterministic fallback (`LLM_PROVIDER=none`). See `DEPLOYMENT.md`.
+
+Cloud login: `admin@razorguard.local` plus the Render seed password (not the lab password below).
+
+---
+
 ## Key capabilities
 
 - Real-time transaction risk scoring (FastAPI)
